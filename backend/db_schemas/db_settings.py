@@ -1,4 +1,5 @@
 import mysql
+from user_schema import UserSchema
 
 
 def init_db():
@@ -27,7 +28,7 @@ def _build_list_of_dicts(cursor):
 
 
 def _convert_to_schema(list_of_dicts):
-    return ArticleSchema().load(list_of_dicts, many=True)
+    return UserSchema().load(list_of_dicts, many=True)
 
 
 def _execute(query, return_entity=None):
@@ -39,12 +40,12 @@ def _execute(query, return_entity=None):
     cursor = connection.cursor()
     cursor.execute(query)
 
-    # query_result = None
-    # if cursor.rowcount == -1:
-    #     query_result = _build_list_of_dicts(cursor)
-    #
-    # if query_result is not None and return_entity:
-    #     query_result = _convert_to_schema(query_result)
+    query_result = None
+    if cursor.rowcount == -1:
+        query_result = _build_list_of_dicts(cursor)
+
+    if query_result is not None and return_entity:
+        query_result = _convert_to_schema(query_result)
 
     cursor.close()
     connection.close()
