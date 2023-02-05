@@ -8,11 +8,13 @@ def form_field(title:str, extra_info:str, space:int):
     field = html.Div(
         [
             dbc.Label(title, html_for=title.lower() + '_field'),
-            dbc.Input(type=title.lower(), id=title.lower() + '_field', placeholder="Enter " + title),
-            #dbc.FormText(
-            #        extra_info,
-            #       color="secondary",
-            #    ),
+            dbc.Input(type=title.lower(), 
+                      id=title.lower() + '_field', 
+                      placeholder="Enter " + title),
+            dbc.FormText(
+                    extra_info,
+                   color="secondary",
+                ),
         ],
         className=f"mb-{space}",
     )

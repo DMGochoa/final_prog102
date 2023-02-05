@@ -17,20 +17,14 @@ app = Dash(__name__,
 
 app.title = "Bank"
 
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2, 2, 4, 5],
-    "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-})
-
-fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
-
 app.layout = html.Div(children=[
     html.H1(children='Hello Dash'),
-    dbc.Col(className="col-2",),
-    dbc.Col(register_form() ,className="col-8",),
-    dbc.Col(className="col-2",),   
-])
+    dbc.Row([
+        dbc.Col(className="col-2",),
+        dbc.Col(register_form(), className="col-8",),
+        dbc.Col(className="col-2",),  
+        ])
+    ])
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=8050)
