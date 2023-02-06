@@ -46,33 +46,38 @@ app.layout = html.Div(
     State("firstname_field", "value"),
     State("lastname_field", "value"),
     State("national id_field", "value"),
-    #Input("birth date_field", "value"),
+    State("birth date_field", "date"),
     State("country_field", "value"),
     State("city_field", "value"),
     State("address_field", "value"),
     State("cellphone number_field", "value"),
     State("email_field", "value"),
+    State("dd_type_field", "children"),
 )
 def on_button_click(
     n_clicks,
     value_firstname,
     value_lastname,
     value_national_id,
+    value_birth_date,
     value_country,
     value_city,
     value_address_field,
     value_cellphone_number,
     value_email,
+    value_type,
 ):
     user_data = {
-        "firstname": value_firstname,
-        "lastname": value_lastname,
+        "first_name": value_firstname,
+        "last_name": value_lastname,
         "national_id": value_national_id,
+        "birth_date": value_birth_date,
         "country": value_country,
         "city": value_city,
         "address_field": value_address_field,
         "cellphone_number": value_cellphone_number,
-        "email": value_email
+        "email": value_email,
+        "type": value_type[0]['props']['children']
     }
     print(user_data)
 
