@@ -45,14 +45,14 @@ extra_data = ['Please enter the ' +  titles[0],
 def register_form():
 
     # Selectors
-    f_name = form_field(titles[0], extra_data[0], 6)
-    l_name = form_field(titles[1], extra_data[1], 3)
-    nationid = form_field(titles[2], extra_data[2], 6)
-    country = form_field(titles[4], extra_data[4], 6)
-    city = form_field(titles[5], extra_data[5], 3)
-    address = form_field(titles[6], extra_data[6], 6)
-    email = form_field(titles[7], extra_data[7], 3)
-    cellpho = form_field(titles[8], extra_data[8], 6)
+    f_name = form_field(titles[0], extra_data[0], 8)
+    l_name = form_field(titles[1], extra_data[1], 4)
+    nationid = form_field(titles[2], extra_data[2], 8)
+    country = form_field(titles[4], extra_data[4], 4)
+    city = form_field(titles[5], extra_data[5], 8)
+    address = form_field(titles[6], extra_data[6], 8)
+    email = form_field(titles[7], extra_data[7], 4)
+    cellpho = form_field(titles[8], extra_data[8], 8)
 
     bdate = dcc.DatePickerSingle(
         id="birth date_field",
@@ -63,14 +63,14 @@ def register_form():
         date=date.today(),
         style={"border-top": "2px"}
     )
-    dd_type  = dbc.DropdownMenu(
-    id = "dd_type_field",
-    label="User type",
-    children=[
-        dbc.DropdownMenuItem("Employee", id = "type_employee"),
-        dbc.DropdownMenuItem("User", id = "type_user"),
-    ],
-)
+    dd_type  = dbc.Select(
+        id = "dd_type_field",
+        #label="User type",
+        options=[
+            {"label": "Employee", "value": "Employee"},
+            {"label": "User", "value": "User"},
+            {"label": "Disabled option", "value": "3", "disabled": True},],
+        className="mb-4")
 
     scheme = html.Div(
         [

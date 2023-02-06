@@ -12,7 +12,7 @@ app = Dash(
     __name__,
     external_stylesheets=[dbc.themes.LUX, dbc.icons.BOOTSTRAP],
     suppress_callback_exceptions=True,
-    meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
+    meta_tags=[{"name": "viewport", "content": "width=device-width"}],# initial-scale=1"}],
 )
 
 app.title = "Bank"
@@ -52,7 +52,7 @@ app.layout = html.Div(
     State("address_field", "value"),
     State("cellphone number_field", "value"),
     State("email_field", "value"),
-    State("dd_type_field", "children"),
+    State("dd_type_field", "value"),
 )
 def on_button_click(
     n_clicks,
@@ -77,7 +77,7 @@ def on_button_click(
         "address_field": value_address_field,
         "cellphone_number": value_cellphone_number,
         "email": value_email,
-        "type": value_type[0]['props']['children']
+        "type": value_type
     }
     print(user_data)
 
