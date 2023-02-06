@@ -8,7 +8,7 @@ def form_field(title:str, extra_info:str, space:int):
     field = html.Div(
         [
             dbc.Label(title, html_for=title.lower() + '_field'),
-            dbc.Input(type=title.lower(), 
+            dbc.Input(type=title.lower(),
                       id=title.lower() + '_field', 
                       placeholder="Enter " + title),
             dbc.FormText(
@@ -90,10 +90,9 @@ def register_form():
                 dbc.Col([email])
             ]),
             dbc.Row(html.Center(html.P(
-                dbc.Button("SUBMIT", color="primary"), className="create_user"
+                dbc.Button("SUBMIT", id="submit-button", color="primary", n_clicks=0), className="create_user"
             )))
         ], className="col-12 col-lg-6 ",
     )
     form = dbc.Form([scheme])
     return form
-
