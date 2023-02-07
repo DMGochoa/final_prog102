@@ -2,15 +2,15 @@ from flask import Flask, request
 from flask_restful import Resource, Api, abort
 from marshmallow import ValidationError
 
-from backend.db_schemas import user_db
-from backend.db_schemas import user_schema as UserSchema
+from user_schema import UserSchema
+import user_db
 
 app = Flask(__name__)
 api = Api(app)
 
 
-# def initialize_database():
-#     user_db.init_db()
+def initialize_database():
+    user_db.init_db()
 
 
 class User(Resource):
@@ -31,7 +31,9 @@ class User(Resource):
                 abort(404, errors={"errors": {"message": "User with Id {} does not exist".format(id)}})
         except ValidationError as e:
             abort(405, errors=e.messages)
-
+    
+    def post(self):
+        ""
 
 api.add_resource(User, "/users", "/user/<int:id>")
 

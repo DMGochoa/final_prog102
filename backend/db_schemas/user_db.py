@@ -1,5 +1,7 @@
 import sqlite3
-from backend.db_schemas.user_schema import UserSchema
+from .user_schema import UserSchema
+
+# generate password, username, code 
 
 
 def init_db():
@@ -17,7 +19,8 @@ def init_db():
             password text NOT NULL,
             phone_number INTEGER,
             username text NOT NULL,
-            id integer PRIMARY KEY)"""))
+            code integer NOT NULL,
+            id integer PRIMARY KEY AUTOINCREMENT)"""))
 
 
 def get_all():
@@ -77,7 +80,7 @@ def _convert_to_schema(list_of_dicts):
 
 
 def _execute(query, return_entity=None):
-    connection = sqlite3.connect('bank_db')
+    connection = sqlite3.connect('bank_db.sqlite')
     cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()

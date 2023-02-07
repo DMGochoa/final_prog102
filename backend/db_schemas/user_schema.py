@@ -14,6 +14,7 @@ class UserSchema(Schema):
     password = fields.Str(allow_none=False)
     phone_number = fields.Int(allow_none=True)
     username = fields.Str(allow_none=False)
+    code = fields.Integer(allow_none=False)
     id = fields.Int(allow_none=False)
 
     class Meta:

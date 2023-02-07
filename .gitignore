@@ -1,0 +1,4 @@
+bank_db.sqlite
+venv/
+notes.txt
+backend/db_schemas/__pycache__/**
