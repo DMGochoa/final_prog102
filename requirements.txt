@@ -1,11 +1,2 @@
-certifi==2022.12.7
-cffi @ file:///D:/bld/cffi_1671179520384/work
-cryptography @ file:///D:/bld/cryptography-split_1672672547284/work
-dnspython @ file:///home/conda/feedstock_root/build_artifacts/dnspython_1673812078720/work
-idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1663625384323/work
-marshmallow @ file:///home/conda/feedstock_root/build_artifacts/marshmallow_1668359249650/work
-mysql-connector-python==8.0.31
-packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1673482170163/work
-protobuf==4.21.12
-pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
-wincertstore==0.2
+flask~=2.2.2
+marshmallow~=3.19.0
