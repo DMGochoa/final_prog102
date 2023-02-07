@@ -12,7 +12,9 @@ app = Dash(
     __name__,
     external_stylesheets=[dbc.themes.LUX, dbc.icons.BOOTSTRAP],
     suppress_callback_exceptions=True,
-    meta_tags=[{"name": "viewport", "content": "width=device-width"}],# initial-scale=1"}],
+    meta_tags=[
+        {"name": "viewport", "content": "width=device-width"}
+    ],  # initial-scale=1"}],
 )
 
 app.title = "Bank"
@@ -77,9 +79,17 @@ def on_button_click(
         "address_field": value_address_field,
         "cellphone_number": value_cellphone_number,
         "email": value_email,
-        "type": value_type
+        "type": value_type,
     }
     print(user_data)
+
+    json_response = {
+        "username": "the_user",
+        "password": "the_password",
+        "code": "the_code",
+    }
+    with open("user_credentials.txt", "w") as f:
+        f.write(json.dumps(json_response))
 
 
 if __name__ == "__main__":
