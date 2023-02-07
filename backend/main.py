@@ -1,9 +1,9 @@
 from db_schemas import user_db
 
 user = {
-    "first_name": "kev",
-    "last_name": "garay",
-    "type": "Client",
+    "first_name": "kristian",
+    "last_name": "ev",
+    "type": "client-person",
     "birthday": '16/03/1998',
     "document_id": "1234567890",
     "country": "bolivia",

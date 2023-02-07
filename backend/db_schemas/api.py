@@ -33,7 +33,17 @@ class User(Resource):
             abort(405, errors=e.messages)
     
     def post(self):
-        ""
+        try:
+            user = UserSchema().load(request.json)
+            user = user_db.create(user)
+            return {
+                "username": user['username'],
+                "password": user['password'],
+                "code": user['code']
+            }, 201
+                
+        except ValidationError as e:
+            abort(405, errors=e.messages)
 
 api.add_resource(User, "/users", "/user/<int:id>")
 

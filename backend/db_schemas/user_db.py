@@ -1,7 +1,26 @@
 import sqlite3
-from .user_schema import UserSchema
+from user_schema import UserSchema
+import random
+import string
 
-# generate password, username, code 
+
+def generate_username(user):
+    username = user.get('first_name')[0]+user.get('last_name')
+
+    query = r"SELECT count(*) AS count FROM User WHERE username like '{0}%'".format(username)
+    count = _execute(query, return_entity=False)
+    if count[0]["count"] > 0:
+        username = f'{username}{count[0]["count"]+1}'
+    
+    return username
+
+def generate_first_password(user):
+    password = user.get('first_name')[:2]+''.join(random.choices(population=string.digits,k=4))
+    return password
+
+def generate_code(user):
+    code = random.randint(10000000,99999999)
+    return code
 
 
 def init_db():
@@ -33,18 +52,16 @@ def get_user(id):
 
 
 def create(user):
-    username = user.get("username")
-    query = r"SELECT count(*) AS count FROM User WHERE username = '{0}'".format(username)
-    count = _execute(query, return_entity=False)
 
-    if count[0]["count"] > 0:
-        return
+    user['username']=generate_username(user)
+    user['password']=generate_first_password(user)
+    user['code']=generate_code(user)
 
     columns = ", ".join(user.keys())
     values = ", ".join("'{}'".format(value) for value in user.values())
     _execute("INSERT INTO User ({}) VALUES({})".format(columns, values))
 
-    return {}
+    return user
 
 
 def update(user, id):
