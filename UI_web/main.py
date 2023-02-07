@@ -69,19 +69,20 @@ def on_button_click(
     value_email,
     value_type,
 ):
-    user_data = {
-        "first_name": value_firstname,
-        "last_name": value_lastname,
-        "national_id": value_national_id,
-        "birth_date": value_birth_date,
-        "country": value_country,
-        "city": value_city,
-        "address_field": value_address_field,
-        "cellphone_number": value_cellphone_number,
-        "email": value_email,
-        "type": value_type
-    }
-    print(user_data)
+    if n_clicks != 0:
+        user_data = {
+            "first_name": value_firstname,
+            "last_name": value_lastname,
+            "national_id": value_national_id,
+            "birth_date": value_birth_date,
+            "country": value_country,
+            "city": value_city,
+            "address_field": value_address_field,
+            "cellphone_number": value_cellphone_number,
+            "email": value_email,
+            "type": value_type
+        }
+        print(user_data)
 
 
 if __name__ == "__main__":
