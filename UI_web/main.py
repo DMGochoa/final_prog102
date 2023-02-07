@@ -6,6 +6,7 @@ import dash_bootstrap_components as dbc
 
 # Pages
 from pages.register import register_form
+from pages.login import login_page
 import pages.register as register
 
 app = Dash(
@@ -23,14 +24,15 @@ app.layout = html.Div(
         dbc.Row(
             [
                 dbc.Col(
-                    className="col-2",
+                    className="col-lg-2",
                 ),
                 dbc.Col(
-                    register_form(),
-                    className="col-8",
+                    login_page(),
+                    #register_form
+                    className="col-lg-8",
                 ),
                 dbc.Col(
-                    className="col-2",
+                    className="col-lg-2",
                 ),
                 html.Br(),
                 html.Div(id="my-output"),
@@ -39,7 +41,7 @@ app.layout = html.Div(
     ]
 )
 
-
+# Callback for the register users page
 @app.callback(
     Output(component_id="my-output", component_property="children"),
     Input("submit-button", "n_clicks"),
