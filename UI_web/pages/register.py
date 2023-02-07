@@ -3,12 +3,12 @@ from dash import html
 from dash import dcc
 from datetime import date
 
-def form_field(title:str, extra_info:str, space:int):
+def form_field(title:str, extra_info:str, space:int, type:str):
 
     field = html.Div(
         [
             dbc.Label(title, html_for=title.lower() + '_field'),
-            dbc.Input(type=title.lower(),
+            dbc.Input(type=type,
                       id=title.lower() + '_field', 
                       placeholder="Enter " + title),
             dbc.FormText(
@@ -44,16 +44,16 @@ extra_data = ['Please enter the ' +  titles[0],
 
 def register_form():
 
-    # Selectors
-    f_name = form_field(titles[0], extra_data[0], 8)
-    l_name = form_field(titles[1], extra_data[1], 4)
-    nationid = form_field(titles[2], extra_data[2], 8)
-    country = form_field(titles[4], extra_data[4], 4)
-    city = form_field(titles[5], extra_data[5], 8)
-    address = form_field(titles[6], extra_data[6], 8)
-    email = form_field(titles[7], extra_data[7], 4)
-    cellpho = form_field(titles[8], extra_data[8], 8)
-
+    # The different fields of the form
+    f_name = form_field(titles[0], extra_data[0], 8, 'text')
+    l_name = form_field(titles[1], extra_data[1], 4, 'text')
+    nationid = form_field(titles[2], extra_data[2], 8, 'number')
+    country = form_field(titles[4], extra_data[4], 4, 'text')
+    city = form_field(titles[5], extra_data[5], 8, 'text')
+    address = form_field(titles[6], extra_data[6], 8, 'text')
+    email = form_field(titles[7], extra_data[7], 4, 'email')
+    cellpho = form_field(titles[8], extra_data[8], 8, 'number')
+    # Field for the Date 
     bdate = dcc.DatePickerSingle(
         id="birth date_field",
         month_format='DD/MM/YYYY',
@@ -63,9 +63,9 @@ def register_form():
         date=date.today(),
         style={"border-top": "2px"}
     )
+    # Field for the dropdown selector
     dd_type  = dbc.Select(
         id = "dd_type_field",
-        #label="User type",
         options=[
             {"label": "Employee", "value": "Employee"},
             {"label": "User", "value": "User"},
@@ -104,7 +104,7 @@ def register_form():
             dbc.Row(html.Center(html.P(
                 dbc.Button("SUBMIT", id="submit-button", color="primary", n_clicks=0), className="create_user"
             )))
-        ], className="col-12 col-lg-6 ",
+        ], className="col-lg-12 col-lg-6 ",
     )
     form = dbc.Form([scheme])
     return form
