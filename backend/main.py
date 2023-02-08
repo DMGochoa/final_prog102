@@ -16,6 +16,7 @@ user = {
 }
 
 # user_db.init_db()
-user_db.create(user)
-users = user_db.get_all()
-print(users)
+# user_db.create(user)
+user = user_db.get_user_by_username('jmendoza')
+# users = user_db.get_all()
+print(user)

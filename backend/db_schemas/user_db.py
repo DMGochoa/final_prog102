@@ -19,6 +19,11 @@ class UserDb():
 
         return user
 
+    @classmethod
+    def get_user_by_username(self,name):
+        user = _execute("Select * FROM User WHERE username = '{}'".format(name), return_entity=True)
+        return user
+
 
 def generate_username(user):
     username = user.get('first_name')[0]+user.get('last_name')

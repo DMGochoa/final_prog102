@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, abort
 from marshmallow import ValidationError
 
@@ -7,19 +7,28 @@ from db_schemas.user_schema import UserSchema
 
 from setup_db import SetupDatabase
 
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
+
 app = Flask(__name__)
 api = Api(app)
+
+# Setup the Flask-JWT-Extended extension
+app.config["JWT_SECRET_KEY"] = "prog102" 
+jwt = JWTManager(app)
 
 class User(Resource):
 
     def post(self):
         try:
             user = UserSchema().load(request.json)
-            userdb = UserDb.create(user)
+            user_db = UserDb.create(user)
             return {
-                "username": userdb['username'],
-                "password": userdb['password'],
-                "code": userdb['code']
+                "username": user_db['username'],
+                "password": user_db['password'],
+                "code": user_db['code']
             }, 201
                 
         except ValidationError as e:
@@ -42,9 +51,28 @@ class User(Resource):
 #         except ValidationError as e:
 #             abort(405, errors=e.messages)
     
-
-
 api.add_resource(User, "/users", "/user/<int:id>")
+
+class Login(Resource):
+    def post(self):
+        username = request.json.get("username", None)
+        password = request.json.get("password", None)
+        code = request.json.get("code", None)
+
+        user_db = UserDb.get_user_by_username(username)
+
+        if not user_db:
+            return {"msg": "Username doesn't exist"}, 400    
+
+        if password != user_db[0]['password'] or code != user_db[0]['code']:
+            print(code)
+            print(user_db[0]['code'])
+            return {"msg": "Bad password or code"}, 400
+
+        access_token = create_access_token(identity=username)
+        return jsonify(access_token=f"Bearer {access_token}")
+
+api.add_resource(Login, "/login")
 
 if __name__ == "__main__":
     SetupDatabase.setup()
