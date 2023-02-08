@@ -5,13 +5,18 @@ from dash import html, dcc, Input, Output, callback, State
 from datetime import date
 
 dash.register_page(__name__, path='/login')
-
+# component styling
 LOGIN_STYLE = {
     #"display": "flex",
     "justify-content": "space-between",
     "width": "80rem",
     #"padding": "2px 1px",
     "background-color": "#f8f9fa",
+}
+INPUT_STYLE = {
+    "border": "2px solid black",
+    "border-radius": "4px",
+    "width":"20rem"
 }
 
 # Page config
@@ -23,7 +28,7 @@ def form_field(title:str, extra_info:str, space:int, type:str):
             dbc.Input(type=type,
                       id=title.lower() + '_field', 
                       placeholder="Enter " + title,
-                      style={'width':'20rem'}),
+                      style=INPUT_STYLE),
             dbc.FormText(
                     extra_info,
                    color="secondary",
