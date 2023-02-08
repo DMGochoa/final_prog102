@@ -1,6 +1,10 @@
 import dash_bootstrap_components as dbc
-from dash import html
-from dash import dcc
+import dash
+import json
+from dash import html, dcc, Input, Output, callback, State
+from datetime import date
+
+dash.register_page(__name__, path='/login')
 
 # Page config
 
@@ -44,3 +48,22 @@ def login_page():
             ])])
     ])
     return output_page
+
+layout = html.Div(
+        dbc.Row(
+            [
+                dbc.Col(
+                    className="col-lg-2",
+                ),
+                dbc.Col(
+                    login_page(),
+                    className="col-lg-8",
+                ),
+                dbc.Col(
+                    className="col-lg-2",
+                ),
+                html.Br(),
+                html.Div(id="my-output"),
+            ]
+        ),
+)

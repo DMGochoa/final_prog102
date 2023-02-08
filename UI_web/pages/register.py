@@ -1,7 +1,10 @@
 import dash_bootstrap_components as dbc
+import dash
 import json
 from dash import html, dcc, Input, Output, callback, State
 from datetime import date
+
+dash.register_page(__name__, path='/register')
 
 def form_field(title:str, extra_info:str, space:int, type:str):
 
@@ -109,6 +112,24 @@ def register_form():
     form = dbc.Form([scheme])
     return form
 
+layout = html.Div(
+        dbc.Row(
+            [
+                dbc.Col(
+                    className="col-lg-2",
+                ),
+                dbc.Col(
+                    register_form(),
+                    className="col-lg-8",
+                ),
+                dbc.Col(
+                    className="col-lg-2",
+                ),
+                html.Br(),
+                html.Div(id="my-output"),
+            ]
+        ),
+)
 # Callback for the register users page
 @callback(
     Output(component_id="my-output", component_property="children"),
