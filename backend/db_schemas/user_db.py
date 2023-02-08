@@ -1,7 +1,23 @@
 import sqlite3
-from user_schema import UserSchema
+import os
+from db_schemas.user_schema import UserSchema
 import random
 import string
+
+class UserDb():
+    
+    @classmethod
+    def create(self,user):
+
+        user['username']=generate_username(user)
+        user['password']=generate_first_password(user)
+        user['code']=generate_code(user)
+
+        columns = ", ".join(user.keys())
+        values = ", ".join("'{}'".format(value) for value in user.values())
+        _execute("INSERT INTO User ({}) VALUES({})".format(columns, values))
+
+        return user
 
 
 def generate_username(user):
@@ -22,47 +38,12 @@ def generate_code(user):
     code = random.randint(10000000,99999999)
     return code
 
-
-def init_db():
-    _execute(
-        ("""CREATE TABLE IF NOT EXISTS User (
-            first_name text NOT NULL,
-            last_name text NOT NULL,
-            type text NOT NULL,
-            birthday DATE NOT NULL,
-            document_id integer NOT NULL,
-            country text NOT NULL,
-            city text NOT NULL,
-            address text,
-            email text NOT NULL,
-            password text NOT NULL,
-            phone_number INTEGER,
-            username text NOT NULL,
-            code integer NOT NULL,
-            id integer PRIMARY KEY AUTOINCREMENT)"""))
-
-
 def get_all():
     return _execute("SELECT * FROM User", return_entity=False)
-
 
 def get_user(id):
     user = _execute("Select * FROM User WHERE id = {}".format(id), return_entity=True)
     return user
-
-
-def create(user):
-
-    user['username']=generate_username(user)
-    user['password']=generate_first_password(user)
-    user['code']=generate_code(user)
-
-    columns = ", ".join(user.keys())
-    values = ", ".join("'{}'".format(value) for value in user.values())
-    _execute("INSERT INTO User ({}) VALUES({})".format(columns, values))
-
-    return user
-
 
 def update(user, id):
     query = "SELECT count(*) AS count FROM User WHERE id = '{}'".format(id)
@@ -76,7 +57,6 @@ def update(user, id):
     _execute("UPDATE User SET {} WHERE id = '{}'".format(update_values, id))
     return {}
 
-
 def delete(id):
     count = _execute("SELECT count(*) AS count FROM User WHERE id = '{}'".format(id),
                      return_entity=False)
@@ -85,19 +65,22 @@ def delete(id):
     _execute("DELETE FROM User WHERE id = '{}'".format(id))
     return {}
 
-
 def _build_list_of_dicts(cursor):
     column_names = [record[0].lower() for record in cursor.description]
     column_and_values = [dict(zip(column_names, record)) for record in cursor.fetchall()]
     return column_and_values
 
-
 def _convert_to_schema(list_of_dicts):
     return UserSchema().load(list_of_dicts, many=True)
 
-
 def _execute(query, return_entity=None):
-    connection = sqlite3.connect('bank_db.sqlite')
+
+    db_name='bank_db.sqlite'
+    absolute_path = os.path.dirname(__file__)
+    db_path=os.path.join(absolute_path,'..',db_name)
+    print(db_path)
+
+    connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()
