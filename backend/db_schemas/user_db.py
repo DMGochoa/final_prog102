@@ -54,7 +54,9 @@ def init_db():
                                             email is not NULL AND
                                             password is not NULL AND
                                             username is not NULL AND
-                                            code is not NULL))"""))
+                                            code is not NULL)
+            CONSTRAINT valid_length CHECK(length(password)==8 AND
+                                        length(code)==8))"""))
 
 
 def get_all():
