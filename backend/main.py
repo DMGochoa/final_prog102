@@ -1,4 +1,4 @@
-from db_schemas import user_db
+from backend.db_schemas import user_db
 
 user = {
     "first_name": "kristian",
@@ -12,6 +12,7 @@ user = {
     "email": "kev@mail.com",
     "password": "32435643",
     "phone_number": "34546543",
+    "code": "324335443",
     "username": "kev"
 }
 

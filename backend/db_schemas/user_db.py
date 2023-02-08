@@ -1,7 +1,9 @@
 import sqlite3
-from user_schema import UserSchema
+# from user_schema import UserSchema
 import random
 import string
+import os
+from backend.db_schemas.user_schema import UserSchema
 
 
 def generate_username(user):
@@ -14,12 +16,14 @@ def generate_username(user):
     
     return username
 
+
 def generate_first_password(user):
     password = user.get('first_name')[:2]+''.join(random.choices(population=string.digits,k=4))
     return password
 
+
 def generate_code(user):
-    code = random.randint(10000000,99999999)
+    code = random.randint(10000000, 99999999)
     return code
 
 
@@ -39,7 +43,18 @@ def init_db():
             phone_number INTEGER,
             username text NOT NULL,
             code integer NOT NULL,
-            id integer PRIMARY KEY AUTOINCREMENT)"""))
+            id integer PRIMARY KEY AUTOINCREMENT
+            CONSTRAINT not_null_values CHECK(first_name is not NULL AND
+                                            last_name is not NULL AND
+                                            type is not NULL AND
+                                            birthday is not NULL AND
+                                            document_id is not NULL AND
+                                            country is not NULL AND
+                                            city is not NULL AND
+                                            email is not NULL AND
+                                            password is not NULL AND
+                                            username is not NULL AND
+                                            code is not NULL))"""))
 
 
 def get_all():
@@ -97,7 +112,8 @@ def _convert_to_schema(list_of_dicts):
 
 
 def _execute(query, return_entity=None):
-    connection = sqlite3.connect('bank_db.sqlite')
+    absolute_path = os.path.dirname(__file__)
+    connection = sqlite3.connect(os.path.join(absolute_path, "testdb.sqlite"))
     cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()

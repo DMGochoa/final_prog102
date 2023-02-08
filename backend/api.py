@@ -2,8 +2,8 @@ from flask import Flask, request
 from flask_restful import Resource, Api, abort
 from marshmallow import ValidationError
 
-from user_schema import UserSchema
-import user_db
+from db_schemas.user_schema import UserSchema
+import db_schemas.user_db as user_db
 
 app = Flask(__name__)
 api = Api(app)
@@ -31,19 +31,20 @@ class User(Resource):
                 abort(404, errors={"errors": {"message": "User with Id {} does not exist".format(id)}})
         except ValidationError as e:
             abort(405, errors=e.messages)
-    
+
     def post(self):
         try:
             user = UserSchema().load(request.json)
             user = user_db.create(user)
             return {
-                "username": user['username'],
-                "password": user['password'],
-                "code": user['code']
-            }, 201
-                
+                       "username": user['username'],
+                       "password": user['password'],
+                       "code": user['code']
+                   }, 201
+
         except ValidationError as e:
             abort(405, errors=e.messages)
+
 
 api.add_resource(User, "/users", "/user/<int:id>")
 
