@@ -1,7 +1,10 @@
 import dash_bootstrap_components as dbc
-from dash import html
-from dash import dcc
+import dash
+import json
+from dash import html, dcc, Input, Output, callback, State
 from datetime import date
+
+dash.register_page(__name__, path='/register')
 
 def form_field(title:str, extra_info:str, space:int, type:str):
 
@@ -108,3 +111,72 @@ def register_form():
     )
     form = dbc.Form([scheme])
     return form
+
+layout = html.Div(
+        dbc.Row(
+            [
+                dbc.Col(
+                    className="col-lg-2",
+                ),
+                dbc.Col(
+                    register_form(),
+                    className="col-lg-8",
+                ),
+                dbc.Col(
+                    className="col-lg-2",
+                ),
+                html.Br(),
+                html.Div(id="my-output"),
+            ]
+        ),
+)
+# Callback for the register users page
+@callback(
+    Output(component_id="my-output", component_property="children"),
+    Input("submit-button", "n_clicks"),
+    State("firstname_field", "value"),
+    State("lastname_field", "value"),
+    State("national id_field", "value"),
+    State("birth date_field", "date"),
+    State("country_field", "value"),
+    State("city_field", "value"),
+    State("address_field", "value"),
+    State("cellphone number_field", "value"),
+    State("email_field", "value"),
+    State("dd_type_field", "value"),
+)
+def on_button_click(
+    n_clicks,
+    value_firstname,
+    value_lastname,
+    value_national_id,
+    value_birth_date,
+    value_country,
+    value_city,
+    value_address_field,
+    value_cellphone_number,
+    value_email,
+    value_type,
+):
+    if n_clicks != 0:
+        user_data = {
+            "first_name": value_firstname,
+            "last_name": value_lastname,
+            "national_id": value_national_id,
+            "birth_date": value_birth_date,
+            "country": value_country,
+            "city": value_city,
+            "address_field": value_address_field,
+            "cellphone_number": value_cellphone_number,
+            "email": value_email,
+            "type": value_type
+        }
+        print(user_data)
+
+    json_response = {
+        "username": "the_user",
+        "password": "the_password",
+        "code": "the_code",
+    }
+    with open("user_credentials.txt", "w") as f:
+        f.write(json.dumps(json_response))
