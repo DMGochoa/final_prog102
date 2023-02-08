@@ -1,9 +1,29 @@
 import sqlite3
-# from user_schema import UserSchema
+import os
+from user_schema import UserSchema
 import random
 import string
-import os
 from backend.db_schemas.user_schema import UserSchema
+
+class UserDb():
+
+    @classmethod
+    def create(self,user):
+
+        user['username']=generate_username(user)
+        user['password']=generate_first_password(user)
+        user['code']=generate_code(user)
+
+        columns = ", ".join(user.keys())
+        values = ", ".join("'{}'".format(value) for value in user.values())
+        _execute("INSERT INTO User ({}) VALUES({})".format(columns, values))
+
+        return user
+
+    @classmethod
+    def get_user_by_username(self,name):
+        user = _execute("Select * FROM User WHERE username = '{}'".format(name), return_entity=True)
+        return user
 
 
 def generate_username(user):
@@ -67,20 +87,6 @@ def get_user(id):
     user = _execute("Select * FROM User WHERE id = {}".format(id), return_entity=True)
     return user
 
-
-def create(user):
-
-    user['username']=generate_username(user)
-    user['password']=generate_first_password(user)
-    user['code']=generate_code(user)
-
-    columns = ", ".join(user.keys())
-    values = ", ".join("'{}'".format(value) for value in user.values())
-    _execute("INSERT INTO User ({}) VALUES({})".format(columns, values))
-
-    return user
-
-
 def update(user, id):
     query = "SELECT count(*) AS count FROM User WHERE id = '{}'".format(id)
     count = _execute(query, return_entity=False)
@@ -114,8 +120,13 @@ def _convert_to_schema(list_of_dicts):
 
 
 def _execute(query, return_entity=None):
+
+    db_name='bank_db.sqlite'
     absolute_path = os.path.dirname(__file__)
-    connection = sqlite3.connect(os.path.join(absolute_path, "testdb.sqlite"))
+    db_path=os.path.join(absolute_path,'..',db_name)
+    print(db_path)
+
+    connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
     cursor.execute(query)
     connection.commit()
