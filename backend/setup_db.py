@@ -42,6 +42,3 @@ class SetupDatabase():
     def setup(self):
         self.create_db()
         self.create_user_table()
-
-
-SetupDatabase.setup()
