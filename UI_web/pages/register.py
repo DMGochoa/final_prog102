@@ -4,6 +4,8 @@ import json
 from dash import html, dcc, Input, Output, callback, State
 from datetime import date
 
+import requests
+
 dash.register_page(__name__, path='/register')
 
 def form_field(title:str, extra_info:str, space:int, type:str):
@@ -162,16 +164,37 @@ def on_button_click(
         user_data = {
             "first_name": value_firstname,
             "last_name": value_lastname,
-            "national_id": value_national_id,
-            "birth_date": value_birth_date,
+            "document_id": value_national_id,
+            "type": value_type,
+            "birthday": value_birth_date,
             "country": value_country,
             "city": value_city,
-            "address_field": value_address_field,
-            "cellphone_number": value_cellphone_number,
+            "address": value_address_field,
             "email": value_email,
-            "type": value_type
+            "phone_number": value_cellphone_number,
         }
+        
+        user = {
+            "first_name": "pedrito",
+            "last_name": "mendoza",
+            "document_id": "1234545678",
+            "type": "client-person",
+            "birthday": "1997-01-01",
+            "country": "peru",
+            "city": "lima",
+            "address": "av siempreviva",
+            "email": "jm@texample.com",
+            "phone_number": "999555999"}
+        response = requests.post('http://127.0.0.1:9000/users', json=user)
+        print(response)
+        print('-'*30)
         print(user_data)
+        response = requests.post('http://127.0.0.1:9000/users', json=user_data)
+        print('-'*30)
+        print(response.headers)
+        print('-'*30)
+        print(response.json)
+        print(response.text)
 
     json_response = {
         "username": "the_user",
