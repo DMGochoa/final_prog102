@@ -78,20 +78,21 @@
         MDTextField:
             mode: "round"
             id: code
-            icon_left: "account-check"
+            icon_left: "key-variant"
             hint_text: "Access Code"
             foreground_color: 1, 0, 1, 1    
             size_hint_x: None
             width: 220
             font_size: 20
             pos_hint: {"center_x": 0.1, "center_y": -0.1}
+            password: True
         MDFillRoundFlatButton:
             text: "LOG IN"
             font_size: 15
             pos_hint: {"center_x": 0.1, "center_y": -0.2}
-            #on_press: app.login()   
-            on_release:
-                root.current = 'main_menu'       
+            on_press: app.login()   
+            # on_release:
+            #     root.current = 'main_menu'       
 
     MDScreen:  
         name: 'main_menu'       
@@ -105,15 +106,15 @@
                 MDCard:
                     radius: '10dp'
                     padding: '20dp'
-                    line_color: 1,0,1,1
+                    # line_color: 1,0,1,1
                     MDLabel:
-                        text: 'Bienvenido <USER>'
+                        text: 'Welcome! ' + root.ids.user.text + "\n Account: \n Balance $$$" 
                         halign: 'center'
                         pos_hint: {"center_y": 0.5}
 
             MDGridLayout:
                 cols: 3
-                size_hint: 1, 0.8    
+                size_hint: 1, 0.7    
                 padding: ['10dp', '10dp', '10dp', '10dp']    
                 spacing: '10dp'
 
@@ -125,19 +126,35 @@
                         root.current = 'transfer_screen'
 
                 ElementCard:
-                    text: 'REPORTES'
-                    sub_text: 'Generar Reporte'
+                    text: 'REPORTS'
+                    sub_text: 'Reportes'
                     image: 'Images/bank_report.jpg'
                     on_release:
                         root.current = 'report_screen'
 
                 ElementCard:
-                    text: 'SERVICIOS'
-                    sub_text: 'Pagar Servicios'
+                    text: 'SERVICES'
+                    sub_text: 'Servicios'
                     image: 'Images/service_paid.png'
                     on_release:
-                        root.current = 'service_screen'                
+                        root.current = 'service_screen'
 
+            MDBoxLayout: 
+                size_hint: 1, 0.2    
+                orientation: 'horizontal'
+                padding: '10dp'
+                MDFillRoundFlatButton:
+                    text: "LOG OUT"
+                    font_size: 15
+                    foreground_color: 1, 0, 1, 1
+                    pos_hint: {"center_y": .5}
+                    on_press : app.clear_fields()
+                    on_release:
+                        #app.root.transition = SlideTransition(direction='right') 
+                        #app.root.transition = RiseInTransition()
+                        root.current = 'login'      
+                        # Investigar transitions
+                                                          
     MDScreen:
         name: 'transfer_screen'
         CustomizeScreen:
