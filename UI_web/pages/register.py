@@ -195,11 +195,7 @@ def on_button_click(
         print('-'*30)
         print(response.json)
         print(response.text)
-
-    json_response = {
-        "username": "the_user",
-        "password": "the_password",
-        "code": "the_code",
-    }
-    with open("user_credentials.txt", "w") as f:
-        f.write(json.dumps(json_response))
+        
+        json_response = json.loads(response.text)
+        with open("user_credentials.txt", "w") as f:
+            f.write(json.dumps(json_response))
