@@ -1,23 +1,28 @@
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, abort
-from marshmallow import ValidationError
-
-from db_schemas.user_db import UserDb
-from db_schemas.user_schema import UserSchema
-
-from setup_db import SetupDatabase
-
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
+from db_schemas.user_schema import UserSchema
+import db_schemas.user_db as user_db
+from marshmallow import ValidationError
+
+from db_schemas.user_db import UserDb
+
+from setup_db import SetupDatabase
+
 
 app = Flask(__name__)
 api = Api(app)
-
 # Setup the Flask-JWT-Extended extension
-app.config["JWT_SECRET_KEY"] = "prog102" 
+app.config["JWT_SECRET_KEY"] = "prog102"
 jwt = JWTManager(app)
+
+
+def initialize_database():
+    user_db.init_db()
+
 
 class User(Resource):
 
@@ -26,32 +31,34 @@ class User(Resource):
             user = UserSchema().load(request.json)
             user_db = UserDb.create(user)
             return {
-                "username": user_db['username'],
-                "password": user_db['password'],
-                "code": user_db['code']
-            }, 201
-                
+                       "username": user_db['username'],
+                       "password": user_db['password'],
+                       "code": user_db['code']
+                   }, 201
+
         except ValidationError as e:
-             abort(405, errors=e.messages)
+            abort(405, errors=e.messages)
 
-    # def get(self, id=None):
-    #     if id is None:
-    #         return user_db.get_all()
+    def get(self, id=None):
+        if id is None:
+            return UserDb.get_all()
 
-    #     user = user_db.get_user(id)
-    #     if not user:
-    #         abort(404, errors={"errors": {"message": "User with Id {} does not exist".format(id)}})
-    #     return user
+        user = UserDb.get_user(id)
+        if not user:
+            abort(404, errors={"errors": {"message": "User with Id {} does not exist".format(id)}})
+        return user
 
-#     def put(self, id):
-#         try:
-#             user = UserSchema().load(request.json)
-#             if user_db.update(user, id):
-#                 abort(404, errors={"errors": {"message": "User with Id {} does not exist".format(id)}})
-#         except ValidationError as e:
-#             abort(405, errors=e.messages)
-    
+    def put(self, id):
+        try:
+            user = UserSchema().load(request.json)
+            if UserDb.update(user, id):
+                abort(404, errors={"errors": {"message": "User with Id {} does not exist".format(id)}})
+        except ValidationError as e:
+            abort(405, errors=e.messages)
+
+
 api.add_resource(User, "/users", "/user/<int:id>")
+
 
 class Login(Resource):
     def post(self):
@@ -62,7 +69,7 @@ class Login(Resource):
         user_db = UserDb.get_user_by_username(username)
 
         if not user_db:
-            return {"msg": "Username doesn't exist"}, 400    
+            return {"msg": "Username doesn't exist"}, 400
 
         if password != user_db[0]['password'] or code != user_db[0]['code']:
             print(code)
@@ -72,7 +79,9 @@ class Login(Resource):
         access_token = create_access_token(identity=username)
         return jsonify(access_token=f"Bearer {access_token}")
 
+
 api.add_resource(Login, "/login")
+
 
 class Homepage(Resource):
     @jwt_required()
@@ -81,12 +90,14 @@ class Homepage(Resource):
         user_db = UserDb.get_user_by_username(username)
 
         if not username:
-            return {"msg": "Invalid token"}, 400  
+            return {"msg": "Invalid token"}, 400
 
-        return jsonify(user=user_db) 
+        return jsonify(user=user_db)
 
-api.add_resource(Homepage,"/home")
+
+api.add_resource(Homepage, "/home")
+
 
 if __name__ == "__main__":
     SetupDatabase.setup()
-    app.run(host="127.0.0.1", port=9000, debug=True)
+    app.run(host="127.0.0.1")

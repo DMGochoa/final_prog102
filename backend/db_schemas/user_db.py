@@ -1,13 +1,15 @@
 import sqlite3
 import os
-from db_schemas.user_schema import UserSchema
 import random
 import string
 
-class UserDb():
-    
+from backend.db_schemas.user_schema import UserSchema
+
+
+class UserDb:
+
     @classmethod
-    def create(self,user):
+    def create(cls, user):
 
         user['username']=generate_username(user)
         user['password']=generate_first_password(user)
@@ -20,9 +22,40 @@ class UserDb():
         return user
 
     @classmethod
-    def get_user_by_username(self,name):
+    def get_user_by_username(cls, name):
         user = _execute("Select * FROM User WHERE username = '{}'".format(name), return_entity=True)
         return user
+
+    @classmethod
+    def get_all(cls):
+        return _execute("SELECT * FROM User", return_entity=False)
+
+    @classmethod
+    def get_user(cls, id):
+        user = _execute("Select * FROM User WHERE id = {}".format(id), return_entity=True)
+        return user
+
+    @classmethod
+    def update(cls, user, id):
+        query = "SELECT count(*) AS count FROM User WHERE id = '{}'".format(id)
+        count = _execute(query, return_entity=False)
+
+        if count[0]["count"] == 0:
+            return
+
+        values = ["'{}'".format(value) for value in user.values()]
+        update_values = ", ".join("{} = {}".format(key, value) for key, value in zip(user.keys(), values))
+        _execute("UPDATE User SET {} WHERE id = '{}'".format(update_values, id))
+        return {}
+
+    @classmethod
+    def delete(cls, id):
+        count = _execute("SELECT count(*) AS count FROM User WHERE id = '{}'".format(id),
+                         return_entity=False)
+        if count[0]["count"] == 0:
+            return
+        _execute("DELETE FROM User WHERE id = '{}'".format(id))
+        return {}
 
 
 def generate_username(user):
@@ -35,48 +68,26 @@ def generate_username(user):
     
     return username
 
+
 def generate_first_password(user):
     password = user.get('first_name')[:2]+''.join(random.choices(population=string.digits,k=4))
     return password
 
+
 def generate_code(user):
-    code = random.randint(10000000,99999999)
+    code = random.randint(10000000, 99999999)
     return code
 
-def get_all():
-    return _execute("SELECT * FROM User", return_entity=False)
-
-def get_user(id):
-    user = _execute("Select * FROM User WHERE id = {}".format(id), return_entity=True)
-    return user
-
-def update(user, id):
-    query = "SELECT count(*) AS count FROM User WHERE id = '{}'".format(id)
-    count = _execute(query, return_entity=False)
-
-    if count[0]["count"] == 0:
-        return
-
-    values = ["'{}'".format(value) for value in user.values()]
-    update_values = ", ".join("{} = {}".format(key, value) for key, value in zip(user.keys(), values))
-    _execute("UPDATE User SET {} WHERE id = '{}'".format(update_values, id))
-    return {}
-
-def delete(id):
-    count = _execute("SELECT count(*) AS count FROM User WHERE id = '{}'".format(id),
-                     return_entity=False)
-    if count[0]["count"] == 0:
-        return
-    _execute("DELETE FROM User WHERE id = '{}'".format(id))
-    return {}
 
 def _build_list_of_dicts(cursor):
     column_names = [record[0].lower() for record in cursor.description]
     column_and_values = [dict(zip(column_names, record)) for record in cursor.fetchall()]
     return column_and_values
 
+
 def _convert_to_schema(list_of_dicts):
     return UserSchema().load(list_of_dicts, many=True)
+
 
 def _execute(query, return_entity=None):
 

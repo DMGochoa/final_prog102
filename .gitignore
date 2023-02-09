@@ -4,3 +4,4 @@ notes.txt
 backend/db_schemas/__pycache__/**
 backend/__pycache__/**
 backend/bank_db.sqlite
+backend/main.py
