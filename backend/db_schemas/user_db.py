@@ -1,14 +1,15 @@
 import sqlite3
 import os
-from user_schema import UserSchema
 import random
 import string
+
 from backend.db_schemas.user_schema import UserSchema
 
-class UserDb():
+
+class UserDb:
 
     @classmethod
-    def create(self,user):
+    def create(cls, user):
 
         user['username']=generate_username(user)
         user['password']=generate_first_password(user)
@@ -21,9 +22,40 @@ class UserDb():
         return user
 
     @classmethod
-    def get_user_by_username(self,name):
+    def get_user_by_username(cls, name):
         user = _execute("Select * FROM User WHERE username = '{}'".format(name), return_entity=True)
         return user
+
+    @classmethod
+    def get_all(cls):
+        return _execute("SELECT * FROM User", return_entity=False)
+
+    @classmethod
+    def get_user(cls, id):
+        user = _execute("Select * FROM User WHERE id = {}".format(id), return_entity=True)
+        return user
+
+    @classmethod
+    def update(cls, user, id):
+        query = "SELECT count(*) AS count FROM User WHERE id = '{}'".format(id)
+        count = _execute(query, return_entity=False)
+
+        if count[0]["count"] == 0:
+            return
+
+        values = ["'{}'".format(value) for value in user.values()]
+        update_values = ", ".join("{} = {}".format(key, value) for key, value in zip(user.keys(), values))
+        _execute("UPDATE User SET {} WHERE id = '{}'".format(update_values, id))
+        return {}
+
+    @classmethod
+    def delete(cls, id):
+        count = _execute("SELECT count(*) AS count FROM User WHERE id = '{}'".format(id),
+                         return_entity=False)
+        if count[0]["count"] == 0:
+            return
+        _execute("DELETE FROM User WHERE id = '{}'".format(id))
+        return {}
 
 
 def generate_username(user):
@@ -45,68 +77,6 @@ def generate_first_password(user):
 def generate_code(user):
     code = random.randint(10000000, 99999999)
     return code
-
-
-def init_db():
-    _execute(
-        ("""CREATE TABLE IF NOT EXISTS User (
-            first_name text NOT NULL,
-            last_name text NOT NULL,
-            type text NOT NULL,
-            birthday DATE NOT NULL,
-            document_id integer NOT NULL,
-            country text NOT NULL,
-            city text NOT NULL,
-            address text,
-            email text NOT NULL,
-            password text NOT NULL,
-            phone_number INTEGER,
-            username text NOT NULL,
-            code integer NOT NULL,
-            id integer PRIMARY KEY AUTOINCREMENT
-            CONSTRAINT not_null_values CHECK(first_name is not NULL AND
-                                            last_name is not NULL AND
-                                            type is not NULL AND
-                                            birthday is not NULL AND
-                                            document_id is not NULL AND
-                                            country is not NULL AND
-                                            city is not NULL AND
-                                            email is not NULL AND
-                                            password is not NULL AND
-                                            username is not NULL AND
-                                            code is not NULL)
-            CONSTRAINT valid_length CHECK(length(password)==8 AND
-                                        length(code)==8))"""))
-
-
-def get_all():
-    return _execute("SELECT * FROM User", return_entity=False)
-
-
-def get_user(id):
-    user = _execute("Select * FROM User WHERE id = {}".format(id), return_entity=True)
-    return user
-
-def update(user, id):
-    query = "SELECT count(*) AS count FROM User WHERE id = '{}'".format(id)
-    count = _execute(query, return_entity=False)
-
-    if count[0]["count"] == 0:
-        return
-
-    values = ["'{}'".format(value) for value in user.values()]
-    update_values = ", ".join("{} = {}".format(key, value) for key, value in zip(user.keys(), values))
-    _execute("UPDATE User SET {} WHERE id = '{}'".format(update_values, id))
-    return {}
-
-
-def delete(id):
-    count = _execute("SELECT count(*) AS count FROM User WHERE id = '{}'".format(id),
-                     return_entity=False)
-    if count[0]["count"] == 0:
-        return
-    _execute("DELETE FROM User WHERE id = '{}'".format(id))
-    return {}
 
 
 def _build_list_of_dicts(cursor):
