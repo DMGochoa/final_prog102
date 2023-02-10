@@ -86,18 +86,14 @@ api.add_resource(Login, "/login")
 class Homepage(Resource):
     @jwt_required()
     def get(self):
-        username = get_jwt_identity()
-        user_db = UserDb.get_user_by_username(username)
-
-        if not username:
-            return {"msg": "Invalid token"}, 400
-
-        return jsonify(user=user_db)
-
+            username = get_jwt_identity()
+            user_db = UserDb.get_user_by_username(username)
+            return jsonify(user=user_db)
+       
 
 api.add_resource(Homepage, "/home")
 
 
 if __name__ == "__main__":
     SetupDatabase.setup()
-    app.run(host="127.0.0.1")
+    app.run(host="127.0.0.1",port=9000,debug=True)
