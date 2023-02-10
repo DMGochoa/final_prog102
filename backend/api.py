@@ -4,9 +4,13 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
-from db_schemas.user_schema import UserSchema
 from marshmallow import ValidationError
+
+from db_schemas.user_schema import UserSchema
 from db_schemas.user_db import UserDb
+from db_schemas.account_schema import AccountSchema
+from db_schemas.account_db import AccountDb
+
 from setup_db import SetupDatabase
 
 app = Flask(__name__)
@@ -79,6 +83,23 @@ class Homepage(Resource):
 
 api.add_resource(Homepage, "/home")
 
+class Account(Resource):
+    # create new account
+    @jwt_required()
+    def post(self):
+        username = get_jwt_identity()
+        user_id = UserDb.get_user_by_username(username)[0]['id']
+        account = AccountDb.create(user_id=user_id)
+        return jsonify(account=account)
+    # get all accounts by current user
+    @jwt_required()
+    def get(self):
+        username = get_jwt_identity()
+        user_id = UserDb.get_user_by_username(username)[0]['id']
+        accounts = AccountDb.get_accounts_by_userid(user_id)
+        return jsonify(accounts=accounts)
+
+api.add_resource(Account, "/accounts")
 
 if __name__ == "__main__":
     SetupDatabase.setup()
