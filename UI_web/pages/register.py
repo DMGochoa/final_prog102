@@ -1,15 +1,24 @@
+import sys 
+import os
+sys.path.append(os.path.join(os.getcwd(), 'UI_web'))
+
 import dash_bootstrap_components as dbc
 import dash
 import json
 from dash import html, dcc, Input, Output, callback, State
 from datetime import date
-
 import requests
+
+# Utils
+from utils.logging_web import log_web
+
+# Setup logger
+logger = log_web()
 
 dash.register_page(__name__, path='/register')
 
 def form_field(title:str, extra_info:str, space:int, type:str):
-
+    logger.debug(f"The field {title} is created")
     field = html.Div(
         [
             dbc.Label(title, html_for=title.lower() + '_field'),
@@ -174,21 +183,6 @@ def on_button_click(
             "phone_number": value_cellphone_number,
         }
         
-        user = {
-            "first_name": "pedrito",
-            "last_name": "mendoza",
-            "document_id": "1234545678",
-            "type": "client-person",
-            "birthday": "1997-01-01",
-            "country": "peru",
-            "city": "lima",
-            "address": "av siempreviva",
-            "email": "jm@texample.com",
-            "phone_number": "999555999"}
-        response = requests.post('http://127.0.0.1:9000/users', json=user)
-        print(response)
-        print('-'*30)
-        print(user_data)
         response = requests.post('http://127.0.0.1:9000/users', json=user_data)
         print('-'*30)
         print(response.headers)
