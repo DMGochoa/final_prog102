@@ -2,6 +2,7 @@ import dash_bootstrap_components as dbc
 from functools import wraps
 from dash import html, dcc
 from flask import session
+import requests
 
 # fake users dict
 users = {
@@ -14,8 +15,22 @@ def authenticate_user(credentials):
     returns True if user is correct and False otherwise
     '''
     #
-    # replace with your code
-    authed = (credentials['user'] in users) and (credentials['password'] == users[credentials['user']])
+    # BACKEND CONNECTION 
+    #cred = {
+    #    "username" : "DMoreno",
+    #    "password" : "Di4724",
+    #    "code" : 52327171
+    #}
+    
+    response = requests.post('http://127.0.0.1:9000/login', 
+                             json=credentials)
+    print(response.status_code)
+    
+    if int(response.status_code) == 200:
+        authed = True
+    else:
+        authed = False
+    #authed = (credentials['user'] in users) and (credentials['password'] == users[credentials['user']])
     # 
     #
     return authed

@@ -143,23 +143,10 @@ def login_auth(n_clicks, user, pw, code):
     '''
     if n_clicks is None or n_clicks==0:
         return no_update, no_update
-    credentials = {'user':user,
-                   "password":pw}
-    
-    # BACKEND CONNECTION 
-    cred = {
-        "username" : "DMoreno",
-        "password" : "Di4724",
-        "code" : 52327171
-    }
-    
-    response = requests.post('http://127.0.0.1:9000/login', json=cred)
-    print('-'*30)
-    print(response.headers)
-    print('-'*30)
-    print(response.json)
-    print(response.text)
-    
+    credentials = {'username':user,
+                   "password":pw,
+                   "code" : code}
+    print(credentials)
     if authenticate_user(credentials):
         session['authed'] = True
         return '/home',''
@@ -195,4 +182,4 @@ def on_button_click(
         "username": value_username,
         "password": value_password,
             }
-    print(user_data)
+    #print(user_data)

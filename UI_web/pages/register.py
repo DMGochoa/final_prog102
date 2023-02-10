@@ -1,7 +1,7 @@
-import sys 
-import os
-sys.path.append(os.path.join(os.getcwd(), 'UI_web'))
-
+#import sys 
+#import os
+#sys.path.append(os.path.join(os.getcwd(), 'UI_web'))
+# __init__.py
 import dash_bootstrap_components as dbc
 import dash
 import json
@@ -56,9 +56,9 @@ extra_data = ['Please enter the ' +  titles[0],
             ]
 
 # register layout content
-#@validate_login_session
+@validate_login_session
 def register_layout():
-    logger.debug("Creating the register layout")
+    logger.debug("Creating the register form")
     # The different fields of the form
     f_name = form_field(titles[0], extra_data[0], 8, 'text')
     l_name = form_field(titles[1], extra_data[1], 4, 'text')
@@ -68,7 +68,8 @@ def register_layout():
     address = form_field(titles[6], extra_data[6], 8, 'text')
     email = form_field(titles[7], extra_data[7], 4, 'email')
     cellpho = form_field(titles[8], extra_data[8], 8, 'number')
-    # Field for the Date 
+    # Field for the Date
+    logger.debug("Creating the date selector")
     bdate = dcc.DatePickerSingle(
         id="birth date_field",
         month_format='DD/MM/YYYY',
@@ -79,6 +80,7 @@ def register_layout():
         style={"border-top": "2px"}
     )
     # Field for the dropdown selector
+    logger.debug("Creating the dropdown selector")
     dd_type  = dbc.Select(
         id = "dd_type_field",
         options=[
@@ -87,7 +89,7 @@ def register_layout():
             {"label": "Disabled option", "value": "3", "disabled": True},],
         className="mb-4")
 
-    scheme = html.Div(
+    form = dbc.Form([html.Div(
         [
             dcc.Location(id='register-url',pathname='/register'),
             dbc.Row([html.H3('Please enter the following information to create a new user.')]),
@@ -121,18 +123,15 @@ def register_layout():
                 dbc.Button("SUBMIT", id="submit-button", color="primary", n_clicks=0), className="create_user"
             )))
         ], className="col-lg-12 col-lg-6 ",
-    )
-    form = dbc.Form([scheme])
-    return form
-
-layout = html.Div(
+    )])  
+    layout = html.Div(
         dbc.Row(
             [
                 dbc.Col(
                     className="col-lg-2",
                 ),
                 dbc.Col(
-                    register_layout(),
+                    form,
                     className="col-lg-8",
                 ),
                 dbc.Col(
@@ -142,7 +141,11 @@ layout = html.Div(
                 html.Div(id="my-output"),
             ]
         ),
-)
+    )
+    logger.debug("The register form is complete")
+    return layout
+
+
 # Callback for the register users page
 @callback(
     Output(component_id="my-output", component_property="children"),
@@ -185,6 +188,7 @@ def on_button_click(
             "phone_number": value_cellphone_number,
         }
         
+        # Toca hacer respuesta a entrada invalida
         response = requests.post('http://127.0.0.1:9000/users', json=user_data)
         print('-'*30)
         print(response.headers)
