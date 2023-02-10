@@ -76,8 +76,7 @@ def _execute(query, return_entity=None):
     db_name = 'bank_db.sqlite'
     absolute_path = os.path.dirname(__file__)
     db_path = os.path.join(absolute_path, '..', db_name)
-    print(db_path)
-
+    
     connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
     cursor.execute(query)

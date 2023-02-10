@@ -10,7 +10,7 @@ from db_schemas.user_schema import UserSchema
 from db_schemas.user_db import UserDb
 from db_schemas.account_schema import AccountSchema
 from db_schemas.account_db import AccountDb
-
+from utils.loggin_backend import logger_backend
 from setup_db import SetupDatabase
 
 app = Flask(__name__)
@@ -22,6 +22,7 @@ class User(Resource):
 
     def post(self):
         try:
+            logger_backend.debug(f"POST '/users' {request.json} ")
             user = UserSchema().load(request.json)
             user_db = UserDb.create(user)
             return {
@@ -103,4 +104,4 @@ api.add_resource(Account, "/accounts")
 
 if __name__ == "__main__":
     SetupDatabase.setup()
-    app.run(host="127.0.0.1",port=9000)
+    app.run(host="127.0.0.1",port=9000,debug=True)
