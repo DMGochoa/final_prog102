@@ -1,4 +1,5 @@
 from db_schemas import user_db
+from setup_db import SetupDatabase
 
 user = {
     "first_name": "kristian",
@@ -16,6 +17,8 @@ user = {
 }
 
 # user_db.init_db()
-user_db.create(user)
-users = user_db.get_all()
-print(users)
+# user_db.create(user)
+SetupDatabase.setup()
+# user = user_db.get_user_by_username('jmendoza')
+# users = user_db.get_all()
+# print(user)
