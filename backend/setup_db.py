@@ -34,6 +34,13 @@ class SetupDatabase:
                                                 code is not NULL)
                 CONSTRAINT valid_length CHECK(length(password)>=4 AND
                                             length(code)==8))""")
+    create_account_table_query = ("""CREATE TABLE IF NOT EXISTS Account (
+                user_id integer NOT NULL,
+                cbu integer NOT NULL,
+                balance integer NOT NULL,
+                id integer NOT NULL PRIMARY KEY AUTOINCREMENT
+                CONSTRAINT not_null_values CHECK(user_id is not NULL AND
+                                                cbu is not NULL))""")
 
     @classmethod
     def create_db(self):
@@ -51,6 +58,16 @@ class SetupDatabase:
         conn.close()
 
     @classmethod
+    def create_account_table(self):
+        conn = sqlite3.connect(self.actual_path)
+        cursor = conn.cursor()
+        cursor.execute(self.create_account_table_query)
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    @classmethod
     def setup(self):
         self.create_db()
         self.create_user_table()
+        self.create_account_table()

@@ -15,7 +15,6 @@ from setup_db import SetupDatabase
 
 app = Flask(__name__)
 api = Api(app)
-# Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "prog102"
 jwt = JWTManager(app)
 

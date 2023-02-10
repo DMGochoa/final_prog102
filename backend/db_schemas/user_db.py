@@ -11,9 +11,9 @@ class UserDb:
     @classmethod
     def create(cls, user):
 
-        user['username']=generate_username(user)
-        user['password']=generate_first_password(user)
-        user['code']=generate_code(user)
+        user['username'] = generate_username(user)
+        user['password'] = generate_first_password(user)
+        user['code'] = generate_code()
 
         columns = ", ".join(user.keys())
         values = ", ".join("'{}'".format(value) for value in user.values())
@@ -70,11 +70,11 @@ def generate_username(user):
 
 
 def generate_first_password(user):
-    password = user.get('first_name')[:2]+''.join(random.choices(population=string.digits,k=4))
+    password = user.get('first_name')[:2]+''.join(random.choices(population=string.digits, k=4))
     return password
 
 
-def generate_code(user):
+def generate_code():
     code = random.randint(10000000, 99999999)
     return code
 
@@ -91,9 +91,9 @@ def _convert_to_schema(list_of_dicts):
 
 def _execute(query, return_entity=None):
 
-    db_name='bank_db.sqlite'
+    db_name = 'bank_db.sqlite'
     absolute_path = os.path.dirname(__file__)
-    db_path=os.path.join(absolute_path,'..',db_name)
+    db_path = os.path.join(absolute_path, '..', db_name)
     print(db_path)
 
     connection = sqlite3.connect(db_path)
@@ -111,5 +111,3 @@ def _execute(query, return_entity=None):
     cursor.close()
     connection.close()
     return query_result
-
-
