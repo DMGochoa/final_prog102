@@ -7,6 +7,7 @@ import dash
 import json
 from dash import html, dcc, Input, Output, callback, State
 from datetime import date
+from auth import authenticate_user, validate_login_session
 import requests
 
 # Utils
@@ -15,7 +16,6 @@ from utils.logging_web import log_web
 # Setup logger
 logger = log_web()
 
-dash.register_page(__name__, path='/register')
 
 def form_field(title:str, extra_info:str, space:int, type:str):
     logger.debug(f"The field {title} is created")
@@ -55,8 +55,9 @@ extra_data = ['Please enter the ' +  titles[0],
               'Please enter your ' + titles[8]
             ]
 
-
-def register_form():
+# register layout content
+#@validate_login_session
+def register_layout():
 
     # The different fields of the form
     f_name = form_field(titles[0], extra_data[0], 8, 'text')
@@ -88,6 +89,7 @@ def register_form():
 
     scheme = html.Div(
         [
+            dcc.Location(id='register-url',pathname='/register'),
             dbc.Row([html.H3('Please enter the following information to create a new user.')]),
             dbc.Row([
                 dbc.Col(f_name), 
@@ -130,7 +132,7 @@ layout = html.Div(
                     className="col-lg-2",
                 ),
                 dbc.Col(
-                    register_form(),
+                    register_layout(),
                     className="col-lg-8",
                 ),
                 dbc.Col(
