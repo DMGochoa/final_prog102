@@ -5,23 +5,14 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from db_schemas.user_schema import UserSchema
-import db_schemas.user_db as user_db
 from marshmallow import ValidationError
-
 from db_schemas.user_db import UserDb
-
 from setup_db import SetupDatabase
-
 
 app = Flask(__name__)
 api = Api(app)
-# Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "prog102"
 jwt = JWTManager(app)
-
-
-def initialize_database():
-    user_db.init_db()
 
 
 class User(Resource):
@@ -56,9 +47,7 @@ class User(Resource):
         except ValidationError as e:
             abort(405, errors=e.messages)
 
-
 api.add_resource(User, "/users", "/user/<int:id>")
-
 
 class Login(Resource):
     def post(self):
@@ -79,9 +68,7 @@ class Login(Resource):
         access_token = create_access_token(identity=username)
         return jsonify(access_token=f"Bearer {access_token}")
 
-
 api.add_resource(Login, "/login")
-
 
 class Homepage(Resource):
     @jwt_required()
@@ -90,7 +77,6 @@ class Homepage(Resource):
             user_db = UserDb.get_user_by_username(username)
             return jsonify(user=user_db)
        
-
 api.add_resource(Homepage, "/home")
 
 
