@@ -3,7 +3,7 @@ import os
 import random
 import string
 
-from backend.db_schemas.user_schema import UserSchema
+from db_schemas.user_schema import UserSchema
 
 
 class UserDb:

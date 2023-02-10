@@ -2,8 +2,8 @@ import sqlite3
 import os
 import random
 import string
-from backend.db_schemas.user_db import UserDb
-from backend.db_schemas.account_schema import AccountSchema
+from db_schemas.user_db import UserDb
+from db_schemas.account_schema import AccountSchema
 
 
 class AccountDb:
