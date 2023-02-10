@@ -146,7 +146,6 @@ def login_auth(n_clicks, user, pw, code):
     credentials = {'username':user,
                    "password":pw,
                    "code" : code}
-    print(credentials)
     if authenticate_user(credentials):
         session['authed'] = True
         return '/home',''
