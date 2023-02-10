@@ -1,4 +1,5 @@
 import dash_bootstrap_components as dbc
+import requests
 import dash
 import json
 from dash import html, dcc, Input, Output, callback, State, no_update
@@ -132,21 +133,38 @@ def login_layout():
      Output('login-alert','children')],
     [Input('login-button','n_clicks')],
     [State('login-user','value'),
-     State('login-password','value')])
-def login_auth(n_clicks,user,pw):
+     State('login-password','value'),
+     State('login-code', 'value')])
+def login_auth(n_clicks, user, pw, code):
     '''
     check credentials
     if correct, authenticate the session
     otherwise, authenticate the session and send user to login
     '''
     if n_clicks is None or n_clicks==0:
-        return no_update,no_update
-    credentials = {'user':user,"password":pw}
+        return no_update, no_update
+    credentials = {'user':user,
+                   "password":pw}
+    
+    # BACKEND CONNECTION 
+    cred = {
+        "username" : "DMoreno",
+        "password" : "Di4724",
+        "code" : 52327171
+    }
+    
+    response = requests.post('http://127.0.0.1:9000/login', json=cred)
+    print('-'*30)
+    print(response.headers)
+    print('-'*30)
+    print(response.json)
+    print(response.text)
+    
     if authenticate_user(credentials):
         session['authed'] = True
         return '/home',''
     session['authed'] = False
-    return no_update,dbc.Alert('Incorrect credentials.',color='danger',dismissable=True)
+    return no_update, dbc.Alert('Incorrect credentials.',color='danger',dismissable=True)
 
 @callback(
     Output('home-url','pathname'),

@@ -58,7 +58,7 @@ extra_data = ['Please enter the ' +  titles[0],
 # register layout content
 #@validate_login_session
 def register_layout():
-
+    logger.debug("Creating the register layout")
     # The different fields of the form
     f_name = form_field(titles[0], extra_data[0], 8, 'text')
     l_name = form_field(titles[1], extra_data[1], 4, 'text')

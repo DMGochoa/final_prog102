@@ -48,7 +48,11 @@ server.config['SECRET_KEY'] = 'k1LUZ1fZShowB6opoyUIEJkJvS8RBF6MMgmNcDGNmgGYr'
 app.layout = html.Div(
     [
         dcc.Location(id='url',refresh=False),
-        html.Div("Banking App with Dash", style={'fontSize':50, 'textAlign':'center'}),
+        html.Div("Banking App with Dash", 
+                 style={
+                        'fontSize':50, 
+                        'textAlign':'center'
+                     }),
         html.Div(
             login_layout(),
             id='page-content'
