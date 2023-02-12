@@ -26,24 +26,6 @@ app.title = "Bank"
 server = app.server
 server.config['SECRET_KEY'] = 'k1LUZ1fZShowB6opoyUIEJkJvS8RBF6MMgmNcDGNmgGYr'
 
-
-
-""" app.layout = html.Div(
-    [
-        # main app framework
-        html.Div("Banking App with Dash", style={'fontSize':50, 'textAlign':'center'}),
-        html.Div([
-            dcc.Link(page['name']+"  |  ", href=page['path'])
-            for page in dash.page_registry.values()
-        ]),
-        html.Hr(),
-
-        # content of each page
-        dash.page_container
-    ]
-)
- """
-
 # main app layout
 app.layout = html.Div(
     [
