@@ -17,7 +17,6 @@ class Ui(ScreenManager):
 
 
 class MainApp(MDApp):
-    dialog = None  # Maybe not more usefull since self.validate_fields() construc his own dialog
 
     def build(self):
         logger.debug('Starting to build the aplication')
@@ -33,7 +32,7 @@ class MainApp(MDApp):
         validate = self.validate(
             self.root.ids.user.text, self.root.ids.password.text, self.root.ids.code.text)
         if validate:
-            # Hacer request.post(http://127.0.0.1:9000/account)
+            # Hacer request.get(http://127.0.0.1:9000/accounts) token
             # Class client account, balance, username, first name, last name,
             # client = new_client(first_name, last_name, account, balance) entre otras cosas
             #
@@ -101,18 +100,14 @@ class MainApp(MDApp):
                 res = response.text.strip()[1:-1]
         except requests.exceptions.HTTPError as http_err:
             logger.debug('Validate User: try statement')
-            print(f"HTTP ERROR: {http_err}")
             res = str(http_err)
         except requests.exceptions.ConnectionError as conn_err:
             logger.debug('Validate User: try statement')
-            print(f"CONNECTION ERROR: {conn_err}")
             res = str(conn_err)
         except requests.exceptions.Timeout as timeout_err:
             logger.debug('Validate User: try statement')
-            print(f"TIMEOUT ERROR: {timeout_err}")
             res = str(timeout_err)
         except requests.exceptions.RequestException as req_err:
-            logger.debug('Validate User: try statement')
             print(f"UNKNOWN ERROR: {req_err}")
             res = str(req_err)
 
