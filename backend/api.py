@@ -118,7 +118,9 @@ class Account(Resource):
 
 api.add_resource(Account, "/accounts")
 
-class AddMoney(Resource):
+
+class Transaction(Resource):
+
     @jwt_required()
     def post(self):
         cbu = request.json.get("cbu", None)
@@ -126,15 +128,18 @@ class AddMoney(Resource):
         username = get_jwt_identity()
         user_id = UserDb.get_user_by_username(username)[0]['id']
         accounts = AccountDb.get_accounts_by_userid(user_id)
-        accounts_cbu = [account['cbu'] for account in  accounts]
+        accounts_cbu = [account['cbu'] for account in accounts]
 
         if not cbu in accounts_cbu:
             return {"msg": "CBU doesn't belong to current_user"}, 400
+
+        Transaction
 
         balance_updated = AccountDb.add_money_to_account(cbu=cbu,amount=amount)
         logger_backend.debug(f"{username} added  $ {amount} to cbu : {cbu} ")
         return jsonify(cbu=cbu,
                         balance=balance_updated)
+
 
 api.add_resource(AddMoney, "/add_money")
 

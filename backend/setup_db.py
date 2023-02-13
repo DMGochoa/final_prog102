@@ -43,7 +43,14 @@ class SetupDatabase:
                 CONSTRAINT not_null_values CHECK(user_id is not NULL AND
                                                 cbu is not NULL)
                 CONSTRAINT valid_balance CHECK (balance >=0))""")
-
+    create_transaction_table_query = ("""CREATE TABLE IF NOT EXISTS Transactio(
+                origin_account integer NOT NULL,
+                final_account integer NOT NULL,
+                type string NOT NULL,
+                amount float NOT NULL,
+                status boolean NOT NULL DEFAULT 'TRUE',
+                description string NOT NULL,
+                date date NOT NULL)""")
 
     @classmethod
     def create_db(self):
@@ -70,7 +77,17 @@ class SetupDatabase:
         conn.close()
 
     @classmethod
+    def create_transaction_table(self):
+        conn = sqlite3.connect(self.actual_path)
+        cursor = conn.cursor()
+        cursor.execute(self.create_transaction_table_query)
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    @classmethod
     def setup(self):
         self.create_db()
         self.create_user_table()
         self.create_account_table()
+        self.create_transaction_table_query()

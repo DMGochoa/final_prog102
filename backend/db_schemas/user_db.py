@@ -33,6 +33,11 @@ class UserDb:
         return id[0]
 
     @classmethod
+    def get_cbu(cls, id):
+        cbu = _execute("SELECT cbu FROM Transaction WHERE id = '{}'".format(id), return_entity=False)
+        return cbu[0]['cbu']
+
+    @classmethod
     def get_all(cls):
         return _execute("SELECT * FROM User", return_entity=False)
 
