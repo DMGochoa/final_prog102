@@ -1,3 +1,4 @@
+
 import requests
 import log_config
 import json
@@ -32,6 +33,10 @@ class MainApp(MDApp):
         validate = self.validate(
             self.root.ids.user.text, self.root.ids.password.text, self.root.ids.code.text)
         if validate:
+            # Hacer request.post(http://127.0.0.1:9000/account)
+            # Class client account, balance, username, first name, last name,
+            # client = new_client(first_name, last_name, account, balance) entre otras cosas
+            #
             self.root.current = 'main_menu'
 
     def show_warning_dialog(self, mode, cont=""):
@@ -85,16 +90,32 @@ class MainApp(MDApp):
             "password": password,
             "code": int(code)
         }
-        # Try Catch sentence?
-        response = requests.post('http://127.0.0.1:9000/login', json=user)
+        try:
+            logger.debug('Validate User: try statement')
+            response = requests.post('http://127.0.0.1:9000/login', json=user)
+            # if "access_token" in response.text:
+            if response.status_code == 200:
+                logger.debug('Validate user: user found')
+                res = "OK"
+            else:
+                res = response.text.strip()[1:-1]
+        except requests.exceptions.HTTPError as http_err:
+            logger.debug('Validate User: try statement')
+            print(f"HTTP ERROR: {http_err}")
+            res = str(http_err)
+        except requests.exceptions.ConnectionError as conn_err:
+            logger.debug('Validate User: try statement')
+            print(f"CONNECTION ERROR: {conn_err}")
+            res = str(conn_err)
+        except requests.exceptions.Timeout as timeout_err:
+            logger.debug('Validate User: try statement')
+            print(f"TIMEOUT ERROR: {timeout_err}")
+            res = str(timeout_err)
+        except requests.exceptions.RequestException as req_err:
+            logger.debug('Validate User: try statement')
+            print(f"UNKNOWN ERROR: {req_err}")
+            res = str(req_err)
 
-        # Incomplete, add cases: user not found, Bad password or code, error handling for conection fail
-        if "access_token" in response.text:
-            logger.debug('Validate user: user found')
-            res = "OK"
-        else:
-            logger.debug('Validate user: UNKNOWN ERROR  ')
-            res = response.text
         return res
 
     # Validate text fields Not empty and access code format

@@ -25,9 +25,10 @@
             halign: 'center'
 
 <CustomizeScreen@MDBoxLayout>:
-    orientation: 'vertical'
+    orientation: 'vertical' ##
     text:''
     padding: 100
+    #size_hint: 1, 0.2 # !!
     MDLabel:
         text: root.text
         halign: 'center'
@@ -108,7 +109,7 @@
                     padding: '20dp'
                     # line_color: 1,0,1,1
                     MDLabel:
-                        text: 'Welcome! ' + root.ids.user.text + "\n Account: \n Balance $$$" 
+                        text: 'Welcome! ' + root.ids.user.text + "\n Account: \n Balance $$$" # + new_client.get_account() + new_client.get_balance_Account()
                         halign: 'center'
                         pos_hint: {"center_y": 0.5}
 
@@ -124,6 +125,7 @@
                     image: 'Images/transfer.jpg'
                     on_release:
                         root.current = 'transfer_screen'
+                                      
 
                 ElementCard:
                     text: 'REPORTS'
@@ -157,8 +159,53 @@
                                                           
     MDScreen:
         name: 'transfer_screen'
-        CustomizeScreen:
-            text: 'TRASNFERS'
+        MDBoxLayout:   
+            orientation: 'vertical'
+            pos_hint: {"center_x": 0.7, "center_y":0.9} #
+            spacing: '10dp'
+            MDBoxLayout:
+                size_hint: 1, 0.8    
+                orientation: 'vertical'
+                spacing: '10dp'
+                pos_hint: {"center_x": 0.7, "center_y":0.7} #
+                MDTextField:
+                    mode: "round"
+                    id: cbu
+                    #icon_left: "account-check"
+                    hint_text: "CBU"
+                    width: 220
+                    font_size: 20
+                    size_hint_x: None
+                    
+                MDTextField:
+                    mode: "round"
+                    id: amount
+                    #icon_left: "key-variant"
+                    hint_text: "Amount"
+                    width: 220
+                    font_size: 20
+                    size_hint_x: None
+                
+                
+                MDFillRoundFlatButton:
+                    text: "SEND TRANSACTION"
+                    font_size: 15
+                    halign: 'center'
+                    #on_press: app.login() 
+            MDBoxLayout:
+                orientation: 'vertical' ##
+                pos_hint: {"center_x": 0.5, "center_y":0.5}
+                size_hint: 1, 0.2 
+                MDLabel:
+                    text: 'TO MAIN MENU'
+                    halign: 'center'
+                    pos_hint: {'center_x': 0.3}
+                MDFillRoundFlatButton:
+                    text: 'BACK'    
+                    pos_hint: {'center_x': 0.3}
+                    on_release:
+                        app.root.current = 'main_menu'
+                        app.root.transition = SlideTransition(direction='left')
 
     MDScreen:
         name: 'report_screen'
