@@ -24,7 +24,10 @@ class TransactionDB:
         transactions = _execute("SELECT * FROM Transaction WHERE origin_account = '{}".format(id), return_entity=True)
         return transactions
 
-    def get_recived_transaction
+    @classmethod
+    def get_recived_transaction(cls, id):
+        transactions = _execute("SELECT * FROM Transaction WHERE final_account = '{}".format(id), return_entity=True)
+        return transactions
 
 
 def _build_list_of_dicts(cursor):
