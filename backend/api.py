@@ -26,11 +26,12 @@ class User(Resource):
             logger_backend.debug(f"POST '/users' {request.json} ")
             user = UserSchema().load(request.json)
             user_db = UserDb.create(user)
+            user_id = UserDb.get_user_by_username(user_db['username'])[0]['id']
+            AccountDb.create(user_id=user_id)
             return {
                        "username": user_db['username'],
                        "password": user_db['password'],
                        "code": user_db['code'],
-                       "account_cbu": account['cbu']
                    }, 201
 
         except ValidationError as e:
