@@ -4,13 +4,6 @@ import json
 from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
-""" dash.register_page(__name__, path='/') # / means home page
-
-layout = html.Div(
-    [
-        dcc.Markdown('# This will be the content of home page'),
-    ]
-) """
 
 # home layout content
 @validate_login_session
