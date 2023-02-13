@@ -37,11 +37,13 @@ class SetupDatabase:
     create_account_table_query = ("""CREATE TABLE IF NOT EXISTS Account (
                 user_id integer NOT NULL,
                 cbu integer NOT NULL,
-                balance float NOT NULL,
+                balance float NOT NULL DEFAULT '0,0',
+                currency string NOT NULL,
                 id integer NOT NULL PRIMARY KEY AUTOINCREMENT
                 CONSTRAINT not_null_values CHECK(user_id is not NULL AND
                                                 cbu is not NULL)
                 CONSTRAINT valid_balance CHECK (balance >=0))""")
+
 
     @classmethod
     def create_db(self):
@@ -50,7 +52,7 @@ class SetupDatabase:
             conn.close()
 
     @classmethod
-    def create_user_table(self):
+    def create_user_table(self): 
         conn = sqlite3.connect(self.actual_path)
         cursor = conn.cursor()
         cursor.execute(self.create_user_table_query)

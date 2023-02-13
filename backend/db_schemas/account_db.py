@@ -2,24 +2,24 @@ import sqlite3
 import os
 import random
 import string
-from db_schemas.user_db import UserDb
-from db_schemas.account_schema import AccountSchema
+from backend.db_schemas.account_schema import AccountSchema
 
 
 class AccountDb:
 
     @classmethod
     def create(cls, user_id):
-        account = AccountSchema().load({"user_id":user_id})
+        account = AccountSchema().load({"user_id": user_id})
         account['cbu'] = generate_cbu(user_id)
-        account['balance'] = 0
+        account['balance'] = 0.0
+        account['currency'] = "local"
         columns = ", ".join(account.keys())
         values = ", ".join("'{}'".format(value) for value in account.values())
         _execute("INSERT INTO Account ({}) VALUES({})".format(columns, values))
         return account
 
     @classmethod
-    def get_accounts_by_userid(cls,user_id):
+    def get_accounts_by_userid(cls, user_id):
         query = r"SELECT * FROM Account WHERE user_id  = {0}".format(user_id)
         return _execute(query, return_entity=False)
 
@@ -55,11 +55,13 @@ class AccountDb:
         _execute("DELETE FROM Account WHERE id = '{}'".format(id))
         return {}
 
+
 def generate_cbu(user_id):
     query = r"SELECT count(*) AS count FROM Account WHERE user_id  = {0}".format(user_id)
     count = _execute(query, return_entity=False)
     cbu = 10200000000 + user_id*10000 + count[0]["count"]+1
     return cbu
+
 
 def _build_list_of_dicts(cursor):
     column_names = [record[0].lower() for record in cursor.description]

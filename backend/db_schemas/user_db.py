@@ -3,8 +3,9 @@ import os
 import random
 import string
 
-from db_schemas.user_schema import UserSchema
-from utils.loggin_backend import logger_backend
+from backend.db_schemas.user_schema import UserSchema
+from backend.utils.loggin_backend import logger_backend
+
 
 class UserDb:
 
@@ -25,6 +26,11 @@ class UserDb:
     def get_user_by_username(cls, name):
         user = _execute("Select * FROM User WHERE username = '{}'".format(name), return_entity=True)
         return user
+
+    @classmethod
+    def get_id_by_username(cls, username):
+        id = _execute("SELECT id FROM User WHERE username = '{}'".format(username), return_entity=True)
+        return id[0]
 
     @classmethod
     def get_all(cls):
