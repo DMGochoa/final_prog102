@@ -24,14 +24,20 @@ class User(Resource):
         try:
             logger_backend.debug(f"POST '/users' {request.json} ")
             user = UserSchema().load(request.json)
-            user_db = UserDb.create(user)
+            user_db = UserDb.create(user) 
+            ## create account by default
+            user_id = UserDb.get_user_by_username(user_db['username'])[0]['id']
+            account = AccountDb.create(user_id=user_id)
+            logger_backend.debug(f"Create account {account['cbu']}")
             return {
                        "username": user_db['username'],
                        "password": user_db['password'],
-                       "code": user_db['code']
+                       "code": user_db['code'],
+                       "account_cbu": account['cbu']
                    }, 201
 
         except ValidationError as e:
+            logger_backend.debug(f"Validation error:  {e.messages} ")
             abort(405, errors=e.messages)
 
     def get(self, id=None):
@@ -55,20 +61,19 @@ api.add_resource(User, "/users", "/user/<int:id>")
 
 class Login(Resource):
     def post(self):
+        
         username = request.json.get("username", None)
         password = request.json.get("password", None)
         code = request.json.get("code", None)
-
         user_db = UserDb.get_user_by_username(username)
-
+        logger_backend.debug(f"{user_db[0]['username']} try to login")
         if not user_db:
             return {"msg": "Username doesn't exist"}, 400
 
         if password != user_db[0]['password'] or code != user_db[0]['code']:
-            print(code)
-            print(user_db[0]['code'])
             return {"msg": "Bad password or code"}, 400
 
+        logger_backend.debug(f"{user_db[0]['username']} login token generated ")
         access_token = create_access_token(identity=username)
         return jsonify(access_token=f"Bearer {access_token}")
 
