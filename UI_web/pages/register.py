@@ -1,20 +1,45 @@
-#import sys 
-#import os
-#sys.path.append(os.path.join(os.getcwd(), 'UI_web'))
-# __init__.py
 import dash_bootstrap_components as dbc
 import dash
 import json
-from dash import html, dcc, Input, Output, callback, State
+import requests
+from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
-import requests
+from flask import session
 
 # Utils
 from utils.logging_web import log_web
 
 # Setup logger
 logger = log_web()
+
+
+employee_pages = [
+    {
+        "name": "Register page.",
+        "path": "/register"
+    },
+    {
+        "name": "File registration page.",
+        "path": "/file_register"
+    }
+]
+
+sidebar = dbc.Nav(
+            [
+                dbc.NavLink(
+                    [
+                        html.Div(page["name"], className="ms-2"),
+                    ],
+                    href=page["path"],
+                    active="exact",
+                )
+                for page in employee_pages
+            ],
+            vertical=True,
+            pills=True,
+            className="bg-light",
+)
 
 
 def form_field(title:str, extra_info:str, space:int, type:str):
@@ -92,6 +117,7 @@ def register_layout():
     form = dbc.Form([html.Div(
         [
             dcc.Location(id='register-url',pathname='/register'),
+            sidebar,
             dbc.Row([html.H3('Please enter the following information to create a new user.')]),
             dbc.Row([
                 dbc.Col(f_name), 
@@ -121,6 +147,9 @@ def register_layout():
             ]),
             dbc.Row(html.Center(html.P(
                 dbc.Button("SUBMIT", id="submit-button", color="primary", n_clicks=0), className="create_user"
+            ))),
+            dbc.Row((html.P(
+                dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
             )))
         ], className="col-lg-12 col-lg-6 ",
     )])  
@@ -199,3 +228,14 @@ def on_button_click(
         json_response = json.loads(response.text)
         with open("user_credentials.txt", "w") as f:
             f.write(json.dumps(json_response))
+
+@callback(
+    Output('register-url','pathname'),
+    [Input('logout-button','n_clicks')]
+)
+def logout_(n_clicks):
+    '''clear the session and send user to login'''
+    if n_clicks is None or n_clicks==0:
+        return no_update
+    session['authed'] = False
+    return '/login'

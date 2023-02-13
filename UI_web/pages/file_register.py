@@ -6,8 +6,13 @@ from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
 
+# Utils
+from utils.logging_web import log_web
 
-user_pages = [
+# Setup logger
+logger = log_web()
+
+employee_pages = [
     {
         "name": "Register page.",
         "path": "/register"
@@ -27,59 +32,26 @@ sidebar = dbc.Nav(
                     href=page["path"],
                     active="exact",
                 )
-                for page in user_pages
+                for page in employee_pages
             ],
             vertical=True,
             pills=True,
             className="bg-light",
 )
-
-user_pages = [
-    {
-        "name": "Home Page.",
-        "path": "/home"
-    },
-    {
-        "name": "Transactions Page.",
-        "path": "/transactions"
-    },
-    {
-        "name": "Reports page.",
-        "path": "/reports"
-    }
-]
-
-sidebar = dbc.Nav(
-            [
-                dbc.NavLink(
-                    [
-                        html.Div(page["name"], className="ms-2"),
-                    ],
-                    href=page["path"],
-                    active="exact",
-                )
-                for page in user_pages
-            ],
-            vertical=True,
-            pills=True,
-            className="bg-light",
-)
-
 
 # home layout content
 @validate_login_session
-def home_layout():
+def file_register_layout():
     return \
         html.Div([
-            dcc.Location(id='home-url',pathname='/home'),
+            dcc.Location(id='file_register-url',pathname='/file_register'),
             dbc.Container(
                 [
-                    sidebar,
                     dbc.Row(
                         dbc.Col(
                             [
-                                html.H2('Home page.')
-
+                                html.H2('File register page.'),
+                                sidebar
                             ],
                         ),
                         justify='center'
@@ -103,7 +75,7 @@ def home_layout():
     )
 
 @callback(
-    Output('home-url','pathname'),
+    Output('file_register-url','pathname'),
     [Input('logout-button','n_clicks')]
 )
 def logout_(n_clicks):

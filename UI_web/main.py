@@ -8,6 +8,9 @@ from auth import authenticate_user, validate_login_session
 from pages.login import login_layout
 from pages.home import home_layout
 from pages.register import register_layout
+from pages.file_register import file_register_layout
+from pages.transactions import transactions_layout
+from pages.reports import reports_layout
 from components.jumbotron import jumbotron
 
 
@@ -54,6 +57,12 @@ def router(url):
         return login_layout()
     elif url=='/register':
         return register_layout()
+    elif url=='/file_register':
+        return file_register_layout()
+    elif url=='/reports':
+        return reports_layout()
+    elif url=='/transactions':
+        return transactions_layout()
     else:
         return jumbotron
 
