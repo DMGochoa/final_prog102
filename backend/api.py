@@ -96,16 +96,38 @@ class Account(Resource):
         username = get_jwt_identity()
         user_id = UserDb.get_user_by_username(username)[0]['id']
         account = AccountDb.create(user_id=user_id)
+        logger_backend.debug(f"Create new account by {username}, cbu : {account['cbu']} ")
         return jsonify(account=account)
     # get all accounts by current user
     @jwt_required()
     def get(self):
         username = get_jwt_identity()
+        logger_backend.debug(f"{username} client try to see theirs accounts")
         user_id = UserDb.get_user_by_username(username)[0]['id']
         accounts = AccountDb.get_accounts_by_userid(user_id)
         return jsonify(accounts=accounts)
 
 api.add_resource(Account, "/accounts")
+
+class AddMoney(Resource):
+    @jwt_required()
+    def post(self):
+        cbu = request.json.get("cbu", None)
+        amount = request.json.get("amount", None)
+        username = get_jwt_identity()
+        user_id = UserDb.get_user_by_username(username)[0]['id']
+        accounts = AccountDb.get_accounts_by_userid(user_id)
+        accounts_cbu = [account['cbu'] for account in  accounts]
+
+        if not cbu in accounts_cbu:
+            return {"msg": "CBU doesn't belong to current_user"}, 400
+
+        balance_updated = AccountDb.add_money_to_account(cbu=cbu,amount=amount)
+        logger_backend.debug(f"{username} added  $ {amount} to cbu : {cbu} ")
+        return jsonify(cbu=cbu,
+                        balance=balance_updated)
+
+api.add_resource(AddMoney, "/add_money")  
 
 if __name__ == "__main__":
     SetupDatabase.setup()

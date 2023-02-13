@@ -55,3 +55,58 @@ output
 	]
 }
 ```
+## Create other account
+POST /accounts
+```json
+input
+# Header        Value
+Authorization   "Bearer eyJhbGciOi...."
+output
+{
+	"account": {
+		"balance": 0,
+		"cbu": 10200040002,
+		"user_id": 4
+	}
+}
+```
+## See all acounts
+GET /accounts
+```json
+input
+# Header        Value
+Authorization   "Bearer eyJhbGciOi...."
+output
+{
+	"accounts": [
+		{
+			"balance": 195,
+			"cbu": 10200020001,
+			"id": 2,
+			"user_id": 2
+		},
+		{
+			"balance": 0,
+			"cbu": 10200020002,
+			"id": 3,
+			"user_id": 2
+		}
+	]
+}
+```
+## Add money to account
+POST /add_money
+```json
+input
+# Header        Value
+Authorization   "Bearer eyJhbGciOi...."
+{
+	"cbu": 10200020001,
+	"amount": 65
+}
+output
+{
+	"balance": 195,
+	"cbu": 10200020001
+}
+```

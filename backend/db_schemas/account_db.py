@@ -24,6 +24,15 @@ class AccountDb:
         return _execute(query, return_entity=False)
 
     @classmethod
+    def add_money_to_account(cls,cbu,amount):
+        query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu)
+        balance = _execute(query, return_entity=False)[0]['balance']
+        new_balance = balance+amount
+        update_balance_query = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_balance,cbu)
+        update_balance = _execute(update_balance_query)
+        return new_balance
+
+    @classmethod
     def get_user(cls, id):
         account = _execute("SELECT * FROM Account WHERE id = {}".format(id), return_entity=True)
         return account
