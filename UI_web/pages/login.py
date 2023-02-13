@@ -71,18 +71,9 @@ def login_auth(n_clicks, user, pw, code):
     session['authed'] = False
     return no_update, dbc.Alert('Incorrect credentials.',color='danger',dismissable=True)
 
-@callback(
-    Output('home-url','pathname'),
-    [Input('logout-button','n_clicks')]
-)
-def logout_(n_clicks):
-    '''clear the session and send user to login'''
-    if n_clicks is None or n_clicks==0:
-        return no_update
-    session['authed'] = False
-    return '/login'
 
-# Callback for the register users page
+
+""" # Callback for the register users page
 @callback(
     Output("my-output-login", "children"),
     Input("login-button", "n_clicks"),
@@ -100,3 +91,4 @@ def on_button_click(
         "username": value_username,
         "password": value_password,
             }
+ """

@@ -9,33 +9,6 @@ from flask import session
 
 user_pages = [
     {
-        "name": "Register page.",
-        "path": "/register"
-    },
-    {
-        "name": "File registration page.",
-        "path": "/file_register"
-    }
-]
-
-sidebar = dbc.Nav(
-            [
-                dbc.NavLink(
-                    [
-                        html.Div(page["name"], className="ms-2"),
-                    ],
-                    href=page["path"],
-                    active="exact",
-                )
-                for page in user_pages
-            ],
-            vertical=True,
-            pills=True,
-            className="bg-light",
-)
-
-user_pages = [
-    {
         "name": "Home Page.",
         "path": "/home"
     },
@@ -65,20 +38,19 @@ sidebar = dbc.Nav(
             className="bg-light",
 )
 
-
-# home layout content
+# transactions layout content
 @validate_login_session
-def home_layout():
+def transactions_layout():
     return \
         html.Div([
-            dcc.Location(id='home-url',pathname='/home'),
+            dcc.Location(id='transactions-url',pathname='/transactions'),
             dbc.Container(
                 [
                     sidebar,
                     dbc.Row(
                         dbc.Col(
                             [
-                                html.H2('Home page.')
+                                html.H2('Transactions page.')
 
                             ],
                         ),
@@ -103,7 +75,7 @@ def home_layout():
     )
 
 @callback(
-    Output('home-url','pathname'),
+    Output('transactions-url','pathname'),
     [Input('logout-button','n_clicks')]
 )
 def logout_(n_clicks):
