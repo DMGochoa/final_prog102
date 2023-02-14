@@ -6,6 +6,9 @@ notes.txt
 backend/db_schemas/__pycache__/**
 backend/__pycache__/**
 backend/bank_db.sqlite
+backend/main.py
+backend/backend.log
+backend/utils/__pycache__
 pruebas/
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,windows,linux,macos
