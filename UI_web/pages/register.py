@@ -14,6 +14,11 @@ from utils.validation import form_val
 # Setup logger
 logger = log_web()
 
+CONTENT_STYLE = {
+    "margin-left": "10rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
 
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -38,10 +43,10 @@ employee_pages = [
 
 sidebar = html.Div(
     [
-        html.H2("Sidebar", className="display-4"),
+       html.H2("Pages", className="display-4"),
         html.Hr(),
         html.P(
-            "A simple sidebar layout with navigation links", className="lead"
+            "Navigate through the page with this menu.", className="lead"
         ),
         dbc.Nav(
             [
@@ -191,6 +196,7 @@ def register_layout():
                 html.Div(id="my-output"),
             ]
         ),
+        style=CONTENT_STYLE
     )
     logger.debug("The register form is complete")
     return layout

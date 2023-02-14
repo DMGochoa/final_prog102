@@ -8,8 +8,7 @@ def form_val(user_data):
     validation = False
     selected_date = datetime.date.fromisoformat(user_data['birthday'])
     today = datetime.date.today()
-    diff_date = selected_date - today
-    
+    diff_date = today - selected_date
     logger.debug('Initiate the validation')
     if len(user_data['first_name']) == 1 or user_data['first_name'] == None:
         issue = 'First name empty'  
