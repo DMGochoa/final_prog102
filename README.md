@@ -110,6 +110,22 @@ output
 	"cbu": 10200020001
 }
 ```
+## Withdraw money from account
+POST /withdraw_money
+```json
+input
+# Header        Value
+Authorization   "Bearer eyJhbGciOi...."
+{
+	"cbu": 10200020001,
+	"amount": 65
+}
+output
+{
+	"balance": 195,
+	"cbu": 10200020001
+}
+```
 ## See info one account
 GET /account/<int:cbu>
 ```json
