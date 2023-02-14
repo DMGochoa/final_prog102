@@ -3,14 +3,15 @@ import os
 import random
 import string
 
-from db_schemas.user_schema import UserSchema
+from backend.db_schemas.user_schema import UserSchema
+from backend.utils.loggin_backend import logger_backend
 
 
 class UserDb:
 
     @classmethod
     def create(cls, user):
-
+        logger_backend.debug(f"Creating user {user}")
         user['username'] = generate_username(user)
         user['password'] = generate_first_password(user)
         user['code'] = generate_code()
@@ -18,13 +19,23 @@ class UserDb:
         columns = ", ".join(user.keys())
         values = ", ".join("'{}'".format(value) for value in user.values())
         _execute("INSERT INTO User ({}) VALUES({})".format(columns, values))
-
+        logger_backend.debug("User created!")
         return user
 
     @classmethod
     def get_user_by_username(cls, name):
         user = _execute("Select * FROM User WHERE username = '{}'".format(name), return_entity=True)
         return user
+
+    @classmethod
+    def get_id_by_username(cls, username):
+        id = _execute("SELECT id FROM User WHERE username = '{}'".format(username), return_entity=True)
+        return id[0]
+
+    @classmethod
+    def get_cbu(cls, id):
+        cbu = _execute("SELECT cbu FROM Transaction WHERE id = '{}'".format(id), return_entity=False)
+        return cbu[0]['cbu']
 
     @classmethod
     def get_all(cls):
@@ -94,8 +105,6 @@ def _execute(query, return_entity=None):
     db_name = 'bank_db.sqlite'
     absolute_path = os.path.dirname(__file__)
     db_path = os.path.join(absolute_path, '..', db_name)
-    print(db_path)
-
     connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
     cursor.execute(query)
