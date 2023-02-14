@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response 
 from flask_restful import Resource, Api, abort
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -89,7 +89,7 @@ class Homepage(Resource):
 
 api.add_resource(Homepage, "/home")
 
-class Account(Resource):
+class Accounts(Resource):
     # create new account
     @jwt_required()
     def post(self):
@@ -97,7 +97,7 @@ class Account(Resource):
         user_id = UserDb.get_user_by_username(username)[0]['id']
         account = AccountDb.create(user_id=user_id)
         logger_backend.debug(f"Create new account by {username}, cbu : {account['cbu']} ")
-        return jsonify(account=account)
+        return make_response(jsonify(account=account), 201)
     # get all accounts by current user
     @jwt_required()
     def get(self):
@@ -107,7 +107,21 @@ class Account(Resource):
         accounts = AccountDb.get_accounts_by_userid(user_id)
         return jsonify(accounts=accounts)
 
-api.add_resource(Account, "/accounts")
+api.add_resource(Accounts, "/accounts")
+
+class Account(Resource):
+    def get(self,cbu):
+        try:
+            account = AccountDb.get_account_by_cbu(cbu)[0]
+            user = UserDb.get_user(account['user_id'])[0]
+            return jsonify(cbu=cbu,
+                    username=user['username'],
+                    first_name=user['first_name'],
+                    last_name=user['last_name'])
+        except:
+            return make_response(jsonify(msg=f"CBU {cbu} not found"),404)
+
+api.add_resource(Account,"/account/<int:cbu>")
 
 class AddMoney(Resource):
     @jwt_required()
@@ -127,7 +141,54 @@ class AddMoney(Resource):
         return jsonify(cbu=cbu,
                         balance=balance_updated)
 
-api.add_resource(AddMoney, "/add_money")  
+api.add_resource(AddMoney, "/add_money")
+
+class WithdrawMoney(Resource):
+    @jwt_required()
+    def post(self):
+        cbu = request.json.get("cbu", None)
+        amount = request.json.get("amount", None)
+        username = get_jwt_identity()
+        user_id = UserDb.get_user_by_username(username)[0]['id']
+        accounts = AccountDb.get_accounts_by_userid(user_id)
+        accounts_cbu = [account['cbu'] for account in  accounts]
+
+        if not cbu in accounts_cbu:
+            return {"msg": "CBU doesn't belong to current_user"}, 400
+
+        try:
+            balance_updated = AccountDb.withdraw_money_from_account(cbu=cbu,amount=amount)
+            logger_backend.debug(f"{username} added  $ {amount} to cbu : {cbu} ")
+            return jsonify(cbu=cbu, balance=balance_updated)
+        except:
+            return make_response(jsonify(msg=f"The amount to withdraw is bigger than currente balance"),400)
+
+api.add_resource(WithdrawMoney,"/withdraw_money")
+
+class Transaction(Resource):
+    @jwt_required()
+    def post(self):
+        cbu_origin = request.json.get("cbu_origin", None)
+        cbu_destiny = request.json.get("cbu_destiny", None)
+        amount = request.json.get("amount", None)
+        description = request.json.get("description", None)
+        username = get_jwt_identity()
+        user_id = UserDb.get_user_by_username(username)[0]['id']
+        accounts = AccountDb.get_accounts_by_userid(user_id)
+        accounts_cbu = [account['cbu'] for account in  accounts]
+
+        if not cbu_origin in accounts_cbu:
+            return {"msg": "CBU doesn't belong to current_user"}, 400
+
+        try :
+            (origin,destiny) = AccountDb.transaction(cbu_origin=cbu_origin,cbu_destiny=cbu_destiny,amount=amount)
+            return jsonify(cbu_origin=cbu_origin,origin_new_balance=origin,cbu_destiny=cbu_destiny,amount=amount,description=description)
+        except: 
+            return make_response(jsonify(msg=f"The amount to withdraw is bigger than currente balance"),400)
+
+        
+
+api.add_resource(Transaction,"/make_transaction")
 
 if __name__ == "__main__":
     SetupDatabase.setup()

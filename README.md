@@ -110,3 +110,16 @@ output
 	"cbu": 10200020001
 }
 ```
+## See info one account
+GET /account/<int:cbu>
+```json
+input 
+/account/<int:cbu>
+output
+{
+	"cbu": 10200020012,
+	"first_name": "pedrito",
+	"last_name": "ramirez",
+	"username": "pramirez2"
+}
+```
