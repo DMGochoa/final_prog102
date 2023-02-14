@@ -29,6 +29,41 @@ app.title = "Bank"
 server = app.server
 server.config['SECRET_KEY'] = 'k1LUZ1fZShowB6opoyUIEJkJvS8RBF6MMgmNcDGNmgGYr'
 
+accounts = [
+    {
+        "user_id": 151616,
+        "cbu": 14263423431,
+        "balance": 147.26,
+        "id": 154862
+    },
+    {
+        "user_id": 15162416,
+        "cbu": 14265424431,
+        "balance": 14.26,
+        "id": 1543432862
+    },
+    {
+        "user_id": 151623416,
+        "cbu": 142652344431,
+        "balance": 1.26,
+        "id": 1548423462
+    }
+    ]
+
+
+user_info = {
+	"first_name": "pedrito",
+	"last_name": "mendoza",
+	"document_id": "1234545678",
+	"type": "client-person",
+	"birthday": "1997-01-01",
+	"country": "peru",
+	"city": "lima",
+	"address": "av siempreviva",
+	"email": "jm@texample.com",
+	"phone_number": "999555999"
+}
+
 # main app layout
 app.layout = html.Div(
     [

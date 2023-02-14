@@ -6,33 +6,21 @@ from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
 
+SIDEBAR_STYLE = {
+    "position": "fixed",
+    "top": 0,
+    "left": 0,
+    "bottom": 0,
+    "width": "18rem",
+    "padding": "2rem 1rem",
+    "background-color": "#f8f9fa",
+}
 
-user_pages = [
-    {
-        "name": "Register page.",
-        "path": "/register"
-    },
-    {
-        "name": "File registration page.",
-        "path": "/file_register"
-    }
-]
-
-sidebar = dbc.Nav(
-            [
-                dbc.NavLink(
-                    [
-                        html.Div(page["name"], className="ms-2"),
-                    ],
-                    href=page["path"],
-                    active="exact",
-                )
-                for page in user_pages
-            ],
-            vertical=True,
-            pills=True,
-            className="bg-light",
-)
+CONTENT_STYLE = {
+    "margin-left": "18rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
 
 user_pages = [
     {
@@ -49,7 +37,14 @@ user_pages = [
     }
 ]
 
-sidebar = dbc.Nav(
+sidebar = html.Div(
+    [
+        html.H2("Pages", className="display-4"),
+        html.Hr(),
+        html.P(
+            "Navigate through the page with this menu.", className="lead"
+        ),
+        dbc.Nav(
             [
                 dbc.NavLink(
                     [
@@ -62,31 +57,87 @@ sidebar = dbc.Nav(
             ],
             vertical=True,
             pills=True,
-            className="bg-light",
+        ),
+    ],
+    style=SIDEBAR_STYLE,
 )
+
 
 
 # home layout content
 @validate_login_session
 def home_layout():
+    accounts = [
+    {
+        "user_id": 151616,
+        "cbu": 14263423431,
+        "balance": 147.26,
+        "id": 154862
+    },
+    {
+        "user_id": 15162416,
+        "cbu": 14265424431,
+        "balance": 14.26,
+        "id": 1543432862
+    },
+    {
+        "user_id": 151623416,
+        "cbu": 142652344431,
+        "balance": 1.26,
+        "id": 1548423462
+    }
+    ]
+
+
+    user_info = {
+	"first_name": "pedrito",
+	"last_name": "mendoza",
+	"document_id": "1234545678",
+	"type": "client-person",
+	"birthday": "1997-01-01",
+	"country": "peru",
+	"city": "lima",
+	"address": "av siempreviva",
+	"email": "jm@texample.com",
+	"phone_number": "999555999",
+    }
     return \
         html.Div([
             dcc.Location(id='home-url',pathname='/home'),
+            sidebar,
             dbc.Container(
                 [
-                    sidebar,
                     dbc.Row(
                         dbc.Col(
                             [
-                                html.H2('Home page.')
-
+                                html.H2(f'Welcome {user_info["first_name"]} {user_info["last_name"]}, here are your accounts: ')
                             ],
                         ),
-                        justify='center'
+                        justify='center',
+                        style = CONTENT_STYLE
                     ),
-
                     html.Br(),
-
+                    dbc.Accordion(
+        [
+            dbc.AccordionItem(
+                [
+                    html.P(f"Bank Account {accounts[0]['cbu']}:  {accounts[0]['balance']}$"),
+                ],
+                title="Account 1",
+            ),
+            dbc.AccordionItem(
+                [
+                    html.P(f"Bank Account {accounts[1]['cbu']}:  {accounts[1]['balance']}$"),
+                ],
+                title="Account 2",
+            ),
+            dbc.AccordionItem(
+                html.P(f"Bank Account {accounts[2]['cbu']}:  {accounts[2]['balance']}$"),
+                title="Account 3",
+            ),
+        ],
+        style= CONTENT_STYLE
+    ),
                     dbc.Row(
                         dbc.Col(
                             dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
@@ -96,7 +147,7 @@ def home_layout():
                     ),
 
                     
-                    html.Br()
+                    html.Br(),
                 ],
             )
         ]

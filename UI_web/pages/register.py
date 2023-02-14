@@ -14,6 +14,16 @@ from utils.logging_web import log_web
 logger = log_web()
 
 
+SIDEBAR_STYLE = {
+    "position": "fixed",
+    "top": 0,
+    "left": 0,
+    "bottom": 0,
+    "width": "18rem",
+    "padding": "2rem 1rem",
+    "background-color": "#f8f9fa",
+}
+
 employee_pages = [
     {
         "name": "Register page.",
@@ -25,7 +35,14 @@ employee_pages = [
     }
 ]
 
-sidebar = dbc.Nav(
+sidebar = html.Div(
+    [
+        html.H2("Sidebar", className="display-4"),
+        html.Hr(),
+        html.P(
+            "A simple sidebar layout with navigation links", className="lead"
+        ),
+        dbc.Nav(
             [
                 dbc.NavLink(
                     [
@@ -38,7 +55,9 @@ sidebar = dbc.Nav(
             ],
             vertical=True,
             pills=True,
-            className="bg-light",
+        ),
+    ],
+    style=SIDEBAR_STYLE,
 )
 
 
