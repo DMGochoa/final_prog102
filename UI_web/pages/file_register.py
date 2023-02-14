@@ -12,6 +12,22 @@ from utils.logging_web import log_web
 # Setup logger
 logger = log_web()
 
+CONTENT_STYLE = {
+    "margin-left": "18rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
+
+SIDEBAR_STYLE = {
+    "position": "fixed",
+    "top": 0,
+    "left": 0,
+    "bottom": 0,
+    "width": "18rem",
+    "padding": "2rem 1rem",
+    "background-color": "#f8f9fa",
+}
+
 employee_pages = [
     {
         "name": "Register page.",
@@ -23,7 +39,14 @@ employee_pages = [
     }
 ]
 
-sidebar = dbc.Nav(
+sidebar = html.Div(
+    [
+       html.H2("Pages", className="display-4"),
+        html.Hr(),
+        html.P(
+            "Navigate through the page with this menu.", className="lead"
+        ),
+        dbc.Nav(
             [
                 dbc.NavLink(
                     [
@@ -36,7 +59,9 @@ sidebar = dbc.Nav(
             ],
             vertical=True,
             pills=True,
-            className="bg-light",
+        ),
+    ],
+    style=SIDEBAR_STYLE,
 )
 
 # home layout content
@@ -54,7 +79,8 @@ def file_register_layout():
                                 sidebar
                             ],
                         ),
-                        justify='center'
+                        justify='center',
+                        style=CONTENT_STYLE
                     ),
 
                     html.Br(),
@@ -64,11 +90,12 @@ def file_register_layout():
                             dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
                             width=4
                         ),
-                        justify='center'
+                        justify='center',
+                        style=CONTENT_STYLE
                     ),
 
                     
-                    html.Br()
+                    html.Br(),
                 ],
             )
         ]
