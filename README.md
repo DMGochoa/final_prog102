@@ -1,3 +1,7 @@
+# To Run backend 
+```
+(venv) python .\backend\apy.py
+```
 # Endpoints
 ## Create user
 POST '/users'
@@ -16,11 +20,13 @@ input
 	"email": "jm@texample.com",
 	"phone_number": "999555999"
 }
+
 output
 {
 	"username": "pramirez",
 	"password": "pe4819",
-	"code": 54802436
+	"code": 54802436,
+	"account_cbu": 10200010001
 }
 ```
 ## Login
@@ -32,17 +38,19 @@ input
 	"password" : "ju9254",
 	"code" : 28184139
 }
+
 output
 {
 	"access_token": "Bearer eyJhbGciOi..."
 }
 ```
-## Home
+## Home for current user
 GET /home
 ```json
 input
 # Header        Value
 Authorization   "Bearer eyJhbGciOi...."
+
 output
 {
 	"user": [
@@ -55,12 +63,13 @@ output
 	]
 }
 ```
-## Create other account
+## Create new account for current user
 POST /accounts
 ```json
 input
 # Header        Value
 Authorization   "Bearer eyJhbGciOi...."
+
 output
 {
 	"account": {
@@ -70,12 +79,13 @@ output
 	}
 }
 ```
-## See all acounts
+## See all accounts of current user
 GET /accounts
 ```json
 input
 # Header        Value
 Authorization   "Bearer eyJhbGciOi...."
+
 output
 {
 	"accounts": [
@@ -92,21 +102,5 @@ output
 			"user_id": 2
 		}
 	]
-}
-```
-## Add money to account
-POST /add_money
-```json
-input
-# Header        Value
-Authorization   "Bearer eyJhbGciOi...."
-{
-	"cbu": 10200020001,
-	"amount": 65
-}
-output
-{
-	"balance": 195,
-	"cbu": 10200020001
 }
 ```

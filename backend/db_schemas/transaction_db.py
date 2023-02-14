@@ -3,9 +3,9 @@ import os
 import random
 import string
 
-from backend.db_schemas.transaction_schema import TransactionSchema
-from backend.db_schemas.user_schema import UserSchema
-from backend.utils.loggin_backend import logger_backend
+from db_schemas.transaction_schema import TransactionSchema
+from db_schemas.user_schema import UserSchema
+from utils.loggin_backend import logger_backend
 
 
 class TransactionDB:
@@ -14,7 +14,7 @@ class TransactionDB:
     def create(cls, transaction):
         logger_backend.debug(f"Creating Transaction {transaction}")
         columns = ", ".join(transaction.keys())
-        values = ", ".join("'{}'".format(value) for value in user.values())
+        values = ", ".join("'{}'".format(value) for value in transaction.values())
         _execute("INSERT INTO Transaction ({}) VALUES({})".format(columns, values))
         logger_backend.debug("User created!")
         return transaction
