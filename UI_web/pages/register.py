@@ -1,13 +1,24 @@
+#import sys 
+#import os
+#sys.path.append(os.path.join(os.getcwd(), 'UI_web'))
+# __init__.py
 import dash_bootstrap_components as dbc
 import dash
 import json
 from dash import html, dcc, Input, Output, callback, State
 from datetime import date
+from auth import authenticate_user, validate_login_session
+import requests
 
-dash.register_page(__name__, path='/register')
+# Utils
+from utils.logging_web import log_web
+
+# Setup logger
+logger = log_web()
+
 
 def form_field(title:str, extra_info:str, space:int, type:str):
-
+    logger.debug(f"The field {title} is created")
     field = html.Div(
         [
             dbc.Label(title, html_for=title.lower() + '_field'),
@@ -44,9 +55,10 @@ extra_data = ['Please enter the ' +  titles[0],
               'Please enter your ' + titles[8]
             ]
 
-
-def register_form():
-
+# register layout content
+@validate_login_session
+def register_layout():
+    logger.debug("Creating the register form")
     # The different fields of the form
     f_name = form_field(titles[0], extra_data[0], 8, 'text')
     l_name = form_field(titles[1], extra_data[1], 4, 'text')
@@ -56,7 +68,8 @@ def register_form():
     address = form_field(titles[6], extra_data[6], 8, 'text')
     email = form_field(titles[7], extra_data[7], 4, 'email')
     cellpho = form_field(titles[8], extra_data[8], 8, 'number')
-    # Field for the Date 
+    # Field for the Date
+    logger.debug("Creating the date selector")
     bdate = dcc.DatePickerSingle(
         id="birth date_field",
         month_format='DD/MM/YYYY',
@@ -67,6 +80,7 @@ def register_form():
         style={"border-top": "2px"}
     )
     # Field for the dropdown selector
+    logger.debug("Creating the dropdown selector")
     dd_type  = dbc.Select(
         id = "dd_type_field",
         options=[
@@ -75,8 +89,9 @@ def register_form():
             {"label": "Disabled option", "value": "3", "disabled": True},],
         className="mb-4")
 
-    scheme = html.Div(
+    form = dbc.Form([html.Div(
         [
+            dcc.Location(id='register-url',pathname='/register'),
             dbc.Row([html.H3('Please enter the following information to create a new user.')]),
             dbc.Row([
                 dbc.Col(f_name), 
@@ -108,18 +123,15 @@ def register_form():
                 dbc.Button("SUBMIT", id="submit-button", color="primary", n_clicks=0), className="create_user"
             )))
         ], className="col-lg-12 col-lg-6 ",
-    )
-    form = dbc.Form([scheme])
-    return form
-
-layout = html.Div(
+    )])  
+    layout = html.Div(
         dbc.Row(
             [
                 dbc.Col(
                     className="col-lg-2",
                 ),
                 dbc.Col(
-                    register_form(),
+                    form,
                     className="col-lg-8",
                 ),
                 dbc.Col(
@@ -129,7 +141,11 @@ layout = html.Div(
                 html.Div(id="my-output"),
             ]
         ),
-)
+    )
+    logger.debug("The register form is complete")
+    return layout
+
+
 # Callback for the register users page
 @callback(
     Output(component_id="my-output", component_property="children"),
@@ -162,21 +178,24 @@ def on_button_click(
         user_data = {
             "first_name": value_firstname,
             "last_name": value_lastname,
-            "national_id": value_national_id,
-            "birth_date": value_birth_date,
+            "document_id": value_national_id,
+            "type": value_type,
+            "birthday": value_birth_date,
             "country": value_country,
             "city": value_city,
-            "address_field": value_address_field,
-            "cellphone_number": value_cellphone_number,
+            "address": value_address_field,
             "email": value_email,
-            "type": value_type
+            "phone_number": value_cellphone_number,
         }
-        print(user_data)
-
-    json_response = {
-        "username": "the_user",
-        "password": "the_password",
-        "code": "the_code",
-    }
-    with open("user_credentials.txt", "w") as f:
-        f.write(json.dumps(json_response))
+        
+        # Toca hacer respuesta a entrada invalida
+        response = requests.post('http://127.0.0.1:9000/users', json=user_data)
+        print('-'*30)
+        print(response.headers)
+        print('-'*30)
+        print(response.json)
+        print(response.text)
+        
+        json_response = json.loads(response.text)
+        with open("user_credentials.txt", "w") as f:
+            f.write(json.dumps(json_response))

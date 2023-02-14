@@ -8,7 +8,7 @@ jumbotron = html.Div(
         [
             html.H1("404: Not found", className="text-danger"),
             html.P(
-                "The pathname {pathname} was not recognised...",
+                f"The pathname {pathname} was not recognised...",
                 className="lead",
             ),
             html.Hr(className="my-2"),
