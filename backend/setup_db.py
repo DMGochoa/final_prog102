@@ -90,4 +90,4 @@ class SetupDatabase:
         self.create_db()
         self.create_user_table()
         self.create_account_table()
-        self.create_transaction_table_query()
+        self.create_transaction_table()
