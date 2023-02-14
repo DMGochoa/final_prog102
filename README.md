@@ -123,3 +123,25 @@ output
 	"username": "pramirez2"
 }
 ```
+## Make transaction
+POST /make_transaction
+```json
+input
+# Header        Value
+Authorization   "Bearer eyJhbGciOi...."
+{
+	"cbu_origin": 10200020001,
+	"cbu_destiny": 10200020710,
+	"description" : "testing transaction",
+	"amount": 20
+}
+Output
+{
+	"amount": 20,
+	"cbu_destiny": 10200020007,
+	"cbu_origin": 10200020001,
+	"description": "testing transaction",
+	"origin_new_balance": 210
+}
+
+```

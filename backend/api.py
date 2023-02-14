@@ -184,7 +184,7 @@ class Transaction(Resource):
             (origin,destiny) = AccountDb.transaction(cbu_origin=cbu_origin,cbu_destiny=cbu_destiny,amount=amount)
             return jsonify(cbu_origin=cbu_origin,origin_new_balance=origin,cbu_destiny=cbu_destiny,amount=amount,description=description)
         except: 
-            return make_response(jsonify(msg=f"The amount to withdraw is bigger than currente balance"),400)
+            return make_response(jsonify(msg="Error with account destiny or ammount"),400)
 
         
 
