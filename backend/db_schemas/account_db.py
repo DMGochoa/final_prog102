@@ -24,6 +24,11 @@ class AccountDb:
         return _execute(query, return_entity=False)
 
     @classmethod
+    def get_account_by_cbu(cls,cbu):
+        query = r"SELECT * FROM Account WHERE cbu  = {}".format(cbu)
+        return _execute(query, return_entity=False)
+
+    @classmethod
     def add_money_to_account(cls,cbu,amount):
         query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu)
         balance = _execute(query, return_entity=False)[0]['balance']
@@ -31,6 +36,26 @@ class AccountDb:
         update_balance_query = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_balance,cbu)
         update_balance = _execute(update_balance_query)
         return new_balance
+
+    @classmethod
+    def withdraw_money_from_account(cls,cbu,amount):
+        query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu)
+        balance = _execute(query, return_entity=False)[0]['balance']
+
+        if balance < amount:
+            raise Exception("The amount to withdraw is bigger than currente balance")
+        
+        new_balance = balance-amount
+        update_balance_query = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_balance,cbu)
+        update_balance = _execute(update_balance_query)
+        return new_balance
+
+    @classmethod
+    def transaction(cls, cbu_origin,cbu_destiny,amount):
+        new_origin_balance = AccountDb.withdraw_money_from_account(cbu_origin,amount)
+        new_destiny_balance = AccountDb.add_money_to_account(cbu_destiny,amount)
+        return (new_origin_balance,new_destiny_balance)
+
 
     @classmethod
     def get_user(cls, id):
