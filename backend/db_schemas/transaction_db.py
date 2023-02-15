@@ -2,7 +2,7 @@ import sqlite3
 import os
 import random
 import string
-
+## quitar / añadir backend.
 from backend.db_schemas.transaction_schema import TransactionSchema
 from backend.db_schemas.user_schema import UserSchema
 from backend.utils.loggin_backend import logger_backend
@@ -16,7 +16,7 @@ class TransactionDB:
         columns = ", ".join(transaction.keys())
         values = ", ".join("'{}'".format(value) for value in transaction.values())
         _execute("INSERT INTO Transactions ({}) VALUES({})".format(columns, values))
-        logger_backend.debug("User created!")
+        logger_backend.debug("Transaction created!")
         return transaction
 
     @classmethod
