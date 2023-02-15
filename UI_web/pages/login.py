@@ -83,9 +83,13 @@ def login_auth(n_clicks, user, pw, code):
         logger.debug(f'The request for the user info is: {user_info.status_code}')
         logger.debug('Saving the info to de info carrier')
         info = json.loads(user_info.text)
-        info_carrier.set_general(info)
+        info_carrier.set_general(info['user'][0])
+        user_type = info_carrier.get_general()
         logger.debug(f'The info was save and is: {info_carrier.get_general()}')
-        return '/home',''
+        if user_type['type'] == 'Employee':
+            return '/register', ''
+        else:
+            return '/home',''
     session['authed'] = False
     return no_update, dbc.Alert('Incorrect credentials.',color='danger',dismissable=True)
 

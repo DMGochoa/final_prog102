@@ -121,17 +121,24 @@ def on_button_click(n_clicks, user, pw, code):
     [Input('url','pathname')]
 )
 def router(url):
-    if url=='/home':
+    logger.debug('Enter in the router')
+    try:
+        user_type = info_carrier.get_general()['type']
+    except:
+        user_type = 'Empty'
+    logger.debug(f'The user type is {user_type}')
+    
+    if url=='/home' and user_type == 'User':
         return home_layout()
     elif url=='/login' or url=='/':
         return login_layout()
-    elif url=='/register':
+    elif url=='/register' and user_type == 'Employee':
         return register_layout()
-    elif url=='/file_register':
+    elif url=='/file_register' and user_type == 'Employee':
         return file_register_layout()
-    elif url=='/reports':
+    elif url=='/reports' and user_type == 'User':
         return reports_layout()
-    elif url=='/transactions':
+    elif url=='/transactions' and user_type == 'User':
         return transactions_layout()
     else:
         return jumbotron

@@ -93,7 +93,7 @@ def home_layout():
     ]
 
     user_info_carrier = info_carrier.get_general()
-    print(user_info_carrier)
+    
     user_info = {
 	"first_name": "pedrito",
 	"last_name": "mendoza",

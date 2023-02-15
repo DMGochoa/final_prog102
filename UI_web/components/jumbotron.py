@@ -39,7 +39,7 @@ jumbotron = html.Div(
                         dbc.Card(
                             [
                                 html.H2('404 - PAGE NOT FOUND',className='card-title'),
-                                html.A(dcc.Link('Home',href='/home'))
+                                html.A(dcc.Link('Login',href='/login'))
                             ],
                             body=True
                         )
