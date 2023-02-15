@@ -55,7 +55,7 @@ output
 	]
 }
 ```
-## Create other account
+## Create other account (for future sprint)
 POST /accounts
 ```json
 input
@@ -94,39 +94,7 @@ output
 	]
 }
 ```
-## Add money to account
-POST /add_money
-```json
-input
-# Header        Value
-Authorization   "Bearer eyJhbGciOi...."
-{
-	"cbu": 10200020001,
-	"amount": 65
-}
-output
-{
-	"balance": 195,
-	"cbu": 10200020001
-}
-```
-## Withdraw money from account
-POST /withdraw_money
-```json
-input
-# Header        Value
-Authorization   "Bearer eyJhbGciOi...."
-{
-	"cbu": 10200020001,
-	"amount": 65
-}
-output
-{
-	"balance": 195,
-	"cbu": 10200020001
-}
-```
-## See info one account
+## See info one account (to verify before transaction)
 GET /account/<int:cbu>
 ```json
 input 
@@ -163,7 +131,7 @@ POST /transaction
 	"amount": 10.0
 }
 ```
-## Deposit
+## Transaction
 ```json
 # input
 {
