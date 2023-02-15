@@ -9,10 +9,16 @@ from flask import session
 
 # Utils
 from utils.logging_web import log_web
+from utils.validation import form_val
 
 # Setup logger
 logger = log_web()
 
+CONTENT_STYLE = {
+    "margin-left": "10rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
 
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -37,10 +43,10 @@ employee_pages = [
 
 sidebar = html.Div(
     [
-        html.H2("Sidebar", className="display-4"),
+       html.H2("Pages", className="display-4"),
         html.Hr(),
         html.P(
-            "A simple sidebar layout with navigation links", className="lead"
+            "Navigate through the page with this menu.", className="lead"
         ),
         dbc.Nav(
             [
@@ -179,7 +185,8 @@ def register_layout():
                     className="col-lg-2",
                 ),
                 dbc.Col(
-                    form,
+                    [dbc.Row(form),
+                     dbc.Row(html.Div(id='login-alert'),)],
                     className="col-lg-8",
                 ),
                 dbc.Col(
@@ -189,6 +196,7 @@ def register_layout():
                 html.Div(id="my-output"),
             ]
         ),
+        style=CONTENT_STYLE
     )
     logger.debug("The register form is complete")
     return layout
@@ -222,7 +230,9 @@ def on_button_click(
     value_email,
     value_type,
 ):
+    logger.debug('Click in the buttom')
     if n_clicks != 0:
+        logger.debug('The info from the form is save')
         user_data = {
             "first_name": value_firstname,
             "last_name": value_lastname,
@@ -235,18 +245,26 @@ def on_button_click(
             "email": value_email,
             "phone_number": value_cellphone_number,
         }
-        
-        # Toca hacer respuesta a entrada invalida
-        response = requests.post('http://127.0.0.1:9000/users', json=user_data)
-        print('-'*30)
-        print(response.headers)
-        print('-'*30)
-        print(response.json)
-        print(response.text)
-        
-        json_response = json.loads(response.text)
-        with open("user_credentials.txt", "w") as f:
-            f.write(json.dumps(json_response))
+        logger.debug(f'Info for register: {user_data}')
+        val, issue = form_val(user_data)
+        if val:
+            # Toca hacer respuesta a entrada invalida
+            logger.debug('Send request to save the')
+            response = requests.post('http://127.0.0.1:9000/users', json=user_data)
+            print('-'*30)
+            print(response.headers)
+            print('-'*30)
+            print(response.json)
+            print(response.text)
+            
+            json_response = json.loads(response.text)
+            with open("user_credentials.txt", "w") as f:
+                f.write(json.dumps(json_response))
+        else:
+            logger.debug(f'Mistake occur {val}, the issue is {issue}')
+            return dbc.Alert(issue,
+                             color='danger',
+                             dismissable=True)
 
 @callback(
     Output('register-url','pathname'),
