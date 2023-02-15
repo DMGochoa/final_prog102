@@ -139,25 +139,38 @@ output
 	"username": "pramirez2"
 }
 ```
-## Make transaction
-POST /make_transaction
+# Transactions
+POST /transaction
+## Deposit
 ```json
-input
-# Header        Value
-Authorization   "Bearer eyJhbGciOi...."
+# input
 {
-	"cbu_origin": 10200020001,
-	"cbu_destiny": 10200020710,
-	"description" : "testing transaction",
-	"amount": 20
+	"transaction_type": "deposit",
+	"cbu_origin": 1234567, # can be a DNI
+	"cbu_destiny": 10200010001, # account to be updated
+	"description": "test deposit",
+	"amount": 10.0
 }
-Output
+```
+## Withdraw
+```json
+# input
 {
-	"amount": 20,
-	"cbu_destiny": 10200020007,
-	"cbu_origin": 10200020001,
-	"description": "testing transaction",
-	"origin_new_balance": 210
+	"transaction_type": "withdraw",
+	"cbu_origin": 1234567, # can be a DNI
+	"cbu_destiny": 10200010001,  # account to be updated
+	"description": "test withdraw",
+	"amount": 10.0
 }
-
+```
+## Deposit
+```json
+# input
+{
+	"transaction_type": "transaction",
+	"cbu_origin": 10200010001,
+	"cbu_destiny": 10200020001,
+	"description": "test transaction",
+	"amount": 10.0
+}
 ```
