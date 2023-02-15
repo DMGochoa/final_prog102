@@ -78,12 +78,7 @@ def transactions_layout():
         "balance": 14.26,
         "id": 1543432862
     },
-    {
-        "user_id": 151623416,
-        "cbu": 142652344431,
-        "balance": 1.26,
-        "id": 1548423462
-    }
+
     ]
     user_info = {
 	"first_name": "pedrito",
@@ -97,6 +92,8 @@ def transactions_layout():
 	"email": "jm@texample.com",
 	"phone_number": "999555999",
     }
+    option_accounts = [{"label": f"account {i+1}", "value": f"Account No {accounts[i]['cbu']}"} for i in range(len(accounts))] 
+
     return \
         html.Div([
             dcc.Location(id='transactions-url',pathname='/transactions'),
@@ -119,11 +116,7 @@ def transactions_layout():
                 [
                     dbc.Select(
                         id="select-deposit",
-                        options=[
-                                {"label": "account 1", "value": f"Account No {accounts[0]['cbu']}"},
-                                {"label": "account 2", "value": f"Account No {accounts[1]['cbu']}"},
-                                {"label": "account 3", "value": f"Account No {accounts[2]['cbu']}"},
-                                ],
+                        options= option_accounts,
                             ),
                     html.P("Enter amount to deposit"),
                     dbc.Input(id="deposit-amount",type="number", placeholder="$"),
@@ -136,11 +129,7 @@ def transactions_layout():
                 [
                     dbc.Select(
                         id="select-withdraw",
-                        options=[
-                                {"label": "account 1", "value": f"Account No {accounts[0]['cbu']}"},
-                                {"label": "account 2", "value": f"Account No {accounts[1]['cbu']}"},
-                                {"label": "account 3", "value": f"Account No {accounts[2]['cbu']}"},
-                                ],
+                        options= option_accounts,
                             ),
                     html.P("Enter amount to withdraw"),
                     dbc.Input(id="withdraw-amount", type="number", placeholder="$"),
@@ -153,11 +142,7 @@ def transactions_layout():
                 [
                     dbc.Select(
                         id="select-transfer",
-                        options=[
-                                {"label": "account 1", "value": f"Account No {accounts[0]['cbu']}"},
-                                {"label": "account 2", "value": f"Account No {accounts[1]['cbu']}"},
-                                {"label": "account 3", "value": f"Account No {accounts[2]['cbu']}"},
-                                ],
+                        options= option_accounts,
                             ),
                     html.P("Enter amount to transfer from account"),
                     dbc.Input(id="trasnfer-amount", type="number", placeholder="$"),
