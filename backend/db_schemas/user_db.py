@@ -2,9 +2,9 @@ import sqlite3
 import os
 import random
 import string
-
-from backend.db_schemas.user_schema import UserSchema
-from backend.utils.loggin_backend import logger_backend
+## quitar / añadir backend.
+from db_schemas.user_schema import UserSchema
+from utils.loggin_backend import logger_backend
 
 
 class UserDb:

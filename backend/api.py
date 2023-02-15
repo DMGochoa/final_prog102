@@ -6,11 +6,11 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 
-from backend.db_schemas import transaction_db
+# from db_schemas import transaction_db
 from db_schemas.user_schema import UserSchema
 from db_schemas.user_db import UserDb
 from db_schemas.account_schema import AccountSchema
-from backend.db_schemas.account_db import AccountDb
+from db_schemas.account_db import AccountDb
 from utils.loggin_backend import logger_backend
 from setup_db import SetupDatabase
 
