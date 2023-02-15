@@ -9,7 +9,7 @@ from marshmallow import ValidationError
 from db_schemas.user_schema import UserSchema
 from db_schemas.user_db import UserDb
 from db_schemas.account_schema import AccountSchema
-from backend.db_schemas.account_db import AccountDb
+from db_schemas.account_db import AccountDb
 from utils.loggin_backend import logger_backend
 from setup_db import SetupDatabase
 
@@ -68,7 +68,7 @@ class Login(Resource):
         password = request.json.get("password", None)
         code = request.json.get("code", None)
         user_db = UserDb.get_user_by_username(username)
-        logger_backend.debug(f"{user_db[0]['username']} try to login")
+        logger_backend.debug(f"{username} try to login")
         if not user_db:
             return {"msg": "Username doesn't exist"}, 400
 
@@ -118,30 +118,6 @@ class Account(Resource):
 
 api.add_resource(Account, "/accounts")
 
-
-class Transaction(Resource):
-
-    @jwt_required()
-    def post(self):
-        cbu = request.json.get("cbu", None)
-        amount = request.json.get("amount", None)
-        username = get_jwt_identity()
-        user_id = UserDb.get_user_by_username(username)[0]['id']
-        accounts = AccountDb.get_accounts_by_userid(user_id)
-        accounts_cbu = [account['cbu'] for account in accounts]
-
-        if not cbu in accounts_cbu:
-            return {"msg": "CBU doesn't belong to current_user"}, 400
-
-        Transaction
-
-        balance_updated = AccountDb.add_money_to_account(cbu=cbu,amount=amount)
-        logger_backend.debug(f"{username} added  $ {amount} to cbu : {cbu} ")
-        return jsonify(cbu=cbu,
-                        balance=balance_updated)
-
-
-api.add_resource(AddMoney, "/add_money")
 
 if __name__ == "__main__":
     SetupDatabase.setup()

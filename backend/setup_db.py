@@ -43,7 +43,7 @@ class SetupDatabase:
                 CONSTRAINT not_null_values CHECK(user_id is not NULL AND
                                                 cbu is not NULL)
                 CONSTRAINT valid_balance CHECK (balance >=0))""")
-    create_transaction_table_query = ("""CREATE TABLE IF NOT EXISTS Transactio(
+    create_transaction_table_query = ("""CREATE TABLE IF NOT EXISTS Transactions (
                 origin_account integer NOT NULL,
                 final_account integer NOT NULL,
                 type string NOT NULL,
@@ -90,4 +90,4 @@ class SetupDatabase:
         self.create_db()
         self.create_user_table()
         self.create_account_table()
-        self.create_transaction_table_query()
+        self.create_transaction_table()
