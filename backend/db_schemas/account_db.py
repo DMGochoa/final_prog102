@@ -1,8 +1,12 @@
+import datetime
 import sqlite3
 import os
 import random
 import string
+
+from backend.db_schemas import transaction_db
 from backend.db_schemas.account_schema import AccountSchema
+from backend.db_schemas.transaction_db import TransactionDB
 
 
 class AccountDb:
@@ -24,7 +28,7 @@ class AccountDb:
         return _execute(query, return_entity=False)
 
     @classmethod
-    def get_account_by_cbu(cls,cbu):
+    def get_account_by_cbu(cls, cbu):
         query = r"SELECT * FROM Account WHERE cbu  = {}".format(cbu)
         return _execute(query, return_entity=False)
 
@@ -50,12 +54,41 @@ class AccountDb:
         update_balance = _execute(update_balance_query)
         return new_balance
 
-    @classmethod
-    def transaction(cls, cbu_origin,cbu_destiny,amount):
-        new_origin_balance = AccountDb.withdraw_money_from_account(cbu_origin,amount)
-        new_destiny_balance = AccountDb.add_money_to_account(cbu_destiny,amount)
-        return (new_origin_balance,new_destiny_balance)
+    # @classmethod
+    # def transaction(cls, cbu_origin, cbu_destiny, amount):
+    #     new_origin_balance = AccountDb.withdraw_money_from_account(cbu_origin,amount)
+    #     new_destiny_balance = AccountDb.add_money_to_account(cbu_destiny,amount)
+    #     return new_origin_balance, new_destiny_balance
 
+    @classmethod
+    def transaction(cls, cbu_origin, cbu_destiny, amount, transaction_type, description):
+        destiny_query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu_destiny)
+        destiny_balance = _execute(destiny_query, return_entity=False)[0]['balance']
+        if cls.get_account_by_cbu(cbu_origin):
+            transaction_type = "transaction"
+            query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu_origin)
+            balance = _execute(query, return_entity=False)[0]['balance']
+            new_origin_balance = balance - amount
+            update_balance_query = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_origin_balance, cbu_origin)
+            _execute(update_balance_query)
+            new_destiny_balance = destiny_balance + amount
+        if transaction_type == "deposit":
+            new_destiny_balance = destiny_balance + amount
+        elif transaction_type == "withdraw":
+            new_destiny_balance = destiny_balance - amount
+        update_balance_query = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_destiny_balance, cbu_destiny)
+        _execute(update_balance_query)
+        transaction = {
+            "origin_account": cbu_origin,
+            "final_account": cbu_destiny,
+            "type": transaction_type,
+            "amount": amount,
+            "status": True,
+            "description": description,
+            "date": datetime.date.today()
+        }
+        TransactionDB.create(transaction)
+        return new_origin_balance, new_destiny_balance
 
     @classmethod
     def get_user(cls, id):
