@@ -21,6 +21,9 @@ logger = log_web()
 # Token carrier
 from utils.token_singleton import Token
 token = Token()
+# Info carrier
+from utils.data import Data_carrier
+info_carrier = Data_carrier()
 
 app = Dash(
     __name__,
@@ -89,29 +92,27 @@ app.layout = html.Div(
 )
 
 # Obtain the token when occur the register
-@callback(
+"""@callback(
     Output("my-output-login", "children"),
     Input("login-button", "n_clicks"),
     State("login-user", "value"),
     State("login-password", "value"),
     State('login-code', 'value')
 )
-def on_button_click(
-    n_clicks,
-    value_username,
-    value_password,
-    code
-):
+def on_button_click(n_clicks, user, pw, code):
     if n_clicks is None or n_clicks==0:
         return no_update
     else:
-        time.sleep(2)
-        print('Estoy adentro')
+        time.sleep(1)
         logger.debug('############### Token from main.py ##############')
         logger.debug('Searching the info of the User by the token')
         logger.debug(f'The token to search is {token.get_token()}')
         user_info = requests.get('http://127.0.0.1:9000/home', headers={'Authorization':token.get_token()})
         logger.debug(f'The request for the user info is: {user_info.status_code}')
+        logger.debug('Saving the info to de info carrier')
+        info = json.loads(user_info.text)
+        info_carrier.set_general(info)
+        logger.debug(f'The info was save and is: {info_carrier.get_general()}')"""
 
 
 # router
