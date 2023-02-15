@@ -1,6 +1,7 @@
 import dash_bootstrap_components as dbc
 import dash
 import json
+import plotly.express as px
 from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
@@ -61,10 +62,11 @@ sidebar = html.Div(
     ],
     style=SIDEBAR_STYLE,
 )
-
+df = px.data.gapminder()
 # reports layout content
 @validate_login_session
 def reports_layout():
+    df = px.data.gapminder()
     return \
         html.Div([
             dcc.Location(id='reports-url',pathname='/reports'),
@@ -74,7 +76,9 @@ def reports_layout():
                     dbc.Row(
                         dbc.Col(
                             [
-                                html.H2('Reports page.')
+                                dcc.Dropdown(options=df.continent.unique(),
+                                     id='cont-choice'),
+                                dbc.Table.from_dataframe(df, id="table", striped=True, bordered=True, hover=True)
                             ],
                         ),
                         justify='center',
@@ -109,3 +113,15 @@ def logout_(n_clicks):
         return no_update
     session['authed'] = False
     return '/login'
+
+@callback(
+    Output('table', 'df'),
+    Input('cont-choice', 'value')
+)
+def update_graph(value):
+    if value is None:
+        table = dbc.Table.from_dataframe(df, id="table", striped=True, bordered=True, hover=True)
+    else:
+        dff = df[df.continent==value]
+        table = dbc.Table.from_dataframe(dff, id="table", striped=True, bordered=True, hover=True)
+    return table

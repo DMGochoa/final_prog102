@@ -106,7 +106,6 @@ def on_button_click(
         return no_update
     else:
         time.sleep(2)
-        print('Estoy adentro')
         logger.debug('############### Token from main.py ##############')
         logger.debug('Searching the info of the User by the token')
         logger.debug(f'The token to search is {token.get_token()}')
