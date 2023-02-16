@@ -122,11 +122,9 @@ class Account(Resource):
 api.add_resource(Account, "/accounts")
 
 
-api.add_resource(Account, "/accounts")
-
-
 class AccountInfo(Resource):
-    def get(self,cbu):
+
+    def get(self, cbu):
         try:
             account = AccountDb.get_account_by_cbu(cbu)[0]
             user = UserDb.get_user(account['user_id'])[0]
@@ -140,7 +138,7 @@ class AccountInfo(Resource):
             return make_response(jsonify(msg=f"CBU {cbu} not found"),404)
 
 
-api.add_resource(AccountInfo,"/account/<int:cbu>")
+api.add_resource(AccountInfo, "/account/<int:cbu>")
 
 
 class Transaction(Resource):
@@ -163,6 +161,7 @@ class Transaction(Resource):
 
 
 api.add_resource(Transaction,  "/transaction")
+
 
 class ReportTransactions(Resource):
     def get(self):
