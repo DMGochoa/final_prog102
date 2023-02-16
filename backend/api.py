@@ -1,22 +1,24 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response 
 from flask_restful import Resource, Api, abort
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
+from datetime import timedelta
 
-# from db_schemas import transaction_db
 from db_schemas.user_schema import UserSchema
 from db_schemas.user_db import UserDb
 from db_schemas.account_schema import AccountSchema
 from db_schemas.account_db import AccountDb
+from db_schemas.transaction_db import TransactionDB
 from utils.loggin_backend import logger_backend
 from setup_db import SetupDatabase
 
 app = Flask(__name__)
 api = Api(app)
 app.config["JWT_SECRET_KEY"] = "prog102"
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(app)
 
 
@@ -120,6 +122,27 @@ class Account(Resource):
 api.add_resource(Account, "/accounts")
 
 
+api.add_resource(Account, "/accounts")
+
+
+class AccountInfo(Resource):
+    def get(self,cbu):
+        try:
+            account = AccountDb.get_account_by_cbu(cbu)[0]
+            user = UserDb.get_user(account['user_id'])[0]
+            return jsonify(cbu=cbu,
+                    # fix this !! return date
+                    creation_date=account['id'],
+                    username=user['username'],
+                    first_name=user['first_name'],
+                    last_name=user['last_name'])
+        except:
+            return make_response(jsonify(msg=f"CBU {cbu} not found"),404)
+
+
+api.add_resource(AccountInfo,"/account/<int:cbu>")
+
+
 class Transaction(Resource):
 
     def post(self):
@@ -140,6 +163,20 @@ class Transaction(Resource):
 
 
 api.add_resource(Transaction,  "/transaction")
+
+class ReportTransactions(Resource):
+    def get(self):
+        year = request.json.get("year", None)
+        month = request.json.get("month", None)
+        cbu = request.json.get("cbu", None)
+        try:
+            (transactions,period) = TransactionDB.report(year=year,month=month,cbu=cbu)
+            return jsonify(cbu=cbu,period=period,transactions=transactions)
+        except:
+            return make_response(jsonify(msg="Error with cbu or date"), 400)
+
+
+api.add_resource(ReportTransactions,  "/report_transactions")
 
 
 if __name__ == "__main__":
