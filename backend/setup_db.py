@@ -39,6 +39,7 @@ class SetupDatabase:
                 cbu integer NOT NULL,
                 balance float NOT NULL DEFAULT '0,0',
                 currency string NOT NULL,
+                creation_date date NOT NULL,
                 id integer NOT NULL PRIMARY KEY AUTOINCREMENT
                 CONSTRAINT not_null_values CHECK(user_id is not NULL AND
                                                 cbu is not NULL)

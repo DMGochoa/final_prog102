@@ -14,9 +14,9 @@ class TransactionDB:
     def create(cls, transaction):
         logger_backend.debug(f"Creating Transaction {transaction}")
         columns = ", ".join(transaction.keys())
-        values = ", ".join("'{}'".format(value) for value in user.values())
-        _execute("INSERT INTO Transaction ({}) VALUES({})".format(columns, values))
-        logger_backend.debug("User created!")
+        values = ", ".join("'{}'".format(value) for value in transaction.values())
+        _execute("INSERT INTO Transactions ({}) VALUES({})".format(columns, values))
+        logger_backend.debug("Transaction created!")
         return transaction
 
     @classmethod
