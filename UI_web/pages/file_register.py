@@ -39,7 +39,7 @@ employee_pages = [
     },
     {
         "name": "User services page.",
-        "path": "/user_services"
+        "path": "/user_service"
     }
 ]
 
