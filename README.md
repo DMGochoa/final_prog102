@@ -142,3 +142,49 @@ POST /transaction
 	"amount": 10.0
 }
 ```
+```json
+output
+{
+	"amount": 10.0,
+	"cbu_destiny": 10200020001,
+	"cbu_origin": 10200010001,
+	"description": "test transaction",
+	"origin_new_balance": 130.0
+}
+```
+## Report transactions
+GET /report_transactions
+```json
+# input
+# month incorrect '01', correct '1' 
+{
+	"year": 2023,
+	"month": 2,
+	"cbu": 10200010001
+}
+# output
+{
+	"cbu": 10200010001,
+	"period": "2023-02",
+	"transactions": [
+		{
+			"amount": 190.0,
+			"date": "2023-02-15",
+			"description": "test deposit",
+			"final_account": 10200010001,
+			"origin_account": 1234567,
+			"status": "True",
+			"type": "deposit"
+		},
+		{
+			"amount": 50.0,
+			"date": "2023-02-15",
+			"description": "test withdraw",
+			"final_account": 10200010001,
+			"origin_account": 1234567,
+			"status": "True",
+			"type": "withdraw"
+		}
+	]
+}
+```
