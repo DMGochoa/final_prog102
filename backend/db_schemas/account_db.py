@@ -2,8 +2,8 @@ import sqlite3
 import os
 import datetime
 ## quitar / añadir backend.
-from backend.db_schemas.account_schema import AccountSchema
-from backend.db_schemas.transaction_db import TransactionDB
+from db_schemas.account_schema import AccountSchema
+from db_schemas.transaction_db import TransactionDB
 
 
 class AccountDb:
@@ -55,9 +55,12 @@ class AccountDb:
             new_destiny_balance = destiny_balance - amount
             new_origin_balance = new_destiny_balance
 
-        update_balance_query_destiny = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_destiny_balance,
-                                                                                                cbu_destiny)
+        update_balance_query_destiny = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_destiny_balance,                                                                       cbu_destiny)
         _execute(update_balance_query_destiny)
+
+        if transaction_type == "withdraw":
+            cbu_origin, cbu_destiny = cbu_destiny, cbu_origin
+
         transaction = {
             "origin_account": cbu_origin,
             "final_account": cbu_destiny,

@@ -1,8 +1,8 @@
 import sqlite3
 import os
 ## quitar / añadir backend.
-from backend.db_schemas.user_schema import UserSchema
-from backend.utils.loggin_backend import logger_backend
+from db_schemas.user_schema import UserSchema
+from utils.loggin_backend import logger_backend
 
 
 class TransactionDB:

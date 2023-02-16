@@ -70,7 +70,7 @@ class Login(Resource):
         password = request.json.get("password", None)
         code = request.json.get("code", None)
         user_db = UserDb.get_user_by_username(username)
-        logger_backend.debug(f"{user_db[0]['username']} try to login")
+        logger_backend.debug(f"{username} try to login")
         if not user_db:
             return {"msg": "Username doesn't exist"}, 400
 
