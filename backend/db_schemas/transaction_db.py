@@ -3,9 +3,9 @@ import os
 import random
 import string
 ## quitar / añadir backend.
-from backend.db_schemas.transaction_schema import TransactionSchema
-from backend.db_schemas.user_schema import UserSchema
-from backend.utils.loggin_backend import logger_backend
+from db_schemas.transaction_schema import TransactionSchema
+from db_schemas.user_schema import UserSchema
+from utils.loggin_backend import logger_backend
 
 
 class TransactionDB:
