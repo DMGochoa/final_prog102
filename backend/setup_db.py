@@ -39,11 +39,12 @@ class SetupDatabase:
                 cbu integer NOT NULL,
                 balance float NOT NULL DEFAULT '0,0',
                 currency string NOT NULL,
+                creation_date date NOT NULL,
                 id integer NOT NULL PRIMARY KEY AUTOINCREMENT
                 CONSTRAINT not_null_values CHECK(user_id is not NULL AND
                                                 cbu is not NULL)
                 CONSTRAINT valid_balance CHECK (balance >=0))""")
-    create_transaction_table_query = ("""CREATE TABLE IF NOT EXISTS Transactions (
+    create_transaction_table_query = ("""CREATE TABLE IF NOT EXISTS Transactions(
                 origin_account integer NOT NULL,
                 final_account integer NOT NULL,
                 type string NOT NULL,

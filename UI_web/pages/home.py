@@ -68,44 +68,13 @@ sidebar = html.Div(
 
 
 
+
 # home layout content
 @validate_login_session
 def home_layout():
-    accounts = [
-    {
-        "user_id": 151616,
-        "cbu": 14263423431,
-        "balance": 147.26,
-        "id": 154862
-    },
-    {
-        "user_id": 15162416,
-        "cbu": 14265424431,
-        "balance": 14.26,
-        "id": 1543432862
-    },
-    {
-        "user_id": 151623416,
-        "cbu": 142652344431,
-        "balance": 1.26,
-        "id": 1548423462
-    }
-    ]
-
     user_info_carrier = info_carrier.get_general()
-    
-    user_info = {
-	"first_name": "pedrito",
-	"last_name": "mendoza",
-	"document_id": "1234545678",
-	"type": "client-person",
-	"birthday": "1997-01-01",
-	"country": "peru",
-	"city": "lima",
-	"address": "av siempreviva",
-	"email": "jm@texample.com",
-	"phone_number": "999555999",
-    }
+    accounts = info_carrier.get_specific()
+    accordion_items =[dbc.AccordionItem(html.P(f"Bank Account {accounts[i]['cbu']}:  {accounts[i]['balance']}$"),title=f"Account {i+1}") for i in range(len(accounts))]
     return \
         html.Div([
             dcc.Location(id='home-url',pathname='/home'),
@@ -115,7 +84,7 @@ def home_layout():
                     dbc.Row(
                         dbc.Col(
                             [
-                                html.H2(f'Welcome {user_info["first_name"]} {user_info["last_name"]}, here are your accounts: ')
+                                html.H2(f'Welcome {user_info_carrier["first_name"]} {user_info_carrier["last_name"]}, here are your accounts: ')
                             ],
                         ),
                         justify='center',
@@ -123,24 +92,7 @@ def home_layout():
                     ),
                     html.Br(),
                     dbc.Accordion(
-        [
-            dbc.AccordionItem(
-                [
-                    html.P(f"Bank Account {accounts[0]['cbu']}:  {accounts[0]['balance']}$"),
-                ],
-                title="Account 1",
-            ),
-            dbc.AccordionItem(
-                [
-                    html.P(f"Bank Account {accounts[1]['cbu']}:  {accounts[1]['balance']}$"),
-                ],
-                title="Account 2",
-            ),
-            dbc.AccordionItem(
-                html.P(f"Bank Account {accounts[2]['cbu']}:  {accounts[2]['balance']}$"),
-                title="Account 3",
-            ),
-        ],
+                            accordion_items,
         style= CONTENT_STYLE
     ),
                     dbc.Row(
