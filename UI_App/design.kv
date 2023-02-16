@@ -91,16 +91,13 @@
             text: "LOG IN"
             font_size: 15
             pos_hint: {"center_x": 0.1, "center_y": -0.2}
-            on_press: app.login()   
-            # on_release:
-            #     root.current = 'main_menu'       
+            on_press: app.login()       
 
     MDScreen:  
         name: 'main_menu'       
         md_bg_color: 0, .5, .5, 1
         MDBoxLayout:
             orientation: 'vertical'
-            ### ON TEST
             MDGridLayout:
                 cols: 2 
                 size_hint: 1, 0.2    
@@ -116,38 +113,22 @@
                         text: ''
                         halign: 'center'
                         pos_hint: {"center_y": 0.5}
+                    MDLabel:
+                        id: acc_data_lbl
+                        text: ''
+                        halign: 'center'
+                        pos_hint: {"center_y": 0.5}    
                 MDCard:
                     radius: '10dp'
                     padding: '20dp'
                     spacing: '10dp'
-                    #halign: 'center'
-                    #pos_hint: {'center_x': 0.75, "center_y": 0.5}
-                    MDFillRoundFlatButton:
-                        text: 'MORE ACCOUNTS'    
+                    MDLabel:
+                        id: more_acc_lbl
+                        text: ''
+                        font_size: 15
                         halign: 'center'
-                        pos_hint: {'center_x': 0.5}
-                        #anchor_x = 'center'
-                        on_release:
-                            app.root.current = 'service_screen'
-                            app.root.transition = SlideTransition(direction='left')     
-                        
-
-            ### ON TEST 
-
-            # MDBoxLayout: 
-            #     size_hint: 1, 0.2    
-            #     orientation: 'horizontal'
-            #     padding: '10dp'
-            #     MDCard:
-            #         radius: '10dp'
-            #         padding: '20dp'
-            #         # line_color: 1,0,1,1
-            #         MDLabel:
-            #             id: user_data_lbl
-            #             text: ''
-            #             halign: 'center'
-            #             pos_hint: {"center_y": 0.5}
-
+                        pos_hint: {"center_y": 0.5}
+                    
             MDGridLayout:
                 cols: 3
                 size_hint: 1, 0.7    

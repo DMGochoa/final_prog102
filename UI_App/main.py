@@ -33,31 +33,8 @@ class MainApp(MDApp):
         validate = self.validate(
             self.root.ids.user.text, self.root.ids.password.text, self.root.ids.code.text)
         if validate:
-            # Class client account, balance, username, first name, last name,
-            # client = new_client(first_name, last_name, account, balance) entre otras cosas ¿?
-            #
-            # Requesting for principal account
-            # !!! cbu on URL is not secure, missing balance !!!
-            response = requests.get(
-                'http://127.0.0.1:9000/account/10200020001')  # ¿CBU SOURCE?
-
-            # get/home
-
-            # Dictionary with user dara values
-            user_data = self.acc_to_dict(response.text)
-
-            # Setting the label
-            self.root.ids.user_data_lbl.text = "Welcome: " + \
-                user_data['first_name'] + " " + user_data['last_name'] + "\n" + \
-                "Account N°: " + user_data['cbu'] + "\n" + "Balance: ¿?"
-
-            head = {'Authorization': f'{token.get_token()}'}
-            print("HEAD: \n", head)
-            response = requests.get(
-                'http://127.0.0.1:9000/accounts', headers=head)
-
-            print("ACCOUNTSSSS: " + response.text)
-
+            self.show_user_data()
+            self.show_account()
             self.root.current = 'main_menu'
 
     def show_warning_dialog(self, mode, cont=""):
@@ -136,7 +113,6 @@ class MainApp(MDApp):
             res = str(timeout_err)
         except requests.exceptions.RequestException as req_err:
             logger.error('Validate User: Trow UNKNOWN Error')
-            print(f"UNKNOWN ERROR: {req_err}")
             res = str(req_err)
 
         return res
@@ -164,26 +140,73 @@ class MainApp(MDApp):
         self.root.ids.password.text = ''
         self.root.ids.code.text = ''
 
-    # Specific function to translate a request for user account with cbu to a dictionary (GET .../account/<cbu>)
-    # LOOK HERE IF BALANCE IS ADDED!
-    def acc_to_dict(self, res_account):
-        logger.debug('Mapping account to dictionary starting...')
-        # Removing special characters
-        acc_data = res_account.strip()[1:-1].rstrip('\n').lstrip('\n')
+    # print the user data (First and last name)
+    def show_user_data(self):
+        logger.debug('Show user data starting...')
         user_data = {}
-        # Flag to manage the first iteration special case, i.e cbu
-        flag = True
-        for line in acc_data.splitlines():
-            valores = line.split(":", 1)
-            if flag:
-                # Removing comma from cbu
-                user_data[valores[0].strip()[1:-1]] = valores[1].strip()[:-1]
-                flag = False
-            else:
-                # Removing comma and quotes from text fields
-                user_data[valores[0].strip()[1:-1]] = valores[1].strip()[1:-2]
-        logger.debug('Mapping account to dictionary finishing...')
+        try:
+            logger.debug('Show user data try conforming headers')
+            head = {'Authorization': f'{token.get_token()}'}
+            logger.debug('Show user data trying to request')
+            response = requests.get(
+                'http://127.0.0.1:9000/home', headers=head)
+            user_data = json.loads(response.text)
+            self.root.ids.user_data_lbl.text = f"WELCOME! \n {user_data['user'][0]['first_name']} {user_data['user'][0]['last_name']}"
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(
+                f'Show User: Trow HTTPError in request home {http_err}')
+            self.root.current = 'login'
+        except requests.exceptions.ConnectionError as conn_err:
+            logger.error(
+                f'Show User: Trow Connection Error in request home {conn_err}')
+            self.root.current = 'login'
+        except requests.exceptions.Timeout as timeout_err:
+            logger.error(
+                f'Show User: Trow Timeout in request home {timeout_err}')
+            self.root.current = 'login'
+        except requests.exceptions.RequestException as req_err:
+            logger.error(
+                f'Show User: Trow UNKNOWN Error in request home {req_err}')
+            self.root.current = 'login'
         return user_data
+
+    # Print the account/s of an user
+    def show_account(self):
+        logger.debug('Show accounts starting...')
+        acc_data = {}
+        try:
+            logger.debug('Show accounts data try conforming headers')
+            head = {'Authorization': f'{token.get_token()}'}
+            logger.debug('Show accounts data trying to request')
+            response = requests.get(
+                'http://127.0.0.1:9000/accounts', headers=head)
+            acc_data = json.loads(response.text)
+            # Printing the main account
+            self.root.ids.acc_data_lbl.text = f"Account N°: {acc_data['accounts'][0]['cbu']} \n Balance: {acc_data['accounts'][0]['balance']}"
+            # More accounts if exists
+            accounts = "MORE ACCOUNTS \n"
+            for i in range(len(acc_data['accounts'])):
+                if i != 0:
+                    accounts = accounts + \
+                        f"Account N°: {acc_data['accounts'][i]['cbu']} - Balance: {acc_data['accounts'][i]['balance']} \n"
+            self.root.ids.more_acc_lbl.text = accounts
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(
+                f'Show User: Trow HTTPError in request home {http_err}')
+            self.root.current = 'login'
+        except requests.exceptions.ConnectionError as conn_err:
+            logger.error(
+                f'Show User: Trow Connection Error in request home {conn_err}')
+            self.root.current = 'login'
+        except requests.exceptions.Timeout as timeout_err:
+            logger.error(
+                f'Show User: Trow Timeout in request home {timeout_err}')
+            self.root.current = 'login'
+        except requests.exceptions.RequestException as req_err:
+            logger.error(
+                f'Show User: Trow UNKNOWN Error in request home {req_err}')
+            self.root.current = 'login'
+        return acc_data
 
 
 if __name__ == "__main__":
