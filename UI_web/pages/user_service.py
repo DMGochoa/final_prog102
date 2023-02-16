@@ -1,10 +1,18 @@
 import dash_bootstrap_components as dbc
 import dash
 import json
+import requests
 from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
+
+# Utils
+from utils.logging_web import log_web
+from utils.validation import deposit_val, withdraw_val
+
+# Setup logger
+logger = log_web()
 
 # Info carrier
 from utils.data import Data_carrier
@@ -94,6 +102,10 @@ def user_service_layout():
         [
             dbc.AccordionItem(
                 [
+                    html.P("DNI number: "),
+                    dbc.Input(id="user_deposit-DNI",type="number", placeholder="Enter user's DNI number",),
+                    html.Br(),
+                    html.P("Account number: "),
                     dbc.Input(id="user_deposit-account",type="number", placeholder="Enter Account number",),
                     html.Br(),
                     dbc.Input(id="deposit-amount",type="number", placeholder="$"),
@@ -105,6 +117,10 @@ def user_service_layout():
             ),
             dbc.AccordionItem(
                 [
+                    html.P("DNI number: "),
+                    dbc.Input(id="user_withdraw-DNI",type="number", placeholder="Enter user's DNI number",),
+                    html.Br(),
+                    html.P("Account number: "),
                     dbc.Input(id="user_withdraw-account", type="number", placeholder="Enter Account Number"),
                     html.Br(),
                     dbc.Input(id="withdraw-amount", type="number", placeholder="$"),
@@ -116,11 +132,13 @@ def user_service_layout():
             ),
             dbc.AccordionItem(
                 [
+                    html.P("Origin Account CBU: "),
                     dbc.Input(id="origin-account", type="number", placeholder="Enter origin account CBU"),
                     html.Br(),
                     dbc.Input(id="trasnfer-amount", type="number", placeholder="$"),
                     html.P("Enter amount to transfer from account"),
                     html.Br(),
+                    html.P("Destiny Account CBU: "),
                     dbc.Input(id="destiny-account", type="number", placeholder="Type destiny account CBU"),
                     html.Br(),
                     dbc.Button("Make transfer", id="make-transfer", n_clicks=0)
@@ -138,12 +156,112 @@ def user_service_layout():
                         justify='center'
                     ),
 
-                    
+                    html.Div(id="user_service-output"),
+                    html.Div(id="user_service-outpu"),
                     html.Br(),
                 ],
             )
         ]
     )
+
+
+# Callback for the Deposit transaction
+@callback(
+    Output("user_service-output", "children"),
+    Input("make-deposit", "n_clicks"),
+    State("user_deposit-DNI", "value"),
+    State("user_deposit-account", "value"),
+    State("deposit-amount", "value"),
+)
+def make_deposit_click(
+    n_clicks,
+    value_DNI,
+    value_account,
+    value_amount
+):
+    logger.debug('Click in the buttom Make deposit')
+    if n_clicks is None or n_clicks==0:
+        return no_update
+    logger.debug('The info from the deposit transactions is save')
+    deposit_data = {
+        "transaction_type": 'deposit',
+        "cbu_origin": value_DNI,
+        "cbu_destiny": value_account,
+        "description": 'Some random description',
+        "amount": value_amount,
+    }
+    print(deposit_data)
+    logger.debug(f'Info for the deposit: {deposit_data}')
+    val, issue = deposit_val(deposit_data)
+    if val:
+        logger.debug('Send request to save the deposit data')
+        response = requests.post('http://127.0.0.1:9000/transaction', json=deposit_data)
+        print('-'*30)
+        print(response.headers)
+        print('-'*30)
+        print(response.json)
+        print(response.text)
+
+    else:
+        logger.debug(f'Mistake occur {val}, the issue is {issue}')
+        return dbc.Alert(issue,
+                            color='danger',
+                            dismissable=True)
+
+# Callback for the Withdraw transaction
+@callback(
+    Output("user_service-outpu", "children"),
+    Input("make-withdraw", "n_clicks"),
+    State("user_withdraw-DNI", "value"),
+    State("user_withdraw-account", "value"),
+    State("withdraw-amount", "value"),
+)
+def make_withdraw_click(
+    n_clicks,
+    value_DNI,
+    value_account,
+    value_amount
+):
+    logger.debug('Click in the buttom Make withdraw')
+    if n_clicks is None or n_clicks==0:
+        return no_update
+    logger.debug('The info from the withdraw transactions is save')
+    withdraw_data = {
+        "transaction_type": 'withdraw',
+        "cbu_origin": value_DNI,
+        "cbu_destiny": value_account,
+        "description": 'Some random description',
+        "amount": value_amount,
+    }
+    print(withdraw_data)
+    logger.debug(f'Info for the withdraw: {withdraw_data}')
+    val, issue = withdraw_val(withdraw_data)
+    if val:
+        logger.debug('Send request to save the withdraw data')
+        response = requests.post('http://127.0.0.1:9000/transaction', json=withdraw_data)
+        print('-'*30)
+        print(response.headers)
+        print('-'*30)
+        print(response.json)
+        print(response.text)
+
+    else:
+        logger.debug(f'Mistake occur {val}, the issue is {issue}')
+        return dbc.Alert(issue,
+                            color='danger',
+                            dismissable=True)
+
+
+
+
+
+
+
+
+
+
+
+
 
 @callback(
     Output('user_service-url','pathname'),

@@ -9,7 +9,7 @@ def form_val(user_data):
     selected_date = datetime.date.fromisoformat(user_data['birthday'])
     today = datetime.date.today()
     diff_date = today - selected_date
-    logger.debug('Initiate the validation')
+    logger.debug('Initiate the form validation')
     
     try:
         if len(user_data['first_name']) == 1:
@@ -62,4 +62,60 @@ def form_val(user_data):
             validation = True
             issue = ''
     return validation, issue 
+
+def deposit_val(deposit_data):
+    validation = False
+    logger.debug('Initiate the deposit validation')
     
+    try:
+        if len(deposit_data['cbu_origin']) == None:
+            issue = 'DNI is empty'  
+        elif len(deposit_data['cbu_destiny']) == None:
+            issue = 'CBU destiny is empty'
+        elif deposit_data['amount'] == None:
+            issue = 'Amount is empty'
+        else:
+            logger.debug('Successfull validation')
+            validation = True
+            issue = ''
+    except:  
+        if deposit_data['cbu_origin'] == None:
+            issue = 'DNI is empty'  
+        elif deposit_data['cbu_destiny'] == None:
+            issue = 'CBU destiny is empty'
+        elif deposit_data['amount'] == None:
+            issue = 'Amount is empty'
+        else:
+            logger.debug('Successfull validation')
+            validation = True
+            issue = ''
+    return validation, issue
+
+
+def withdraw_val(withdraw_data):
+    validation = False
+    logger.debug('Initiate the withdraw validation')
+    
+    try:
+        if len(withdraw_data['cbu_origin']) == None:
+            issue = 'DNI is empty'  
+        elif len(withdraw_data['cbu_destiny']) == None:
+            issue = 'CBU destiny is empty'
+        elif withdraw_data['amount'] == None:
+            issue = 'Amount is empty'
+        else:
+            logger.debug('Successfull validation')
+            validation = True
+            issue = ''
+    except:  
+        if withdraw_data['cbu_origin'] == None:
+            issue = 'DNI is empty'  
+        elif withdraw_data['cbu_destiny'] == None:
+            issue = 'CBU destiny is empty'
+        elif withdraw_data['amount'] == None:
+            issue = 'Amount is empty'
+        else:
+            logger.debug('Successfull validation')
+            validation = True
+            issue = ''
+    return validation, issue

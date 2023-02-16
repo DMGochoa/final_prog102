@@ -252,7 +252,6 @@ def on_button_click(
         logger.debug(f'Info for register: {user_data}')
         val, issue = form_val(user_data)
         if val:
-            # Toca hacer respuesta a entrada invalida
             logger.debug('Send request to save the')
             response = requests.post('http://127.0.0.1:9000/users', json=user_data)
             print('-'*30)
