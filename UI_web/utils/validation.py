@@ -119,3 +119,31 @@ def withdraw_val(withdraw_data):
             validation = True
             issue = ''
     return validation, issue
+
+def transaction_val(transaction_data):
+    validation = False
+    logger.debug('Initiate the transaction validation')
+    
+    try:
+        if len(transaction_data['cbu_origin']) == None:
+            issue = 'DNI is empty'  
+        elif len(transaction_data['cbu_destiny']) == None:
+            issue = 'CBU destiny is empty'
+        elif transaction_data['amount'] == None:
+            issue = 'Amount is empty'
+        else:
+            logger.debug('Successfull validation')
+            validation = True
+            issue = ''
+    except:  
+        if transaction_data['cbu_origin'] == None:
+            issue = 'DNI is empty'  
+        elif transaction_data['cbu_destiny'] == None:
+            issue = 'CBU destiny is empty'
+        elif transaction_data['amount'] == None:
+            issue = 'Amount is empty'
+        else:
+            logger.debug('Successfull validation')
+            validation = True
+            issue = ''
+    return validation, issue
