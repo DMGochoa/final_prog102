@@ -2,9 +2,10 @@ import sqlite3
 import os
 import random
 import string
-
+## quitar / añadir backend.
 from db_schemas.user_schema import UserSchema
 from utils.loggin_backend import logger_backend
+
 
 class UserDb:
 
@@ -25,6 +26,16 @@ class UserDb:
     def get_user_by_username(cls, name):
         user = _execute("Select * FROM User WHERE username = '{}'".format(name), return_entity=True)
         return user
+
+    @classmethod
+    def get_id_by_username(cls, username):
+        id = _execute("SELECT id FROM User WHERE username = '{}'".format(username), return_entity=True)
+        return id[0]
+
+    @classmethod
+    def get_cbu(cls, id):
+        cbu = _execute("SELECT cbu FROM Transaction WHERE id = '{}'".format(id), return_entity=False)
+        return cbu[0]['cbu']
 
     @classmethod
     def get_all(cls):
