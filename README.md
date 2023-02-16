@@ -102,6 +102,7 @@ input
 output
 {
 	"cbu": 10200020012,
+	"creation_date": "2023-10-02",
 	"first_name": "pedrito",
 	"last_name": "ramirez",
 	"username": "pramirez2"

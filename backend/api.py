@@ -121,6 +121,21 @@ class Account(Resource):
 
 api.add_resource(Account, "/accounts")
 
+class AccountInfo(Resource):
+    def get(self,cbu):
+        try:
+            account = AccountDb.get_account_by_cbu(cbu)[0]
+            user = UserDb.get_user(account['user_id'])[0]
+            return jsonify(cbu=cbu,
+                    # fix this !! return date
+                    creation_date=account['id'],
+                    username=user['username'],
+                    first_name=user['first_name'],
+                    last_name=user['last_name'])
+        except:
+            return make_response(jsonify(msg=f"CBU {cbu} not found"),404)
+
+api.add_resource(AccountInfo,"/account/<int:cbu>")
 
 class Transaction(Resource):
 
