@@ -13,6 +13,7 @@ from pages.register import register_layout
 from pages.file_register import file_register_layout
 from pages.transactions import transactions_layout
 from pages.reports import reports_layout
+from pages.user_service import user_service_layout
 from components.jumbotron import jumbotron
 
 # Logger
@@ -91,30 +92,6 @@ app.layout = html.Div(
     ]
 )
 
-# Obtain the token when occur the register
-"""@callback(
-    Output("my-output-login", "children"),
-    Input("login-button", "n_clicks"),
-    State("login-user", "value"),
-    State("login-password", "value"),
-    State('login-code', 'value')
-)
-def on_button_click(n_clicks, user, pw, code):
-    if n_clicks is None or n_clicks==0:
-        return no_update
-    else:
-        time.sleep(2)
-        logger.debug('############### Token from main.py ##############')
-        logger.debug('Searching the info of the User by the token')
-        logger.debug(f'The token to search is {token.get_token()}')
-        user_info = requests.get('http://127.0.0.1:9000/home', headers={'Authorization':token.get_token()})
-        logger.debug(f'The request for the user info is: {user_info.status_code}')
-        logger.debug('Saving the info to de info carrier')
-        info = json.loads(user_info.text)
-        info_carrier.set_general(info)
-        logger.debug(f'The info was save and is: {info_carrier.get_general()}')"""
-
-
 # router
 @app.callback(
     Output('page-content','children'),
@@ -136,6 +113,8 @@ def router(url):
         return register_layout()
     elif url=='/file_register' and user_type == 'Employee':
         return file_register_layout()
+    elif url=='/user_service' and user_type == 'Employee':
+        return user_service_layout()
     elif url=='/reports' and user_type == 'User':
         return reports_layout()
     elif url=='/transactions' and user_type == 'User':

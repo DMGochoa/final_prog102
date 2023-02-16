@@ -10,6 +10,7 @@ from flask import session
 from utils.data import Data_carrier
 info_carrier = Data_carrier()
 
+
 CONTENT_STYLE = {
     "margin-left": "18rem",
     "margin-right": "2rem",
@@ -26,18 +27,18 @@ SIDEBAR_STYLE = {
     "background-color": "#f8f9fa",
 }
 
-user_pages = [
+employee_pages = [
     {
-        "name": "Home Page.",
-        "path": "/home"
+        "name": "Register page.",
+        "path": "/register"
     },
     {
-        "name": "Transactions Page.",
-        "path": "/transactions"
+        "name": "File registration page.",
+        "path": "/file_register"
     },
     {
-        "name": "Reports page.",
-        "path": "/reports"
+        "name": "User services page.",
+        "path": "/user_service"
     }
 ]
 
@@ -57,7 +58,7 @@ sidebar = html.Div(
                     href=page["path"],
                     active="exact",
                 )
-                for page in user_pages
+                for page in employee_pages
             ],
             vertical=True,
             pills=True,
@@ -66,23 +67,23 @@ sidebar = html.Div(
     style=SIDEBAR_STYLE,
 )
 
-# transactions layout content
+# user_service layout content
 @validate_login_session
-def transactions_layout():
+def user_service_layout():
     user_info = info_carrier.get_general()
     accounts = info_carrier.get_specific()
     option_accounts = [{"label": f"account {i+1}", "value": f"Account No {accounts[i]['cbu']}"} for i in range(len(accounts))] 
 
     return \
         html.Div([
-            dcc.Location(id='transactions-url',pathname='/transactions'),
+            dcc.Location(id='user_service-url',pathname='/user_service'),
             sidebar,
             dbc.Container(
                 [
                     dbc.Row(
                         dbc.Col(
                             [
-                                html.H2(f'Pick your transaction {user_info["first_name"]} {user_info["last_name"]} : ')
+                                html.H2('User services for employees')
                             ],
                         ),
                         justify='center',
@@ -93,20 +94,38 @@ def transactions_layout():
         [
             dbc.AccordionItem(
                 [
-                    dbc.Select(
-                        placeholder="Select an account",
-                        id="select-transfer",
-                        options= option_accounts,
-                            ),
+                    dbc.Input(id="user_deposit-account",type="number", placeholder="Enter Account number",),
+                    html.Br(),
+                    dbc.Input(id="deposit-amount",type="number", placeholder="$"),
+                    html.P("Enter amount to deposit"),
+                    html.Br(),
+                    dbc.Button("Make deposit", id="make-deposit", n_clicks=0)
+                ],
+                title="Deposit Amount to user Account: ",
+            ),
+            dbc.AccordionItem(
+                [
+                    dbc.Input(id="user_withdraw-account", type="number", placeholder="Enter Account Number"),
+                    html.Br(),
+                    dbc.Input(id="withdraw-amount", type="number", placeholder="$"),
+                    html.P("Enter amount to withdraw"),
+                    html.Br(),
+                    dbc.Button("Make withdraw", id="make-withdraw", n_clicks=0)
+                ],
+                title="Withdraw from user Account",
+            ),
+            dbc.AccordionItem(
+                [
+                    dbc.Input(id="origin-account", type="number", placeholder="Enter origin account CBU"),
                     html.Br(),
                     dbc.Input(id="trasnfer-amount", type="number", placeholder="$"),
                     html.P("Enter amount to transfer from account"),
                     html.Br(),
-                    dbc.Input(id="destiny-account", type="number", placeholder="Type destiny account cbu"),
+                    dbc.Input(id="destiny-account", type="number", placeholder="Type destiny account CBU"),
                     html.Br(),
                     dbc.Button("Make transfer", id="make-transfer", n_clicks=0)
                 ],
-                title="Transfer money to other account in the bank",
+                title="Transfer money between accounts of the same bank",
             ),
         ],
         style= CONTENT_STYLE
@@ -127,7 +146,7 @@ def transactions_layout():
     )
 
 @callback(
-    Output('transactions-url','pathname'),
+    Output('user_service-url','pathname'),
     [Input('logout-button','n_clicks')]
 )
 def logout_(n_clicks):
