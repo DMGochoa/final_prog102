@@ -106,20 +106,28 @@ def router(url):
     logger.debug(f'The user type is {user_type}')
     
     if url=='/home' and user_type == 'User':
+        logger.debug(f'Enter to {url}')
         return home_layout()
     elif url=='/login' or url=='/':
+        logger.debug(f'Enter to {url}')
         return login_layout()
     elif url=='/register' and user_type == 'Employee':
+        logger.debug(f'Enter to {url}')
         return register_layout()
     elif url=='/file_register' and user_type == 'Employee':
+        logger.debug(f'Enter to {url}')
         return file_register_layout()
     elif url=='/user_service' and user_type == 'Employee':
+        logger.debug(f'Enter to {url}')
         return user_service_layout()
     elif url=='/reports' and user_type == 'User':
+        logger.debug(f'Enter to {url}')
         return reports_layout()
     elif url=='/transactions' and user_type == 'User':
+        logger.debug(f'Enter to {url}')
         return transactions_layout()
     else:
+        logger.debug(f'Enter to {url}')
         return jumbotron
 
 if __name__ == "__main__":

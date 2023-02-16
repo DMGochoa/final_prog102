@@ -71,6 +71,7 @@ sidebar = html.Div(
 # home layout content
 @validate_login_session
 def file_register_layout():
+    logger.debug('Charging the file register layout')
     return \
         html.Div([
             dcc.Location(id='file_register-url',pathname='/file_register'),
