@@ -16,6 +16,7 @@ class AccountDb:
         account['cbu'] = generate_cbu(user_id)
         account['balance'] = 0.0
         account['currency'] = "local"
+        account['creation_date'] = datetime.date.today()
         columns = ", ".join(account.keys())
         values = ", ".join("'{}'".format(value) for value in account.values())
         _execute("INSERT INTO Account ({}) VALUES({})".format(columns, values))
@@ -32,34 +33,6 @@ class AccountDb:
         return _execute(query, return_entity=False)
 
     @classmethod
-    def add_money_to_account(cls, cbu, amount):
-        query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu)
-        balance = _execute(query, return_entity=False)[0]['balance']
-        new_balance = balance + amount
-        update_balance_query = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_balance, cbu)
-        update_balance = _execute(update_balance_query)
-        return new_balance
-
-    @classmethod
-    def withdraw_money_from_account(cls, cbu, amount):
-        query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu)
-        balance = _execute(query, return_entity=False)[0]['balance']
-
-        if balance < amount:
-            raise Exception("The amount to withdraw is bigger than currente balance")
-
-        new_balance = balance - amount
-        update_balance_query = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_balance, cbu)
-        update_balance = _execute(update_balance_query)
-        return new_balance
-
-    # @classmethod
-    # def transaction(cls, cbu_origin, cbu_destiny, amount):
-    #     new_origin_balance = AccountDb.withdraw_money_from_account(cbu_origin,amount)
-    #     new_destiny_balance = AccountDb.add_money_to_account(cbu_destiny,amount)
-    #     return new_origin_balance, new_destiny_balance
-
-    @classmethod
     def transaction(cls, cbu_origin, cbu_destiny, amount, transaction_type, description):
         destiny_query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu_destiny)
         destiny_balance = _execute(destiny_query, return_entity=False)[0]['balance']
@@ -69,7 +42,7 @@ class AccountDb:
             query = r"SELECT balance from Account WHERE cbu = '{}'".format(cbu_origin)
             balance = _execute(query, return_entity=False)[0]['balance']
             if balance < amount:
-                raise Exception("The amount to withdraw is bigger than currente balance")
+                raise Exception("The amount to withdraw is bigger than current balance")
             new_origin_balance = balance - amount
             update_balance_query_origin = r"UPDATE Account SET balance = {} WHERE cbu = {}".format(new_origin_balance,
                                                                                                    cbu_origin)
@@ -80,7 +53,7 @@ class AccountDb:
             new_origin_balance = new_destiny_balance
         if transaction_type == "withdraw":
             if destiny_balance < amount:
-                raise Exception("The amount to withdraw is bigger than currente balance")
+                raise Exception("The amount to withdraw is bigger than current balance")
             new_destiny_balance = destiny_balance - amount
             new_origin_balance = new_destiny_balance
 
