@@ -69,7 +69,7 @@ class Login(Resource):
         password = request.json.get("password", None)
         code = request.json.get("code", None)
         user_db = UserDb.get_user_by_username(username)
-        logger_backend.debug(f"{username} try to login")
+        logger_backend.debug(f"{user_db[0]['username']} try to login")
         if not user_db:
             return {"msg": "Username doesn't exist"}, 400
 
@@ -122,27 +122,25 @@ api.add_resource(Account, "/accounts")
 
 class Transaction(Resource):
 
-    @jwt_required()
     def post(self):
-        cbu = request.json.get("cbu", None)
+        transaction_type = request.json.get("transaction_type", None)
+        cbu_origin = request.json.get("cbu_origin", None)
+        cbu_destiny = request.json.get("cbu_destiny", None)
         amount = request.json.get("amount", None)
-        username = get_jwt_identity()
-        user_id = UserDb.get_user_by_username(username)[0]['id']
-        accounts = AccountDb.get_accounts_by_userid(user_id)
-        accounts_cbu = [account['cbu'] for account in accounts]
-
-        if not cbu in accounts_cbu:
-            return {"msg": "CBU doesn't belong to current_user"}, 400
-
-        Transaction
-
-        balance_updated = AccountDb.add_money_to_account(cbu=cbu,amount=amount)
-        logger_backend.debug(f"{username} added  $ {amount} to cbu : {cbu} ")
-        return jsonify(cbu=cbu,
-                        balance=balance_updated)
+        description = request.json.get("description", None)
+        # username = get_jwt_identity()
+        # user_id = UserDb.get_user_by_username(username)[0]['id']
+        try:
+            origin = AccountDb.transaction(cbu_origin, cbu_destiny, amount, transaction_type, description)
+            logger_backend.debug(f"{cbu_origin} added  $ {amount} to cbu : {cbu_destiny} ")
+            return jsonify(cbu_origin=cbu_origin, origin_new_balance=origin, cbu_destiny=cbu_destiny, amount=amount,
+                           description=description)
+        except:
+            return make_response(jsonify(msg="Error with account destiny or ammount"), 400)
 
 
-api.add_resource(AddMoney, "/add_money")
+api.add_resource(Transaction,  "/transaction")
+
 
 if __name__ == "__main__":
     SetupDatabase.setup()
