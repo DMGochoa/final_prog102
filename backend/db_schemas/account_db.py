@@ -1,8 +1,6 @@
 import sqlite3
 import os
 import datetime
-import random
-import string
 ## quitar / añadir backend.
 from backend.db_schemas.account_schema import AccountSchema
 from backend.db_schemas.transaction_db import TransactionDB

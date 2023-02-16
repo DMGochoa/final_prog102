@@ -9,7 +9,6 @@ from datetime import timedelta
 
 from db_schemas.user_schema import UserSchema
 from db_schemas.user_db import UserDb
-from db_schemas.account_schema import AccountSchema
 from db_schemas.account_db import AccountDb
 from db_schemas.transaction_db import TransactionDB
 from utils.loggin_backend import logger_backend
@@ -128,9 +127,9 @@ class AccountInfo(Resource):
         try:
             account = AccountDb.get_account_by_cbu(cbu)[0]
             user = UserDb.get_user(account['user_id'])[0]
-            return jsonify(cbu=cbu,
-                    # fix this !! return date
-                    creation_date=account['id'],
+            return jsonify(
+                    cbu=cbu,
+                    creation_date=account['creation_date'],
                     username=user['username'],
                     first_name=user['first_name'],
                     last_name=user['last_name'])
@@ -164,13 +163,14 @@ api.add_resource(Transaction,  "/transaction")
 
 
 class ReportTransactions(Resource):
+
     def get(self):
         year = request.json.get("year", None)
         month = request.json.get("month", None)
         cbu = request.json.get("cbu", None)
         try:
-            (transactions,period) = TransactionDB.report(year=year,month=month,cbu=cbu)
-            return jsonify(cbu=cbu,period=period,transactions=transactions)
+            (transactions, period) = TransactionDB.report(year=year,month=month,cbu=cbu)
+            return jsonify(cbu=cbu, period=period, transactions=transactions)
         except:
             return make_response(jsonify(msg="Error with cbu or date"), 400)
 
