@@ -63,7 +63,7 @@ output
 	]
 }
 ```
-## Create new account for current user
+## Create other account (for future sprint)
 POST /accounts
 ```json
 input
@@ -102,5 +102,53 @@ output
 			"user_id": 2
 		}
 	]
+}
+```
+## See info one account (to verify before transaction)
+GET /account/<int:cbu>
+```json
+input 
+/account/<int:cbu>
+output
+{
+	"cbu": 10200020012,
+	"first_name": "pedrito",
+	"last_name": "ramirez",
+	"username": "pramirez2"
+}
+```
+# Transactions
+POST /transaction
+## Deposit
+```json
+# input
+{
+	"transaction_type": "deposit",
+	"cbu_origin": 1234567, # can be a DNI
+	"cbu_destiny": 10200010001, # account to be updated
+	"description": "test deposit",
+	"amount": 10.0
+}
+```
+## Withdraw
+```json
+# input
+{
+	"transaction_type": "withdraw",
+	"cbu_origin": 1234567, # can be a DNI
+	"cbu_destiny": 10200010001,  # account to be updated
+	"description": "test withdraw",
+	"amount": 10.0
+}
+```
+## Transaction
+```json
+# input
+{
+	"transaction_type": "transaction",
+	"cbu_origin": 10200010001,
+	"cbu_destiny": 10200020001,
+	"description": "test transaction",
+	"amount": 10.0
 }
 ```

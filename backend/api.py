@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_restful import Resource, Api, abort
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -6,6 +6,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 
+# from db_schemas import transaction_db
 from db_schemas.user_schema import UserSchema
 from db_schemas.user_db import UserDb
 from db_schemas.account_schema import AccountSchema
@@ -118,6 +119,30 @@ class Account(Resource):
 
 api.add_resource(Account, "/accounts")
 
+
+class Transaction(Resource):
+
+    @jwt_required()
+    def post(self):
+        cbu = request.json.get("cbu", None)
+        amount = request.json.get("amount", None)
+        username = get_jwt_identity()
+        user_id = UserDb.get_user_by_username(username)[0]['id']
+        accounts = AccountDb.get_accounts_by_userid(user_id)
+        accounts_cbu = [account['cbu'] for account in accounts]
+
+        if not cbu in accounts_cbu:
+            return {"msg": "CBU doesn't belong to current_user"}, 400
+
+        Transaction
+
+        balance_updated = AccountDb.add_money_to_account(cbu=cbu,amount=amount)
+        logger_backend.debug(f"{username} added  $ {amount} to cbu : {cbu} ")
+        return jsonify(cbu=cbu,
+                        balance=balance_updated)
+
+
+api.add_resource(AddMoney, "/add_money")
 
 if __name__ == "__main__":
     SetupDatabase.setup()
