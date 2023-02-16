@@ -6,6 +6,10 @@ from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
 
+# Info carrier
+from utils.data import Data_carrier
+info_carrier = Data_carrier()
+
 SIDEBAR_STYLE = {
     "position": "fixed",
     "top": 0,
@@ -88,7 +92,8 @@ def home_layout():
     }
     ]
 
-
+    user_info_carrier = info_carrier.get_general()
+    
     user_info = {
 	"first_name": "pedrito",
 	"last_name": "mendoza",

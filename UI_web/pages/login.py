@@ -6,6 +6,15 @@ from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
+# Info carrier
+from utils.data import Data_carrier
+info_carrier = Data_carrier()
+# Logger
+from utils.logging_web import log_web
+logger = log_web()
+# Token carrier
+from utils.token_singleton import Token
+token = Token()
 
 
 # login layout content
@@ -67,6 +76,19 @@ def login_auth(n_clicks, user, pw, code):
                    "code" : code}
     if authenticate_user(credentials):
         session['authed'] = True
-        return '/home',''
+        logger.debug('############### Token from main.py ##############')
+        logger.debug('Searching the info of the User by the token')
+        logger.debug(f'The token to search is {token.get_token()}')
+        user_info = requests.get('http://127.0.0.1:9000/home', headers={'Authorization':token.get_token()})
+        logger.debug(f'The request for the user info is: {user_info.status_code}')
+        logger.debug('Saving the info to de info carrier')
+        info = json.loads(user_info.text)
+        info_carrier.set_general(info['user'][0])
+        user_type = info_carrier.get_general()
+        logger.debug(f'The info was save and is: {info_carrier.get_general()}')
+        if user_type['type'] == 'Employee':
+            return '/register', ''
+        else:
+            return '/home',''
     session['authed'] = False
     return no_update, dbc.Alert('Incorrect credentials.',color='danger',dismissable=True)

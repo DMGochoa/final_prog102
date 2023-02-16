@@ -21,6 +21,9 @@ logger = log_web()
 # Token carrier
 from utils.token_singleton import Token
 token = Token()
+# Info carrier
+from utils.data import Data_carrier
+info_carrier = Data_carrier()
 
 app = Dash(
     __name__,
@@ -89,19 +92,14 @@ app.layout = html.Div(
 )
 
 # Obtain the token when occur the register
-@callback(
+"""@callback(
     Output("my-output-login", "children"),
     Input("login-button", "n_clicks"),
     State("login-user", "value"),
     State("login-password", "value"),
     State('login-code', 'value')
 )
-def on_button_click(
-    n_clicks,
-    value_username,
-    value_password,
-    code
-):
+def on_button_click(n_clicks, user, pw, code):
     if n_clicks is None or n_clicks==0:
         return no_update
     else:
@@ -111,6 +109,10 @@ def on_button_click(
         logger.debug(f'The token to search is {token.get_token()}')
         user_info = requests.get('http://127.0.0.1:9000/home', headers={'Authorization':token.get_token()})
         logger.debug(f'The request for the user info is: {user_info.status_code}')
+        logger.debug('Saving the info to de info carrier')
+        info = json.loads(user_info.text)
+        info_carrier.set_general(info)
+        logger.debug(f'The info was save and is: {info_carrier.get_general()}')"""
 
 
 # router
@@ -119,17 +121,24 @@ def on_button_click(
     [Input('url','pathname')]
 )
 def router(url):
-    if url=='/home':
+    logger.debug('Enter in the router')
+    try:
+        user_type = info_carrier.get_general()['type']
+    except:
+        user_type = 'Empty'
+    logger.debug(f'The user type is {user_type}')
+    
+    if url=='/home' and user_type == 'User':
         return home_layout()
     elif url=='/login' or url=='/':
         return login_layout()
-    elif url=='/register':
+    elif url=='/register' and user_type == 'Employee':
         return register_layout()
-    elif url=='/file_register':
+    elif url=='/file_register' and user_type == 'Employee':
         return file_register_layout()
-    elif url=='/reports':
+    elif url=='/reports' and user_type == 'User':
         return reports_layout()
-    elif url=='/transactions':
+    elif url=='/transactions' and user_type == 'User':
         return transactions_layout()
     else:
         return jumbotron

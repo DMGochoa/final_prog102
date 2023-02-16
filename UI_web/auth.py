@@ -30,11 +30,11 @@ def authenticate_user(credentials):
     logger.debug('Start the POST to the API')
     response = requests.post('http://127.0.0.1:9000/login', 
                              json=credentials)
-    token.set_token(response.text)
-    logger.debug(f'Response token and save on the singleton: {token.get_token()}')
-    logger.debug(f'The status code for the connection is {response.status_code}')
     if int(response.status_code) == 200:
         authed = True
+        token.set_token(response.text)
+        logger.debug(f'Response token and save on the singleton: {token.get_token()}')
+        logger.debug(f'The status code for the connection is {response.status_code}')
     else:
         authed = False
     logger.debug(f'Authentication value {authed}')
