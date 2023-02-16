@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_restful import Resource, Api, abort
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -6,6 +6,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 
+# from db_schemas import transaction_db
 from db_schemas.user_schema import UserSchema
 from db_schemas.user_db import UserDb
 from db_schemas.account_schema import AccountSchema
@@ -68,7 +69,7 @@ class Login(Resource):
         password = request.json.get("password", None)
         code = request.json.get("code", None)
         user_db = UserDb.get_user_by_username(username)
-        logger_backend.debug(f"{username} try to login")
+        logger_backend.debug(f"{user_db[0]['username']} try to login")
         if not user_db:
             return {"msg": "Username doesn't exist"}, 400
 
@@ -117,6 +118,28 @@ class Account(Resource):
 
 
 api.add_resource(Account, "/accounts")
+
+
+class Transaction(Resource):
+
+    def post(self):
+        transaction_type = request.json.get("transaction_type", None)
+        cbu_origin = request.json.get("cbu_origin", None)
+        cbu_destiny = request.json.get("cbu_destiny", None)
+        amount = request.json.get("amount", None)
+        description = request.json.get("description", None)
+        # username = get_jwt_identity()
+        # user_id = UserDb.get_user_by_username(username)[0]['id']
+        try:
+            origin = AccountDb.transaction(cbu_origin, cbu_destiny, amount, transaction_type, description)
+            logger_backend.debug(f"{cbu_origin} added  $ {amount} to cbu : {cbu_destiny} ")
+            return jsonify(cbu_origin=cbu_origin, origin_new_balance=origin, cbu_destiny=cbu_destiny, amount=amount,
+                           description=description)
+        except:
+            return make_response(jsonify(msg="Error with account destiny or ammount"), 400)
+
+
+api.add_resource(Transaction,  "/transaction")
 
 
 if __name__ == "__main__":

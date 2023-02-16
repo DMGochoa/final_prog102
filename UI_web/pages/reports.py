@@ -1,7 +1,8 @@
 import dash_bootstrap_components as dbc
 import dash
 import json
-from dash import html, dcc, Input, Output, callback, State, no_update
+import plotly.express as px
+from dash import html, dcc, Input, Output, callback, State, no_update, dash_table
 from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
@@ -61,10 +62,16 @@ sidebar = html.Div(
     ],
     style=SIDEBAR_STYLE,
 )
+df = px.data.gapminder()
+
+def table(df, continent=None):
+    dff = df[df.continent==continent]
+    return dff
 
 # reports layout content
 @validate_login_session
 def reports_layout():
+    df = px.data.gapminder()
     return \
         html.Div([
             dcc.Location(id='reports-url',pathname='/reports'),
@@ -74,9 +81,12 @@ def reports_layout():
                     dbc.Row(
                         dbc.Col(
                             [
-                                html.H2('Reports page.')
+                                dcc.Dropdown(options=df.continent.unique(),
+                                     id='cont-choice'),
+                                dash_table.DataTable(id = 'table', columns=[{"name": i, "id": i} for i in table(df)], data=table(df).to_dict('records')),
                             ],
                         ),
+                        
                         justify='center',
                         style=CONTENT_STYLE
                         ),
@@ -109,3 +119,16 @@ def logout_(n_clicks):
         return no_update
     session['authed'] = False
     return '/login'
+
+@callback(
+    Output('table', 'data'),
+    Input('cont-choice', 'value')
+)
+def update_graph(value):
+    print(value)
+    if value is None:
+        dff = df
+    else:
+        dff = df[df.continent==value]
+    print(dff)
+    return table(dff, value).to_dict('records')

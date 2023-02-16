@@ -86,31 +86,15 @@ def login_auth(n_clicks, user, pw, code):
         info_carrier.set_general(info['user'][0])
         user_type = info_carrier.get_general()
         logger.debug(f'The info was save and is: {info_carrier.get_general()}')
+        accounts_info = requests.get('http://127.0.0.1:9000/accounts', headers={'Authorization':token.get_token()})
+        logger.debug(f'The request for the account info is: {accounts_info.status_code}')
+        logger.debug('Saving the info to de info carrier')
+        info = json.loads(accounts_info.text)
+        info_carrier.set_specific(info['accounts'])
+        logger.debug(f'The info was save and is: {info_carrier.get_specific()}')
         if user_type['type'] == 'Employee':
             return '/register', ''
         else:
             return '/home',''
     session['authed'] = False
     return no_update, dbc.Alert('Incorrect credentials.',color='danger',dismissable=True)
-
-
-
-""" # Callback for the register users page
-@callback(
-    Output("my-output-login", "children"),
-    Input("login-button", "n_clicks"),
-    State("login-user", "value"),
-    State("login-password", "value"),
-)
-def on_button_click(
-    n_clicks,
-    value_username,
-    value_password,
-):
-    if n_clicks is None or n_clicks==0:
-        return no_update
-    user_data = {
-        "username": value_username,
-        "password": value_password,
-            }
- """

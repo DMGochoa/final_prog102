@@ -38,6 +38,10 @@ employee_pages = [
     {
         "name": "File registration page.",
         "path": "/file_register"
+    },
+    {
+        "name": "User services page.",
+        "path": "/user_service"
     }
 ]
 
