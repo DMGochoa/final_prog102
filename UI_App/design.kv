@@ -100,18 +100,53 @@
         md_bg_color: 0, .5, .5, 1
         MDBoxLayout:
             orientation: 'vertical'
-            MDBoxLayout: 
+            ### ON TEST
+            MDGridLayout:
+                cols: 2 
                 size_hint: 1, 0.2    
-                orientation: 'horizontal'
-                padding: '10dp'
+                # orientation: 'horizontal'
+                padding: ['10dp', '10dp', '10dp', '10dp']    
+                spacing: '10dp'
                 MDCard:
                     radius: '10dp'
                     padding: '20dp'
-                    # line_color: 1,0,1,1
+                    spacing: '10dp'
                     MDLabel:
-                        text: 'Welcome! ' + root.ids.user.text + "\n Account: \n Balance $$$" # + new_client.get_account() + new_client.get_balance_Account()
+                        id: user_data_lbl
+                        text: ''
                         halign: 'center'
                         pos_hint: {"center_y": 0.5}
+                MDCard:
+                    radius: '10dp'
+                    padding: '20dp'
+                    spacing: '10dp'
+                    #halign: 'center'
+                    #pos_hint: {'center_x': 0.75, "center_y": 0.5}
+                    MDFillRoundFlatButton:
+                        text: 'MORE ACCOUNTS'    
+                        halign: 'center'
+                        pos_hint: {'center_x': 0.5}
+                        #anchor_x = 'center'
+                        on_release:
+                            app.root.current = 'service_screen'
+                            app.root.transition = SlideTransition(direction='left')     
+                        
+
+            ### ON TEST 
+
+            # MDBoxLayout: 
+            #     size_hint: 1, 0.2    
+            #     orientation: 'horizontal'
+            #     padding: '10dp'
+            #     MDCard:
+            #         radius: '10dp'
+            #         padding: '20dp'
+            #         # line_color: 1,0,1,1
+            #         MDLabel:
+            #             id: user_data_lbl
+            #             text: ''
+            #             halign: 'center'
+            #             pos_hint: {"center_y": 0.5}
 
             MDGridLayout:
                 cols: 3
@@ -161,18 +196,26 @@
         name: 'transfer_screen'
         MDBoxLayout:   
             orientation: 'vertical'
-            pos_hint: {"center_x": 0.7, "center_y":0.9} #
+            pos_hint: {"center_x": 0.7, "center_y":0.7} #
             spacing: '10dp'
             MDBoxLayout:
                 size_hint: 1, 0.8    
                 orientation: 'vertical'
                 spacing: '10dp'
-                pos_hint: {"center_x": 0.7, "center_y":0.7} #
+                pos_hint: {"center_x": 0.7, "center_y":0.5} #
                 MDTextField:
                     mode: "round"
                     id: cbu
                     #icon_left: "account-check"
-                    hint_text: "CBU"
+                    hint_text: "Origin CBU"
+                    width: 220
+                    font_size: 20
+                    size_hint_x: None
+                MDTextField:
+                    mode: "round"
+                    id: cbu
+                    #icon_left: "account-check"
+                    hint_text: "Destination CBU"
                     width: 220
                     font_size: 20
                     size_hint_x: None
