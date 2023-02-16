@@ -9,6 +9,7 @@ backend/bank_db.sqlite
 backend/main.py
 backend/backend.log
 backend/utils/__pycache__
+backend/
 pruebas/
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,windows,linux,macos
