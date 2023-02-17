@@ -259,6 +259,10 @@ def on_button_click(
             json_response = json.loads(response.text)
             with open("user_credentials.txt", "w") as f:
                 f.write(json.dumps(json_response))
+            return dbc.Alert('Successfully created',
+                             color='success',
+                             dismissable=True)
+
         else:
             logger.debug(f'Mistake occur {val}, the issue is {issue}')
             return dbc.Alert(issue,
