@@ -1,9 +1,6 @@
 import sqlite3
 import os
-import random
-import string
 ## quitar / añadir backend.
-from db_schemas.transaction_schema import TransactionSchema
 from db_schemas.user_schema import UserSchema
 from utils.loggin_backend import logger_backend
 
@@ -28,6 +25,14 @@ class TransactionDB:
     def get_recived_transaction(cls, id):
         transactions = _execute("SELECT * FROM Transactions WHERE final_account = '{}".format(id), return_entity=True)
         return transactions
+
+    @classmethod
+    def report(cls, year, month, cbu):
+        month_query = f"0{month}" if month < 10 else f"{month}"
+        period = f"{year}-{month_query}"
+        query_report = f"SELECT * FROM Transactions WHERE strftime('%Y-%m', date) = '{period}' and (origin_account = {cbu} or final_account = {cbu}) "
+        transactions = _execute(query_report,return_entity=True)
+        return transactions, period
 
 
 def _build_list_of_dicts(cursor):

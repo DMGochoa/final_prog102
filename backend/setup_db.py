@@ -60,7 +60,7 @@ class SetupDatabase:
             conn.close()
 
     @classmethod
-    def create_user_table(self): 
+    def create_user_table(self):
         conn = sqlite3.connect(self.actual_path)
         cursor = conn.cursor()
         cursor.execute(self.create_user_table_query)
