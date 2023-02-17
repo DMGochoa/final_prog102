@@ -165,11 +165,7 @@ def make_transaction_click(
     if val:
         logger.debug('Send request to save the transaction data')
         response = requests.post('http://127.0.0.1:9000/transaction', json=transaction_data)
-        print('-'*30)
-        print(response.headers)
-        print('-'*30)
-        print(response.json)
-        print(response.text)
+        logger.debug(f'The response is {response.status_code}')
         return dbc.Alert('Transaction sucessfull!!!',
                          color='success',
                          dismissable=True)

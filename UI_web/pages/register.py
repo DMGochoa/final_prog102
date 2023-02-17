@@ -1,4 +1,4 @@
-
+import os
 import dash_bootstrap_components as dbc
 import dash
 import json
@@ -14,6 +14,8 @@ from utils.validation import form_val
 
 # Setup logger
 logger = log_web()
+
+current_path = os.path.join(os.path.dirname(__file__), '..', '..', 'user_credentials.txt')
 
 CONTENT_STYLE = {
     "margin-left": "10rem",
@@ -262,7 +264,7 @@ def on_button_click(
             logger.debug(f'The response is {response.status_code}')
             
             json_response = json.loads(response.text)
-            with open("user_credentials.txt", "w") as f:
+            with open(current_path, "w") as f:
                 f.write(json.dumps(json_response))
             return dbc.Alert('Successfully created',
                              color='success',

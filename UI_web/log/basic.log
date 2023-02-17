@@ -427,3 +427,160 @@
 14-02-2023 14:15:10 DEBUG Info for register: {'first_name': ' ', 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
 14-02-2023 14:15:10 DEBUG Initiate the validation
 14-02-2023 14:15:10 DEBUG Mistake occur False, the issue is First name empty
+17-02-2023 15:43:45 INFO Dash is running on http://127.0.0.1:8050/
+
+17-02-2023 15:43:55 DEBUG Enter in the router
+17-02-2023 15:43:55 DEBUG The user type is Empty
+17-02-2023 15:43:55 DEBUG Enter to /
+17-02-2023 15:44:36 DEBUG Enter in the router
+17-02-2023 15:44:36 DEBUG The user type is Empty
+17-02-2023 15:44:36 DEBUG Enter to /register
+17-02-2023 15:44:53 DEBUG Start the POST to the API
+17-02-2023 15:44:53 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 15:44:53 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 305
+17-02-2023 15:44:53 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY2NjY5MywianRpIjoiZTYzM2U0ZTktNTI1Mi00Yzk3LTkyZGMtMTUyYzg3ODBjNzU1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBtZW5kb3phIiwibmJmIjoxNjc2NjY2NjkzLCJleHAiOjE2NzY2NzAyOTN9.O7WIiLXNepo0mQjbmzWghFDA1at03Nu87RmXPmFnDWs
+17-02-2023 15:44:53 DEBUG The status code for the connection is 200
+17-02-2023 15:44:53 DEBUG Authentication value True
+17-02-2023 15:44:53 DEBUG ############### Token from main.py ##############
+17-02-2023 15:44:53 DEBUG Searching the info of the User by the token
+17-02-2023 15:44:53 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY2NjY5MywianRpIjoiZTYzM2U0ZTktNTI1Mi00Yzk3LTkyZGMtMTUyYzg3ODBjNzU1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBtZW5kb3phIiwibmJmIjoxNjc2NjY2NjkzLCJleHAiOjE2NzY2NzAyOTN9.O7WIiLXNepo0mQjbmzWghFDA1at03Nu87RmXPmFnDWs
+17-02-2023 15:44:53 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 15:44:53 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 429
+17-02-2023 15:44:53 DEBUG The request for the user info is: 200
+17-02-2023 15:44:53 DEBUG Saving the info to de info carrier
+17-02-2023 15:44:53 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'lima', 'code': 77767382, 'country': 'peru', 'document_id': 1234545678, 'email': 'jm@texample.com', 'first_name': 'pedrito', 'id': 1, 'last_name': 'mendoza', 'password': 'pe8156', 'phone_number': 999555999, 'type': 'Employee', 'username': 'pmendoza'}
+17-02-2023 15:44:53 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 15:44:53 DEBUG http://127.0.0.1:9000 "GET /accounts HTTP/1.1" 200 182
+17-02-2023 15:44:53 DEBUG The request for the account info is: 200
+17-02-2023 15:44:53 DEBUG Saving the info to de info carrier
+17-02-2023 15:44:53 DEBUG The info was save and is: [{'balance': 0.0, 'cbu': 10200010001, 'creation_date': '2023-02-16', 'currency': 'local', 'id': 1, 'user_id': 1}]
+17-02-2023 15:44:53 DEBUG Enter in the router
+17-02-2023 15:44:53 DEBUG The user type is Employee
+17-02-2023 15:44:53 DEBUG Enter to /register
+17-02-2023 15:44:53 DEBUG Creating the register form
+17-02-2023 15:44:53 DEBUG The field Firstname is created
+17-02-2023 15:44:53 DEBUG The field Lastname is created
+17-02-2023 15:44:53 DEBUG The field National ID is created
+17-02-2023 15:44:53 DEBUG The field Country is created
+17-02-2023 15:44:53 DEBUG The field City is created
+17-02-2023 15:44:53 DEBUG The field Address is created
+17-02-2023 15:44:53 DEBUG The field Email is created
+17-02-2023 15:44:53 DEBUG The field Cellphone Number is created
+17-02-2023 15:44:53 DEBUG Creating the date selector
+17-02-2023 15:44:53 DEBUG Creating the dropdown selector
+17-02-2023 15:44:53 DEBUG The register form is complete
+17-02-2023 15:44:53 DEBUG Click in the buttom
+17-02-2023 15:48:00 DEBUG Click in the buttom
+17-02-2023 15:48:00 DEBUG The info from the form is save
+17-02-2023 15:48:00 DEBUG Info for register: {'first_name': 'Diego', 'last_name': 'Moreno', 'document_id': 1088344588, 'type': 'User', 'birthday': '1990-02-17', 'country': 'Colombia', 'city': 'Pereira', 'address': 'bla bla bla bla', 'email': 'diegomore1997@gmail.com', 'phone_number': 2347568567}
+17-02-2023 15:48:00 DEBUG Initiate the form validation
+17-02-2023 15:48:00 DEBUG Successfull validation
+17-02-2023 15:48:00 DEBUG Send request to save the
+17-02-2023 15:48:00 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 15:48:00 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 111
+17-02-2023 15:48:00 DEBUG The response is 201
+17-02-2023 15:49:46 DEBUG Enter in the router
+17-02-2023 15:49:46 DEBUG The user type is Empty
+17-02-2023 15:49:46 DEBUG Enter to /register
+17-02-2023 15:50:36 DEBUG Enter in the router
+17-02-2023 15:50:36 DEBUG The user type is Empty
+17-02-2023 15:50:36 DEBUG Enter to /register
+17-02-2023 16:12:36 DEBUG Enter in the router
+17-02-2023 16:12:36 DEBUG The user type is Empty
+17-02-2023 16:12:36 DEBUG Enter to /register
+17-02-2023 16:13:36 DEBUG Enter in the router
+17-02-2023 16:13:36 DEBUG The user type is Empty
+17-02-2023 16:13:36 DEBUG Enter to /register
+17-02-2023 16:14:36 DEBUG Enter in the router
+17-02-2023 16:14:36 DEBUG The user type is Empty
+17-02-2023 16:14:36 DEBUG Enter to /register
+17-02-2023 16:15:36 DEBUG Enter in the router
+17-02-2023 16:15:36 DEBUG The user type is Empty
+17-02-2023 16:15:36 DEBUG Enter to /register
+17-02-2023 16:16:37 DEBUG Enter in the router
+17-02-2023 16:16:37 DEBUG The user type is Empty
+17-02-2023 16:16:37 DEBUG Enter to /register
+17-02-2023 16:17:36 DEBUG Enter in the router
+17-02-2023 16:17:36 DEBUG The user type is Empty
+17-02-2023 16:17:36 DEBUG Enter to /register
+17-02-2023 16:18:36 DEBUG Enter in the router
+17-02-2023 16:18:36 DEBUG The user type is Empty
+17-02-2023 16:18:36 DEBUG Enter to /register
+17-02-2023 16:20:36 DEBUG Enter in the router
+17-02-2023 16:20:36 DEBUG The user type is Empty
+17-02-2023 16:20:36 DEBUG Enter to /register
+17-02-2023 16:23:36 DEBUG Enter in the router
+17-02-2023 16:23:36 DEBUG The user type is Empty
+17-02-2023 16:23:36 DEBUG Enter to /register
+17-02-2023 16:24:36 DEBUG Enter in the router
+17-02-2023 16:24:36 DEBUG The user type is Empty
+17-02-2023 16:24:36 DEBUG Enter to /register
+17-02-2023 16:26:36 DEBUG Enter in the router
+17-02-2023 16:26:36 DEBUG The user type is Empty
+17-02-2023 16:26:36 DEBUG Enter to /register
+17-02-2023 16:27:36 DEBUG Enter in the router
+17-02-2023 16:27:36 DEBUG The user type is Empty
+17-02-2023 16:27:36 DEBUG Enter to /register
+17-02-2023 16:39:36 DEBUG Enter in the router
+17-02-2023 16:39:36 DEBUG The user type is Empty
+17-02-2023 16:39:36 DEBUG Enter to /register
+17-02-2023 16:40:36 DEBUG Enter in the router
+17-02-2023 16:40:36 DEBUG The user type is Empty
+17-02-2023 16:40:36 DEBUG Enter to /register
+17-02-2023 16:46:36 DEBUG Enter in the router
+17-02-2023 16:46:36 DEBUG The user type is Empty
+17-02-2023 16:46:36 DEBUG Enter to /register
+17-02-2023 16:49:36 DEBUG Enter in the router
+17-02-2023 16:49:36 DEBUG The user type is Empty
+17-02-2023 16:49:36 DEBUG Enter to /register
+17-02-2023 16:50:36 DEBUG Enter in the router
+17-02-2023 16:50:36 DEBUG The user type is Empty
+17-02-2023 16:50:36 DEBUG Enter to /register
+17-02-2023 16:57:36 DEBUG Enter in the router
+17-02-2023 16:57:36 DEBUG The user type is Empty
+17-02-2023 16:57:36 DEBUG Enter to /register
+17-02-2023 16:58:36 DEBUG Enter in the router
+17-02-2023 16:58:36 DEBUG The user type is Empty
+17-02-2023 16:58:36 DEBUG Enter to /register
+17-02-2023 16:59:36 DEBUG Enter in the router
+17-02-2023 16:59:36 DEBUG The user type is Empty
+17-02-2023 16:59:36 DEBUG Enter to /register
+17-02-2023 17:02:36 DEBUG Enter in the router
+17-02-2023 17:02:36 DEBUG The user type is Empty
+17-02-2023 17:02:36 DEBUG Enter to /register
+17-02-2023 17:03:36 DEBUG Enter in the router
+17-02-2023 17:03:36 DEBUG The user type is Empty
+17-02-2023 17:03:36 DEBUG Enter to /register
+17-02-2023 17:05:36 DEBUG Enter in the router
+17-02-2023 17:05:36 DEBUG The user type is Empty
+17-02-2023 17:05:36 DEBUG Enter to /register
+17-02-2023 17:06:36 DEBUG Enter in the router
+17-02-2023 17:06:36 DEBUG The user type is Empty
+17-02-2023 17:06:36 DEBUG Enter to /register
+17-02-2023 17:07:36 DEBUG Enter in the router
+17-02-2023 17:07:36 DEBUG The user type is Empty
+17-02-2023 17:07:36 DEBUG Enter to /register
+17-02-2023 17:10:36 DEBUG Enter in the router
+17-02-2023 17:10:36 DEBUG The user type is Empty
+17-02-2023 17:10:36 DEBUG Enter to /register
+17-02-2023 17:12:36 DEBUG Enter in the router
+17-02-2023 17:12:36 DEBUG The user type is Empty
+17-02-2023 17:12:36 DEBUG Enter to /register
+17-02-2023 17:14:36 DEBUG Enter in the router
+17-02-2023 17:14:36 DEBUG The user type is Empty
+17-02-2023 17:14:36 DEBUG Enter to /register
+17-02-2023 17:15:36 DEBUG Enter in the router
+17-02-2023 17:15:36 DEBUG The user type is Empty
+17-02-2023 17:15:36 DEBUG Enter to /register
+17-02-2023 17:19:36 DEBUG Enter in the router
+17-02-2023 17:19:36 DEBUG The user type is Empty
+17-02-2023 17:19:36 DEBUG Enter to /register
+17-02-2023 17:50:36 DEBUG Enter in the router
+17-02-2023 17:50:36 DEBUG The user type is Empty
+17-02-2023 17:50:36 DEBUG Enter to /register
+17-02-2023 17:54:36 DEBUG Enter in the router
+17-02-2023 17:54:36 DEBUG The user type is Empty
+17-02-2023 17:54:36 DEBUG Enter to /register
+17-02-2023 17:55:36 DEBUG Enter in the router
+17-02-2023 17:55:36 DEBUG The user type is Empty
+17-02-2023 17:55:36 DEBUG Enter to /register
