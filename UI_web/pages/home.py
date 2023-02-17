@@ -4,6 +4,7 @@ import json
 from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
+
 from flask import session
 
 # Info carrier
@@ -69,9 +70,11 @@ sidebar = html.Div(
 
 
 
+
 # home layout content
 @validate_login_session
 def home_layout():
+
     user_info_carrier = info_carrier.get_general()
     accounts = info_carrier.get_specific()
     accordion_items =[dbc.AccordionItem(html.P(f"Bank Account {accounts[i]['cbu']}:  {accounts[i]['balance']}$"),title=f"Account {i+1}") for i in range(len(accounts))]
@@ -79,11 +82,13 @@ def home_layout():
         html.Div([
             dcc.Location(id='home-url',pathname='/home'),
             sidebar,
+
             dbc.Container(
                 [
                     dbc.Row(
                         dbc.Col(
                             [
+
                                 html.H2(f'Welcome {user_info_carrier["first_name"]} {user_info_carrier["last_name"]}, here are your accounts: ')
                             ],
                         ),
@@ -95,6 +100,7 @@ def home_layout():
                             accordion_items,
         style= CONTENT_STYLE
     ),
+
                     dbc.Row(
                         dbc.Col(
                             dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
@@ -105,10 +111,12 @@ def home_layout():
 
                     
                     html.Br(),
+
                 ],
             )
         ]
     )
+
 
 @callback(
     Output('home-url','pathname'),
@@ -120,3 +128,4 @@ def logout_(n_clicks):
         return no_update
     session['authed'] = False
     return '/login'
+

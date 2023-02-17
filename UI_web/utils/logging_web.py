@@ -8,7 +8,6 @@ class log_web:
 
     def __config(self):
         current_path = os.path.join(os.path.dirname(__file__), '..')
-
         logging.basicConfig(
             level=logging.DEBUG,
             format="%(asctime)s %(levelname)s %(message)s",

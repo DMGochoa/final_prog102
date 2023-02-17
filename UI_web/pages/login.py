@@ -6,6 +6,7 @@ from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
+
 # Info carrier
 from utils.data import Data_carrier
 info_carrier = Data_carrier()
@@ -15,7 +16,6 @@ logger = log_web()
 # Token carrier
 from utils.token_singleton import Token
 token = Token()
-
 
 # login layout content
 def login_layout():
@@ -98,3 +98,4 @@ def login_auth(n_clicks, user, pw, code):
             return '/home',''
     session['authed'] = False
     return no_update, dbc.Alert('Incorrect credentials.',color='danger',dismissable=True)
+

@@ -1,4 +1,5 @@
 import dash_bootstrap_components as dbc
+
 from dash import html, dcc, callback, Output, Input
 
 pathname = 'hi'
@@ -18,6 +19,7 @@ pathname = 'hi'
             html.P(
                 dbc.Button("Learn more", color="primary"), className="lead"
             ),
+
             dbc.Row(
                         dbc.Col(
                             dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
@@ -30,6 +32,7 @@ pathname = 'hi'
         className="py-3",
     ),
     className="p-3 bg-light rounded-3",
+
 #) """
 
 jumbotron = html.Div(
@@ -49,4 +52,5 @@ jumbotron = html.Div(
                 justify='center'
             )
         )
+
 

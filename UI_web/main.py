@@ -1,15 +1,18 @@
 import pandas as pd
+
 import time
 import dash
 import json
 import requests
 import dash_bootstrap_components as dbc
 from dash import Dash, dcc, html, Input, Output, no_update, ALL, State, callback
+
 from flask import session, copy_current_request_context
 from auth import authenticate_user, validate_login_session
 from pages.login import login_layout
 from pages.home import home_layout
 from pages.register import register_layout
+
 from pages.file_register import file_register_layout
 from pages.transactions import transactions_layout
 from pages.reports import reports_layout
@@ -26,6 +29,7 @@ token = Token()
 from utils.data import Data_carrier
 info_carrier = Data_carrier()
 
+
 app = Dash(
     __name__,
     external_stylesheets=[dbc.themes.LUX, dbc.icons.BOOTSTRAP],
@@ -40,6 +44,7 @@ app.title = "Bank"
 
 server = app.server
 server.config['SECRET_KEY'] = 'k1LUZ1fZShowB6opoyUIEJkJvS8RBF6MMgmNcDGNmgGYr'
+
 
 accounts = [
     {
@@ -76,6 +81,7 @@ user_info = {
 	"phone_number": "999555999"
 }
 
+
 # main app layout
 app.layout = html.Div(
     [
@@ -98,6 +104,7 @@ app.layout = html.Div(
     [Input('url','pathname')]
 )
 def router(url):
+
     logger.debug('Enter in the router')
     try:
         user_type = info_carrier.get_general()['type']
@@ -128,6 +135,7 @@ def router(url):
         return transactions_layout()
     else:
         logger.debug(f'Enter to {url}')
+
         return jumbotron
 
 if __name__ == "__main__":

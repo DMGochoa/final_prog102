@@ -1,0 +1,429 @@
+13-02-2023 13:47:56 INFO Dash is running on http://127.0.0.1:8050/
+
+13-02-2023 13:48:21 DEBUG Start the POST to the API
+13-02-2023 13:48:21 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:48:21 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+13-02-2023 13:48:22 DEBUG ############### Token from main.py ##############
+13-02-2023 13:48:22 DEBUG Searching the info of the User by the token
+13-02-2023 13:48:22 DEBUG The token to search is 
+13-02-2023 13:48:22 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:48:22 DEBUG http://127.0.0.1:9000 "GET /home?Authorization= HTTP/1.1" 401 44
+13-02-2023 13:48:22 DEBUG The request for the user info is: 401
+13-02-2023 13:49:29 DEBUG Start the POST to the API
+13-02-2023 13:49:29 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:49:29 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+13-02-2023 13:49:31 DEBUG ############### Token from main.py ##############
+13-02-2023 13:49:31 DEBUG Searching the info of the User by the token
+13-02-2023 13:49:31 DEBUG The token to search is 
+13-02-2023 13:49:31 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:49:31 DEBUG http://127.0.0.1:9000 "GET /home?Authorization= HTTP/1.1" 401 44
+13-02-2023 13:49:31 DEBUG The request for the user info is: 401
+13-02-2023 13:50:36 DEBUG Start the POST to the API
+13-02-2023 13:50:36 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:50:36 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+13-02-2023 13:50:38 DEBUG ############### Token from main.py ##############
+13-02-2023 13:50:38 DEBUG Searching the info of the User by the token
+13-02-2023 13:50:38 DEBUG The token to search is 
+13-02-2023 13:52:42 DEBUG Start the POST to the API
+13-02-2023 13:52:42 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:52:42 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+13-02-2023 13:52:44 DEBUG ############### Token from main.py ##############
+13-02-2023 13:52:44 DEBUG Searching the info of the User by the token
+13-02-2023 13:52:44 DEBUG The token to search is 
+13-02-2023 13:53:59 DEBUG Start the POST to the API
+13-02-2023 13:53:59 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:53:59 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+13-02-2023 13:53:59 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMxNDQzOSwianRpIjoiMjNjZDg2ZTktYWRlZi00MzVjLWE2NjEtYjJhMjhjNTMxMjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMTQ0MzksImV4cCI6MTY3NjMxNTMzOX0.aXRpg3EysQyC5E44R21Vl0OyHbgaAeN7q7m3tiumZdE
+13-02-2023 13:53:59 DEBUG The status code for the connection is 200
+13-02-2023 13:53:59 DEBUG Authentication value True
+13-02-2023 13:54:01 DEBUG ############### Token from main.py ##############
+13-02-2023 13:54:01 DEBUG Searching the info of the User by the token
+13-02-2023 13:54:01 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMxNDQzOSwianRpIjoiMjNjZDg2ZTktYWRlZi00MzVjLWE2NjEtYjJhMjhjNTMxMjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMTQ0MzksImV4cCI6MTY3NjMxNTMzOX0.aXRpg3EysQyC5E44R21Vl0OyHbgaAeN7q7m3tiumZdE
+13-02-2023 13:55:30 DEBUG Start the POST to the API
+13-02-2023 13:55:30 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:55:30 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+13-02-2023 13:55:30 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMxNDUzMCwianRpIjoiM2Q3MWY4NjUtMmI2Mi00ZDQwLTlkOTgtYmUxMTMwNTQ4MGY3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMTQ1MzAsImV4cCI6MTY3NjMxNTQzMH0.V3x1AYfpsZhowmQsnvJBf5zQhYhBa4cK2lvrY1uoSDk
+13-02-2023 13:55:30 DEBUG The status code for the connection is 200
+13-02-2023 13:55:30 DEBUG Authentication value True
+13-02-2023 13:55:32 DEBUG ############### Token from main.py ##############
+13-02-2023 13:55:32 DEBUG Searching the info of the User by the token
+13-02-2023 13:55:32 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMxNDUzMCwianRpIjoiM2Q3MWY4NjUtMmI2Mi00ZDQwLTlkOTgtYmUxMTMwNTQ4MGY3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMTQ1MzAsImV4cCI6MTY3NjMxNTQzMH0.V3x1AYfpsZhowmQsnvJBf5zQhYhBa4cK2lvrY1uoSDk
+13-02-2023 13:55:32 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 13:55:32 DEBUG http://127.0.0.1:9000 "GET /home?Authorization=Bearer+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMxNDUzMCwianRpIjoiM2Q3MWY4NjUtMmI2Mi00ZDQwLTlkOTgtYmUxMTMwNTQ4MGY3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMTQ1MzAsImV4cCI6MTY3NjMxNTQzMH0.V3x1AYfpsZhowmQsnvJBf5zQhYhBa4cK2lvrY1uoSDk HTTP/1.1" 401 44
+13-02-2023 13:55:32 DEBUG The request for the user info is: 401
+13-02-2023 15:31:15 DEBUG Start the POST to the API
+13-02-2023 15:31:15 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 15:31:15 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+13-02-2023 15:31:15 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMyMDI3NSwianRpIjoiMjlkODFlYTktMzM3Ny00NWVkLWI3OTAtNGZiY2U2YTk0MGM4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMjAyNzUsImV4cCI6MTY3NjMyMTE3NX0.eJd170pZeta87OgmRk2Zb9QPpSpuLoqKbYSBagbiONc
+13-02-2023 15:31:15 DEBUG The status code for the connection is 200
+13-02-2023 15:31:15 DEBUG Authentication value True
+13-02-2023 15:31:17 DEBUG ############### Token from main.py ##############
+13-02-2023 15:31:17 DEBUG Searching the info of the User by the token
+13-02-2023 15:31:17 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMyMDI3NSwianRpIjoiMjlkODFlYTktMzM3Ny00NWVkLWI3OTAtNGZiY2U2YTk0MGM4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMjAyNzUsImV4cCI6MTY3NjMyMTE3NX0.eJd170pZeta87OgmRk2Zb9QPpSpuLoqKbYSBagbiONc
+13-02-2023 15:31:17 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 15:31:17 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 434
+13-02-2023 15:31:17 DEBUG The request for the user info is: 200
+13-02-2023 17:54:08 INFO Dash is running on http://127.0.0.1:8050/
+
+13-02-2023 17:55:32 DEBUG Start the POST to the API
+13-02-2023 17:55:32 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 17:55:32 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+13-02-2023 17:55:32 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMyODkzMiwianRpIjoiMTJkZmE2NjQtMDA0OS00YzZlLTg3YzYtYmQzZjZiYTI3MDIzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMjg5MzIsImV4cCI6MTY3NjMyOTgzMn0.oBKse1XhaUklDFtPifVKthmd6umYX5e5LqIuAMGq1DA
+13-02-2023 17:55:32 DEBUG The status code for the connection is 200
+13-02-2023 17:55:32 DEBUG Authentication value True
+13-02-2023 17:55:34 DEBUG ############### Token from main.py ##############
+13-02-2023 17:55:34 DEBUG Searching the info of the User by the token
+13-02-2023 17:55:34 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjMyODkzMiwianRpIjoiMTJkZmE2NjQtMDA0OS00YzZlLTg3YzYtYmQzZjZiYTI3MDIzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzMjg5MzIsImV4cCI6MTY3NjMyOTgzMn0.oBKse1XhaUklDFtPifVKthmd6umYX5e5LqIuAMGq1DA
+13-02-2023 17:55:34 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+13-02-2023 17:55:34 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 434
+13-02-2023 17:55:34 DEBUG The request for the user info is: 200
+14-02-2023 08:05:27 INFO Dash is running on http://127.0.0.1:8050/
+
+14-02-2023 08:09:18 DEBUG Start the POST to the API
+14-02-2023 08:09:18 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+14-02-2023 08:09:18 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+14-02-2023 08:09:18 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjM4MDE1OCwianRpIjoiYjhjNmZlYzUtNGExMC00NzFiLTgxZmMtMTdhMDk4M2MzMjBhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzODAxNTgsImV4cCI6MTY3NjM4MTA1OH0.ou2G1dXneAf6Zgc1eVbF1TsNwF9R10PdlBDdeSWE5RY
+14-02-2023 08:09:18 DEBUG The status code for the connection is 200
+14-02-2023 08:09:18 DEBUG Authentication value True
+14-02-2023 08:09:20 DEBUG ############### Token from main.py ##############
+14-02-2023 08:09:20 DEBUG Searching the info of the User by the token
+14-02-2023 08:09:20 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjM4MDE1OCwianRpIjoiYjhjNmZlYzUtNGExMC00NzFiLTgxZmMtMTdhMDk4M2MzMjBhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzYzODAxNTgsImV4cCI6MTY3NjM4MTA1OH0.ou2G1dXneAf6Zgc1eVbF1TsNwF9R10PdlBDdeSWE5RY
+14-02-2023 08:09:20 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+14-02-2023 08:09:20 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 434
+14-02-2023 08:09:20 DEBUG The request for the user info is: 200
+14-02-2023 08:09:24 DEBUG Creating the register form
+14-02-2023 08:09:24 DEBUG The field Firstname is created
+14-02-2023 08:09:24 DEBUG The field Lastname is created
+14-02-2023 08:09:24 DEBUG The field National ID is created
+14-02-2023 08:09:24 DEBUG The field Country is created
+14-02-2023 08:09:24 DEBUG The field City is created
+14-02-2023 08:09:24 DEBUG The field Address is created
+14-02-2023 08:09:24 DEBUG The field Email is created
+14-02-2023 08:09:24 DEBUG The field Cellphone Number is created
+14-02-2023 08:09:24 DEBUG Creating the date selector
+14-02-2023 08:09:24 DEBUG Creating the dropdown selector
+14-02-2023 08:09:24 DEBUG The register form is complete
+14-02-2023 08:09:25 DEBUG Click in the buttom
+14-02-2023 08:09:32 DEBUG Click in the buttom
+14-02-2023 08:09:32 DEBUG The info from the form is save
+14-02-2023 08:09:32 DEBUG Send request to save the
+14-02-2023 08:09:32 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+14-02-2023 08:09:32 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 405 509
+14-02-2023 08:10:36 DEBUG Click in the buttom
+14-02-2023 08:10:36 DEBUG The info from the form is save
+14-02-2023 08:10:36 DEBUG Send request to save the
+14-02-2023 08:10:36 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+14-02-2023 08:10:36 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 405 164
+14-02-2023 08:13:36 DEBUG Creating the register form
+14-02-2023 08:13:36 DEBUG The field Firstname is created
+14-02-2023 08:13:36 DEBUG The field Lastname is created
+14-02-2023 08:13:36 DEBUG The field National ID is created
+14-02-2023 08:13:36 DEBUG The field Country is created
+14-02-2023 08:13:36 DEBUG The field City is created
+14-02-2023 08:13:36 DEBUG The field Address is created
+14-02-2023 08:13:36 DEBUG The field Email is created
+14-02-2023 08:13:36 DEBUG The field Cellphone Number is created
+14-02-2023 08:13:36 DEBUG Creating the date selector
+14-02-2023 08:13:36 DEBUG Creating the dropdown selector
+14-02-2023 08:13:36 DEBUG The register form is complete
+14-02-2023 08:13:37 DEBUG Click in the buttom
+14-02-2023 08:13:52 DEBUG Click in the buttom
+14-02-2023 08:13:52 DEBUG The info from the form is save
+14-02-2023 08:13:52 DEBUG Info for register: {'first_name': 'Diego', 'last_name': 'Moreno', 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': 'Colombia', 'city': 'Pereira', 'address': None, 'email': 'd', 'phone_number': None}
+14-02-2023 08:13:52 DEBUG Send request to save the
+14-02-2023 08:13:52 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+14-02-2023 08:13:52 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 405 164
+14-02-2023 08:20:46 DEBUG Creating the register form
+14-02-2023 08:20:46 DEBUG The field Firstname is created
+14-02-2023 08:20:46 DEBUG The field Lastname is created
+14-02-2023 08:20:46 DEBUG The field National ID is created
+14-02-2023 08:20:46 DEBUG The field Country is created
+14-02-2023 08:20:46 DEBUG The field City is created
+14-02-2023 08:20:46 DEBUG The field Address is created
+14-02-2023 08:20:46 DEBUG The field Email is created
+14-02-2023 08:20:46 DEBUG The field Cellphone Number is created
+14-02-2023 08:20:46 DEBUG Creating the date selector
+14-02-2023 08:20:46 DEBUG Creating the dropdown selector
+14-02-2023 08:20:46 DEBUG The register form is complete
+14-02-2023 08:20:46 DEBUG Click in the buttom
+14-02-2023 08:54:22 DEBUG Creating the register form
+14-02-2023 08:54:22 DEBUG The field Firstname is created
+14-02-2023 08:54:22 DEBUG The field Lastname is created
+14-02-2023 08:54:22 DEBUG The field National ID is created
+14-02-2023 08:54:22 DEBUG The field Country is created
+14-02-2023 08:54:22 DEBUG The field City is created
+14-02-2023 08:54:22 DEBUG The field Address is created
+14-02-2023 08:54:22 DEBUG The field Email is created
+14-02-2023 08:54:22 DEBUG The field Cellphone Number is created
+14-02-2023 08:54:22 DEBUG Creating the date selector
+14-02-2023 08:54:22 DEBUG Creating the dropdown selector
+14-02-2023 08:54:22 DEBUG The register form is complete
+14-02-2023 08:54:22 DEBUG Click in the buttom
+14-02-2023 08:57:25 DEBUG Creating the register form
+14-02-2023 08:57:25 DEBUG The field Firstname is created
+14-02-2023 08:57:25 DEBUG The field Lastname is created
+14-02-2023 08:57:25 DEBUG The field National ID is created
+14-02-2023 08:57:25 DEBUG The field Country is created
+14-02-2023 08:57:25 DEBUG The field City is created
+14-02-2023 08:57:25 DEBUG The field Address is created
+14-02-2023 08:57:25 DEBUG The field Email is created
+14-02-2023 08:57:25 DEBUG The field Cellphone Number is created
+14-02-2023 08:57:25 DEBUG Creating the date selector
+14-02-2023 08:57:25 DEBUG Creating the dropdown selector
+14-02-2023 08:57:25 DEBUG The register form is complete
+14-02-2023 08:57:25 DEBUG Click in the buttom
+14-02-2023 08:59:37 DEBUG Creating the register form
+14-02-2023 08:59:37 DEBUG The field Firstname is created
+14-02-2023 08:59:37 DEBUG The field Lastname is created
+14-02-2023 08:59:37 DEBUG The field National ID is created
+14-02-2023 08:59:37 DEBUG The field Country is created
+14-02-2023 08:59:37 DEBUG The field City is created
+14-02-2023 08:59:37 DEBUG The field Address is created
+14-02-2023 08:59:37 DEBUG The field Email is created
+14-02-2023 08:59:37 DEBUG The field Cellphone Number is created
+14-02-2023 08:59:37 DEBUG Creating the date selector
+14-02-2023 08:59:37 DEBUG Creating the dropdown selector
+14-02-2023 08:59:37 DEBUG The register form is complete
+14-02-2023 08:59:37 DEBUG Click in the buttom
+14-02-2023 14:00:58 INFO Dash is running on http://127.0.0.1:8050/
+
+14-02-2023 14:01:48 DEBUG Start the POST to the API
+14-02-2023 14:01:48 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+14-02-2023 14:01:48 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 304
+14-02-2023 14:01:48 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjQwMTMwOCwianRpIjoiNDdkNmY4MzgtNWY4Ni00ZjZhLWE3YjYtNDdmM2ZiNTQ4NmI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzY0MDEzMDgsImV4cCI6MTY3NjQwMjIwOH0.clPQTHceQR6ch9G5DOOAgdbXIayTwPOrtYnpigQ1W1c
+14-02-2023 14:01:48 DEBUG The status code for the connection is 200
+14-02-2023 14:01:48 DEBUG Authentication value True
+14-02-2023 14:01:50 DEBUG ############### Token from main.py ##############
+14-02-2023 14:01:50 DEBUG Searching the info of the User by the token
+14-02-2023 14:01:50 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjQwMTMwOCwianRpIjoiNDdkNmY4MzgtNWY4Ni00ZjZhLWE3YjYtNDdmM2ZiNTQ4NmI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRNb3Jlbm8iLCJuYmYiOjE2NzY0MDEzMDgsImV4cCI6MTY3NjQwMjIwOH0.clPQTHceQR6ch9G5DOOAgdbXIayTwPOrtYnpigQ1W1c
+14-02-2023 14:01:50 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+14-02-2023 14:01:50 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 434
+14-02-2023 14:01:50 DEBUG The request for the user info is: 200
+14-02-2023 14:02:03 DEBUG Creating the register form
+14-02-2023 14:02:03 DEBUG The field Firstname is created
+14-02-2023 14:02:03 DEBUG The field Lastname is created
+14-02-2023 14:02:03 DEBUG The field National ID is created
+14-02-2023 14:02:03 DEBUG The field Country is created
+14-02-2023 14:02:03 DEBUG The field City is created
+14-02-2023 14:02:03 DEBUG The field Address is created
+14-02-2023 14:02:03 DEBUG The field Email is created
+14-02-2023 14:02:03 DEBUG The field Cellphone Number is created
+14-02-2023 14:02:03 DEBUG Creating the date selector
+14-02-2023 14:02:03 DEBUG Creating the dropdown selector
+14-02-2023 14:02:03 DEBUG The register form is complete
+14-02-2023 14:02:03 DEBUG Click in the buttom
+14-02-2023 14:02:13 DEBUG Click in the buttom
+14-02-2023 14:02:13 DEBUG The info from the form is save
+14-02-2023 14:02:13 DEBUG Info for register: {'first_name': None, 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:03:33 DEBUG Creating the register form
+14-02-2023 14:03:33 DEBUG The field Firstname is created
+14-02-2023 14:03:33 DEBUG The field Lastname is created
+14-02-2023 14:03:33 DEBUG The field National ID is created
+14-02-2023 14:03:33 DEBUG The field Country is created
+14-02-2023 14:03:33 DEBUG The field City is created
+14-02-2023 14:03:33 DEBUG The field Address is created
+14-02-2023 14:03:33 DEBUG The field Email is created
+14-02-2023 14:03:33 DEBUG The field Cellphone Number is created
+14-02-2023 14:03:33 DEBUG Creating the date selector
+14-02-2023 14:03:33 DEBUG Creating the dropdown selector
+14-02-2023 14:03:33 DEBUG The register form is complete
+14-02-2023 14:03:33 DEBUG Click in the buttom
+14-02-2023 14:03:35 DEBUG Click in the buttom
+14-02-2023 14:03:35 DEBUG The info from the form is save
+14-02-2023 14:03:35 DEBUG Info for register: {'first_name': None, 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:03:35 DEBUG Initiate the validation
+14-02-2023 14:04:57 DEBUG Creating the register form
+14-02-2023 14:04:57 DEBUG The field Firstname is created
+14-02-2023 14:04:57 DEBUG The field Lastname is created
+14-02-2023 14:04:57 DEBUG The field National ID is created
+14-02-2023 14:04:57 DEBUG The field Country is created
+14-02-2023 14:04:57 DEBUG The field City is created
+14-02-2023 14:04:57 DEBUG The field Address is created
+14-02-2023 14:04:57 DEBUG The field Email is created
+14-02-2023 14:04:57 DEBUG The field Cellphone Number is created
+14-02-2023 14:04:57 DEBUG Creating the date selector
+14-02-2023 14:04:57 DEBUG Creating the dropdown selector
+14-02-2023 14:04:57 DEBUG The register form is complete
+14-02-2023 14:04:57 DEBUG Click in the buttom
+14-02-2023 14:04:59 DEBUG Click in the buttom
+14-02-2023 14:04:59 DEBUG The info from the form is save
+14-02-2023 14:04:59 DEBUG Info for register: {'first_name': None, 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:04:59 DEBUG Initiate the validation
+14-02-2023 14:06:54 DEBUG Creating the register form
+14-02-2023 14:06:54 DEBUG The field Firstname is created
+14-02-2023 14:06:54 DEBUG The field Lastname is created
+14-02-2023 14:06:54 DEBUG The field National ID is created
+14-02-2023 14:06:54 DEBUG The field Country is created
+14-02-2023 14:06:54 DEBUG The field City is created
+14-02-2023 14:06:54 DEBUG The field Address is created
+14-02-2023 14:06:54 DEBUG The field Email is created
+14-02-2023 14:06:54 DEBUG The field Cellphone Number is created
+14-02-2023 14:06:54 DEBUG Creating the date selector
+14-02-2023 14:06:54 DEBUG Creating the dropdown selector
+14-02-2023 14:06:54 DEBUG The register form is complete
+14-02-2023 14:06:54 DEBUG Click in the buttom
+14-02-2023 14:07:06 DEBUG Click in the buttom
+14-02-2023 14:07:06 DEBUG The info from the form is save
+14-02-2023 14:07:06 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': None, 'type': 'Employee', 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': ' ', 'email': ' ', 'phone_number': None}
+14-02-2023 14:07:06 DEBUG Initiate the validation
+14-02-2023 14:07:06 DEBUG Click in the buttom
+14-02-2023 14:07:13 DEBUG Click in the buttom
+14-02-2023 14:07:13 DEBUG The info from the form is save
+14-02-2023 14:07:13 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': None, 'type': 'Employee', 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': ' ', 'email': ' ', 'phone_number': None}
+14-02-2023 14:07:13 DEBUG Initiate the validation
+14-02-2023 14:07:51 DEBUG Creating the register form
+14-02-2023 14:07:51 DEBUG The field Firstname is created
+14-02-2023 14:07:51 DEBUG The field Lastname is created
+14-02-2023 14:07:51 DEBUG The field National ID is created
+14-02-2023 14:07:51 DEBUG The field Country is created
+14-02-2023 14:07:51 DEBUG The field City is created
+14-02-2023 14:07:51 DEBUG The field Address is created
+14-02-2023 14:07:51 DEBUG The field Email is created
+14-02-2023 14:07:51 DEBUG The field Cellphone Number is created
+14-02-2023 14:07:51 DEBUG Creating the date selector
+14-02-2023 14:07:51 DEBUG Creating the dropdown selector
+14-02-2023 14:07:51 DEBUG The register form is complete
+14-02-2023 14:07:51 DEBUG Click in the buttom
+14-02-2023 14:08:08 DEBUG Click in the buttom
+14-02-2023 14:08:08 DEBUG The info from the form is save
+14-02-2023 14:08:08 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': 1234567, 'type': None, 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:08:08 DEBUG Initiate the validation
+14-02-2023 14:08:08 DEBUG Click in the buttom
+14-02-2023 14:08:32 DEBUG Click in the buttom
+14-02-2023 14:08:32 DEBUG The info from the form is save
+14-02-2023 14:08:32 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': 1234567, 'type': None, 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:08:32 DEBUG Initiate the validation
+14-02-2023 14:08:33 DEBUG Click in the buttom
+14-02-2023 14:08:33 DEBUG The info from the form is save
+14-02-2023 14:08:33 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': 1234567, 'type': None, 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:08:33 DEBUG Initiate the validation
+14-02-2023 14:08:34 DEBUG Click in the buttom
+14-02-2023 14:08:34 DEBUG The info from the form is save
+14-02-2023 14:08:34 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': 1234567, 'type': None, 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:08:34 DEBUG Initiate the validation
+14-02-2023 14:08:34 DEBUG Click in the buttom
+14-02-2023 14:08:34 DEBUG The info from the form is save
+14-02-2023 14:08:34 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': 1234567, 'type': None, 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:08:34 DEBUG Initiate the validation
+14-02-2023 14:08:34 DEBUG Click in the buttom
+14-02-2023 14:08:34 DEBUG The info from the form is save
+14-02-2023 14:08:34 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': 1234567, 'type': None, 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:08:34 DEBUG Initiate the validation
+14-02-2023 14:08:34 DEBUG Click in the buttom
+14-02-2023 14:08:34 DEBUG The info from the form is save
+14-02-2023 14:08:34 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': 1234567, 'type': None, 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:08:34 DEBUG Initiate the validation
+14-02-2023 14:08:34 DEBUG Click in the buttom
+14-02-2023 14:08:34 DEBUG The info from the form is save
+14-02-2023 14:08:34 DEBUG Info for register: {'first_name': ' ', 'last_name': ' ', 'document_id': 1234567, 'type': None, 'birthday': '2023-02-14', 'country': ' ', 'city': ' ', 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:08:34 DEBUG Initiate the validation
+14-02-2023 14:09:48 DEBUG Creating the register form
+14-02-2023 14:09:48 DEBUG The field Firstname is created
+14-02-2023 14:09:48 DEBUG The field Lastname is created
+14-02-2023 14:09:48 DEBUG The field National ID is created
+14-02-2023 14:09:48 DEBUG The field Country is created
+14-02-2023 14:09:48 DEBUG The field City is created
+14-02-2023 14:09:48 DEBUG The field Address is created
+14-02-2023 14:09:48 DEBUG The field Email is created
+14-02-2023 14:09:48 DEBUG The field Cellphone Number is created
+14-02-2023 14:09:48 DEBUG Creating the date selector
+14-02-2023 14:09:48 DEBUG Creating the dropdown selector
+14-02-2023 14:09:52 DEBUG Creating the register form
+14-02-2023 14:09:52 DEBUG The field Firstname is created
+14-02-2023 14:09:52 DEBUG The field Lastname is created
+14-02-2023 14:09:52 DEBUG The field National ID is created
+14-02-2023 14:09:52 DEBUG The field Country is created
+14-02-2023 14:09:52 DEBUG The field City is created
+14-02-2023 14:09:52 DEBUG The field Address is created
+14-02-2023 14:09:52 DEBUG The field Email is created
+14-02-2023 14:09:52 DEBUG The field Cellphone Number is created
+14-02-2023 14:09:52 DEBUG Creating the date selector
+14-02-2023 14:09:52 DEBUG Creating the dropdown selector
+14-02-2023 14:10:49 DEBUG Creating the register form
+14-02-2023 14:10:49 DEBUG The field Firstname is created
+14-02-2023 14:10:49 DEBUG The field Lastname is created
+14-02-2023 14:10:49 DEBUG The field National ID is created
+14-02-2023 14:10:49 DEBUG The field Country is created
+14-02-2023 14:10:49 DEBUG The field City is created
+14-02-2023 14:10:49 DEBUG The field Address is created
+14-02-2023 14:10:49 DEBUG The field Email is created
+14-02-2023 14:10:49 DEBUG The field Cellphone Number is created
+14-02-2023 14:10:49 DEBUG Creating the date selector
+14-02-2023 14:10:49 DEBUG Creating the dropdown selector
+14-02-2023 14:10:49 DEBUG The register form is complete
+14-02-2023 14:10:49 DEBUG Click in the buttom
+14-02-2023 14:11:00 DEBUG Click in the buttom
+14-02-2023 14:11:00 DEBUG The info from the form is save
+14-02-2023 14:11:00 DEBUG Info for register: {'first_name': 'Diego', 'last_name': 'Moreno', 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:11:00 DEBUG Initiate the validation
+14-02-2023 14:11:00 DEBUG 
+14-02-2023 14:11:00 DEBUG Click in the buttom
+14-02-2023 14:12:46 DEBUG Creating the register form
+14-02-2023 14:12:46 DEBUG The field Firstname is created
+14-02-2023 14:12:46 DEBUG The field Lastname is created
+14-02-2023 14:12:46 DEBUG The field National ID is created
+14-02-2023 14:12:46 DEBUG The field Country is created
+14-02-2023 14:12:46 DEBUG The field City is created
+14-02-2023 14:12:46 DEBUG The field Address is created
+14-02-2023 14:12:46 DEBUG The field Email is created
+14-02-2023 14:12:46 DEBUG The field Cellphone Number is created
+14-02-2023 14:12:46 DEBUG Creating the date selector
+14-02-2023 14:12:46 DEBUG Creating the dropdown selector
+14-02-2023 14:12:46 DEBUG The register form is complete
+14-02-2023 14:12:46 DEBUG Click in the buttom
+14-02-2023 14:12:49 DEBUG Click in the buttom
+14-02-2023 14:12:49 DEBUG The info from the form is save
+14-02-2023 14:12:49 DEBUG Info for register: {'first_name': None, 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:12:49 DEBUG Initiate the validation
+14-02-2023 14:13:04 DEBUG Click in the buttom
+14-02-2023 14:13:04 DEBUG The info from the form is save
+14-02-2023 14:13:04 DEBUG Info for register: {'first_name': ' ', 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:13:04 DEBUG Initiate the validation
+14-02-2023 14:13:04 DEBUG 
+14-02-2023 14:13:04 DEBUG Click in the buttom
+14-02-2023 14:13:04 DEBUG The info from the form is save
+14-02-2023 14:13:04 DEBUG Info for register: {'first_name': ' ', 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:13:04 DEBUG Initiate the validation
+14-02-2023 14:13:04 DEBUG 
+14-02-2023 14:13:11 DEBUG Click in the buttom
+14-02-2023 14:13:11 DEBUG The info from the form is save
+14-02-2023 14:13:11 DEBUG Info for register: {'first_name': ' ', 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:13:11 DEBUG Initiate the validation
+14-02-2023 14:13:11 DEBUG 
+14-02-2023 14:14:23 DEBUG Creating the register form
+14-02-2023 14:14:23 DEBUG The field Firstname is created
+14-02-2023 14:14:23 DEBUG The field Lastname is created
+14-02-2023 14:14:23 DEBUG The field National ID is created
+14-02-2023 14:14:23 DEBUG The field Country is created
+14-02-2023 14:14:23 DEBUG The field City is created
+14-02-2023 14:14:23 DEBUG The field Address is created
+14-02-2023 14:14:23 DEBUG The field Email is created
+14-02-2023 14:14:23 DEBUG The field Cellphone Number is created
+14-02-2023 14:14:23 DEBUG Creating the date selector
+14-02-2023 14:14:23 DEBUG Creating the dropdown selector
+14-02-2023 14:14:23 DEBUG The register form is complete
+14-02-2023 14:14:23 DEBUG Click in the buttom
+14-02-2023 14:14:37 DEBUG Click in the buttom
+14-02-2023 14:14:37 DEBUG The info from the form is save
+14-02-2023 14:14:37 DEBUG Info for register: {'first_name': ' ', 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:14:37 DEBUG Initiate the validation
+14-02-2023 14:14:37 DEBUG Mistake occur False, the issue is First name empty
+14-02-2023 14:14:37 DEBUG Click in the buttom
+14-02-2023 14:15:07 DEBUG Creating the register form
+14-02-2023 14:15:07 DEBUG The field Firstname is created
+14-02-2023 14:15:07 DEBUG The field Lastname is created
+14-02-2023 14:15:07 DEBUG The field National ID is created
+14-02-2023 14:15:07 DEBUG The field Country is created
+14-02-2023 14:15:07 DEBUG The field City is created
+14-02-2023 14:15:07 DEBUG The field Address is created
+14-02-2023 14:15:07 DEBUG The field Email is created
+14-02-2023 14:15:07 DEBUG The field Cellphone Number is created
+14-02-2023 14:15:07 DEBUG Creating the date selector
+14-02-2023 14:15:07 DEBUG Creating the dropdown selector
+14-02-2023 14:15:07 DEBUG The register form is complete
+14-02-2023 14:15:07 DEBUG Click in the buttom
+14-02-2023 14:15:10 DEBUG Click in the buttom
+14-02-2023 14:15:10 DEBUG The info from the form is save
+14-02-2023 14:15:10 DEBUG Info for register: {'first_name': ' ', 'last_name': None, 'document_id': None, 'type': None, 'birthday': '2023-02-14', 'country': None, 'city': None, 'address': None, 'email': None, 'phone_number': None}
+14-02-2023 14:15:10 DEBUG Initiate the validation
+14-02-2023 14:15:10 DEBUG Mistake occur False, the issue is First name empty

@@ -1,3 +1,4 @@
+
 import dash_bootstrap_components as dbc
 import dash
 import json
@@ -69,7 +70,6 @@ sidebar = html.Div(
     ],
     style=SIDEBAR_STYLE,
 )
-
 
 def form_field(title:str, extra_info:str, space:int, type:str):
     logger.debug(f"The field {title} is created")
@@ -179,6 +179,7 @@ def register_layout():
             ))),
             dbc.Row((html.P(
                 dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
+
             )))
         ], className="col-lg-12 col-lg-6 ",
     )])  
@@ -191,6 +192,7 @@ def register_layout():
                 dbc.Col(
                     [dbc.Row(form),
                      dbc.Row(html.Div(id='login-alert'),)],
+
                     className="col-lg-8",
                 ),
                 dbc.Col(
@@ -200,7 +202,9 @@ def register_layout():
                 html.Div(id="my-output"),
             ]
         ),
+
         style=CONTENT_STYLE
+
     )
     logger.debug("The register form is complete")
     return layout
@@ -237,6 +241,7 @@ def on_button_click(
     logger.debug('Click in the buttom')
     if n_clicks != 0:
         logger.debug('The info from the form is save')
+
         user_data = {
             "first_name": value_firstname,
             "last_name": value_lastname,
