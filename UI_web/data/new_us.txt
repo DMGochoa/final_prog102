@@ -19,3 +19,13 @@
  Employee{"username": "HSlatten2", "password": "Ha1225", "code": 28040159, "account_cbu": [10200180001]}
  User{"username": "ABecerra2", "password": "Ab9409", "code": 26430846, "account_cbu": [10200190001, 10200190001]}
  User{"username": "KLidgley2", "password": "Ki2152", "code": 47855721, "account_cbu": [10200200001, 10200200001, 10200200001]}
+ Employee{"username": "TBaitson", "password": "Te2789", "code": 44507000, "account_cbu": [10200010001]}
+ User{"username": "SCollecott", "password": "St5397", "code": 20824449, "account_cbu": [10200020001, 10200020001]}
+ User{"username": "AWilsher", "password": "An8033", "code": 17243327, "account_cbu": [10200030001, 10200030001]}
+ User{"username": "ADurtnall", "password": "Ar7715", "code": 44048579, "account_cbu": [10200040001, 10200040001]}
+ User{"username": "BTregenna", "password": "Br8444", "code": 16361077, "account_cbu": [10200050001]}
+ User{"username": "LCaughtry", "password": "Le1081", "code": 64796124, "account_cbu": [10200060001, 10200060001, 10200060001]}
+ User{"username": "GLongman", "password": "Ge5516", "code": 69183767, "account_cbu": [10200070001]}
+ Employee{"username": "HSlatten", "password": "Ha2797", "code": 65998039, "account_cbu": [10200080001]}
+ User{"username": "ABecerra", "password": "Ab5152", "code": 77966852, "account_cbu": [10200090001]}
+ User{"username": "KLidgley", "password": "Ki0918", "code": 82090359, "account_cbu": [10200100001, 10200100001]}

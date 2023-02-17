@@ -64,7 +64,21 @@ for i in range(len(list_login)):
                 }
         requests.post('http://127.0.0.1:9000/transaction', json=deposit_info)
         
-        #copy_list = 
-        
-print(list_login)
+        copy_list = list_login.copy()
+        copy_list.pop(i)
+
+        for _ in range(50):
+            choice_account = random.choice(random.choice(copy_list)['account_cbu'])
+            
+            transac_info = {
+                    "transaction_type": "transaction",
+                    "cbu_origin": account,
+                    "cbu_destiny": choice_account,
+                    "description": "test deposit",
+                    "amount": round(25 * random.random(), 2)
+                }
+            
+            requests.post('http://127.0.0.1:9000/transaction', json=transac_info)
+            
+#print(list_login)
     
