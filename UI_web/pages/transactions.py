@@ -107,7 +107,7 @@ def transactions_layout():
                         options= option_accounts,
                             ),
                     html.Br(),
-                    dbc.Input(id="trasnfer-amount", type="number", placeholder="$"),
+                    dbc.Input(id="transfer-amount", type="number", placeholder="$"),
                     html.P("Enter amount to transfer from account"),
                     html.Br(),
                     dbc.Input(id="destiny-account", type="number", placeholder="Type destiny account cbu"),
@@ -126,9 +126,7 @@ def transactions_layout():
                         ),
                         justify='center'
                     ),
-                    html.Div(id="user_service-output"),
-                    html.Div(id="user_service-outpu"),
-                    html.Div(id="user_service-outp"),
+                    html.Div(id="transactions-output"),
                     html.Br(),
                 ],
             )
@@ -137,10 +135,10 @@ def transactions_layout():
         
 # Callback for the transaction between accounts
 @callback(
-    Output("user_service-outp", "children"),
+    Output("transactions-output", "children"),
     Input("make-transfer", "n_clicks"),
     State("select-transfer", "value"),
-    State("trasnfer-amount", "value"),
+    State("transfer-amount", "value"),
     State("destiny-account", "value"),
     
 )

@@ -254,11 +254,7 @@ def on_button_click(
         if val:
             logger.debug('Send request to save the')
             response = requests.post('http://127.0.0.1:9000/users', json=user_data)
-            print('-'*30)
-            print(response.headers)
-            print('-'*30)
-            print(response.json)
-            print(response.text)
+            logger.debug(f'The response is {response.status_code}')
             
             json_response = json.loads(response.text)
             with open("user_credentials.txt", "w") as f:
