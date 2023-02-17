@@ -13,7 +13,7 @@ backend/main.py
 backend/backend.log
 backend/utils/__pycache__
 backend/
-pruebas/
+prueba/
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,windows,linux,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python,windows,linux,macos
