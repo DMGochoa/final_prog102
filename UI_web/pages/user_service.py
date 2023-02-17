@@ -9,7 +9,7 @@ from flask import session
 
 # Utils
 from utils.logging_web import log_web
-from utils.validation import deposit_val, withdraw_val
+from utils.validation import deposit_val, withdraw_val, transaction_val
 
 # Setup logger
 logger = log_web()
@@ -158,6 +158,7 @@ def user_service_layout():
 
                     html.Div(id="user_service-output"),
                     html.Div(id="user_service-outpu"),
+                    html.Div(id="user_service-outp"),
                     html.Br(),
                 ],
             )
@@ -201,6 +202,9 @@ def make_deposit_click(
         print('-'*30)
         print(response.json)
         print(response.text)
+        return dbc.Alert('Withdraw sucessfull!!!',
+                            color='sucess',
+                            dismissable=True)
 
     else:
         logger.debug(f'Mistake occur {val}, the issue is {issue}')
@@ -244,6 +248,9 @@ def make_withdraw_click(
         print('-'*30)
         print(response.json)
         print(response.text)
+        return dbc.Alert('Withdraw sucessfull!!!',
+                            color='success',
+                            dismissable=True)
 
     else:
         logger.debug(f'Mistake occur {val}, the issue is {issue}')
@@ -251,15 +258,52 @@ def make_withdraw_click(
                             color='danger',
                             dismissable=True)
 
+# Callback for the transaction between accounts
+@callback(
+    Output("user_service-outp", "children"),
+    Input("make-transfer", "n_clicks"),
+    State("origin-account", "value"),
+    State("trasnfer-amount", "value"),
+    State("destiny-account", "value"),
+    
+)
+def make_transaction_click(
+    n_clicks,
+    value_origin,
+    value_amount,
+    value_destiny
+):
+    logger.debug('Click in the buttom Make transaction')
+    if n_clicks is None or n_clicks==0:
+        return no_update
+    logger.debug('The info from the transfer transactions is save')
+    transaction_data = {
+        "transaction_type": 'transaction',
+        "cbu_origin": value_origin,
+        "cbu_destiny": value_destiny,
+        "description": 'Some random description',
+        "amount": value_amount,
+    }
+    print(transaction_data)
+    logger.debug(f'Info for the transaction: {transaction_data}')
+    val, issue = transaction_val(transaction_data)
+    if val:
+        logger.debug('Send request to save the transaction data')
+        response = requests.post('http://127.0.0.1:9000/transaction', json=transaction_data)
+        print('-'*30)
+        print(response.headers)
+        print('-'*30)
+        print(response.json)
+        print(response.text)
+        return dbc.Alert('Withdraw sucessfull!!!',
+                            color='success',
+                            dismissable=True)
 
-
-
-
-
-
-
-
-
+    else:
+        logger.debug(f'Mistake occur {val}, the issue is {issue}')
+        return dbc.Alert(issue,
+                            color='danger',
+                            dismissable=True)
 
 
 

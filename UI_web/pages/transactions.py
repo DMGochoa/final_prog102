@@ -1,10 +1,18 @@
 import dash_bootstrap_components as dbc
 import dash
 import json
+import requests
 from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
+
+# Utils
+from utils.logging_web import log_web
+from utils.validation import deposit_val, withdraw_val, transaction_val
+
+# Setup logger
+logger = log_web()
 
 # Info carrier
 from utils.data import Data_carrier
@@ -71,7 +79,7 @@ sidebar = html.Div(
 def transactions_layout():
     user_info = info_carrier.get_general()
     accounts = info_carrier.get_specific()
-    option_accounts = [{"label": f"account {i+1}", "value": f"Account No {accounts[i]['cbu']}"} for i in range(len(accounts))] 
+    option_accounts = [{"label": f"account {i+1}", "value": f"{accounts[i]['cbu']}"} for i in range(len(accounts))] 
 
     return \
         html.Div([
@@ -118,13 +126,61 @@ def transactions_layout():
                         ),
                         justify='center'
                     ),
-
-                    
+                    html.Div(id="user_service-output"),
+                    html.Div(id="user_service-outpu"),
+                    html.Div(id="user_service-outp"),
                     html.Br(),
                 ],
             )
         ]
     )
+        
+# Callback for the transaction between accounts
+@callback(
+    Output("user_service-outp", "children"),
+    Input("make-transfer", "n_clicks"),
+    State("select-transfer", "value"),
+    State("trasnfer-amount", "value"),
+    State("destiny-account", "value"),
+    
+)
+def make_transaction_click(
+    n_clicks,
+    value_origin,
+    value_amount,
+    value_destiny
+):
+    logger.debug('Click in the buttom Make transaction')
+    if n_clicks is None or n_clicks==0:
+        return no_update
+    logger.debug('The info from the transfer transactions is save')
+    transaction_data = {
+        "transaction_type": 'transaction',
+        "cbu_origin": value_origin,
+        "cbu_destiny": value_destiny,
+        "description": 'Some random description',
+        "amount": value_amount,
+    }
+    print(transaction_data)
+    logger.debug(f'Info for the transaction: {transaction_data}')
+    val, issue = transaction_val(transaction_data)
+    if val:
+        logger.debug('Send request to save the transaction data')
+        response = requests.post('http://127.0.0.1:9000/transaction', json=transaction_data)
+        print('-'*30)
+        print(response.headers)
+        print('-'*30)
+        print(response.json)
+        print(response.text)
+        return dbc.Alert('Transaction sucessfull!!!',
+                         color='success',
+                         dismissable=True)
+
+    else:
+        logger.debug(f'Mistake occur {val}, the issue is {issue}')
+        return dbc.Alert(issue,
+                         color='danger',
+                         dismissable=True)
 
 @callback(
     Output('transactions-url','pathname'),
