@@ -10,6 +10,7 @@ from kivy.uix.screenmanager import ScreenManager
 from token_singleton import token
 
 logger = log_config.logger
+URL = 'http://127.0.0.1:9000/'
 
 
 class Ui(ScreenManager):
@@ -37,23 +38,96 @@ class MainApp(MDApp):
             self.show_account()
             self.root.current = 'main_menu'
 
-    def show_warning_dialog(self, mode, cont=""):
-        if mode == 1:
-            content = "Please, fill all the text fields."
-        elif mode == 0:
-            content = "Access code invalid format."
-        else:
-            content = cont
+    def transaction(self, *args):
+        logger.debug(f'Transaction starting...')
+        try:
+            logger.debug(
+                f'Transaction: try statement. reading transfer fields and preparing request')
+            origin_cbu = int(self.root.ids.origin_cbu.text)
+            destiny_cbu = int(self.root.ids.destiny_cbu.text)
+            amount = float(self.root.ids.amount.text)
+            body = {
+                "transaction_type": "transaction",
+                "cbu_origin": origin_cbu,
+                "cbu_destiny": destiny_cbu,
+                "description": "test transaction",
+                "amount": amount
+            }
+            response = requests.post(
+                'http://127.0.0.1:9000/transaction', json=body)
+            if response.status_code == 200:
+                logger.debug("Transaction: transaccion succesfully")
+                self.show_account()
+                self.show_warning_dialog(-1, "succesful transaction")
+                self.clear_transaction_fields()
+            else:
+                logger.debug(
+                    "Transaction: insuficient balance to make the transaction")
+                self.show_warning_dialog(-1,
+                                         response.text.strip()[1:-1].strip())
+                self.clear_transaction_fields()
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(
+                f'Transaction: Trow HTTPError in request /transaction {http_err}')
+            self.show_warning_dialog(-1, str(http_err))
+            self.clear_transaction_fields()
+        except requests.exceptions.ConnectionError as conn_err:
+            logger.error(
+                f'Transaction: Trow Connection Error in request /transaction {conn_err}')
+            self.show_warning_dialog(-1, str(conn_err))
+            self.clear_transaction_fields()
+        except requests.exceptions.Timeout as timeout_err:
+            logger.error(
+                f'Transaction: Trow Timeout in request /transaction {timeout_err}')
+            self.show_warning_dialog(-1, str(timeout_err))
+            self.clear_transaction_fields()
+        except requests.exceptions.RequestException as req_err:
+            logger.error(
+                f'Transaction: Trow UNKNOWN Error in request /transaction {req_err}')
+            self.show_warning_dialog(-1, str(req_err))
+            self.clear_transaction_fields()
 
-        dialog = MDDialog(text=content,
-                          size_hint=(0.5, 1),
-                          type="simple",
-                          buttons=[
-                              MDFlatButton(text="OK",
-                                           on_release=lambda x: dialog.dismiss()
-                                           )
-                          ])
-        dialog.open()
+    # Validate if the destiny cbu exists, and the "CONFIRM" action. Amount is processed in transaction function
+    # And origin cbu is desired to be a dropdown list, so no validation needed, for the moment text field
+    def validate_transaction(self):
+        logger.debug(f'Validate Transaction starting...')
+        try:
+            logger.debug(
+                f'Validate Transaction: try statement. reading transfer fields and preparing request')
+            origin_cbu = int(self.root.ids.origin_cbu.text)
+            destiny_cbu = int(self.root.ids.destiny_cbu.text)
+            amount = float(self.root.ids.amount.text)
+            response = requests.get(
+                f'http://127.0.0.1:9000/account/{destiny_cbu}')
+            if response.status_code == 200:
+                logger.debug(f'Validate Transaction: destiny account found')
+                user_data = json.loads(response.text)
+                content = f"You are about to send from your account n° {origin_cbu} the amount of {amount} to the account {destiny_cbu} belonging to {user_data['first_name'].strip().upper()} {user_data['last_name'].strip().upper()} "
+                self.show_transaction_dialog(content)
+            else:
+                logger.debug(f'Validate Transaction: CBU not found')
+                self.show_warning_dialog(-1,
+                                         response.text.strip()[1:-1].strip('\n').strip())
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(
+                f'Validate Transaction: Trow HTTPError in request /account {http_err}')
+            self.show_warning_dialog(-1, str(http_err))
+            self.clear_transaction_fields()
+        except requests.exceptions.ConnectionError as conn_err:
+            logger.error(
+                f'Validate Transaction: Trow Connection Error in request /account {conn_err}')
+            self.show_warning_dialog(-1, str(conn_err))
+            self.clear_transaction_fields()
+        except requests.exceptions.Timeout as timeout_err:
+            logger.error(
+                f'Validate Transaction: Trow Timeout in request /account {timeout_err}')
+            self.show_warning_dialog(-1, str(timeout_err))
+            self.clear_transaction_fields()
+        except requests.exceptions.RequestException as req_err:
+            logger.error(
+                f'Validate Transaction: Trow UNKNOWN Error in request /account {req_err}')
+            self.show_warning_dialog(-1, str(req_err))
+            self.clear_transaction_fields()
 
     # Validate text fields and user credentials
     def validate(self, user, password, code):
@@ -67,15 +141,15 @@ class MainApp(MDApp):
                 res = 1
             else:
                 self.show_warning_dialog(-1, msg_req)
-                self.clear_fields()
+                self.clear_login_fields()
         # Invalid access code format
         elif fields == 0:
             self.show_warning_dialog(0)
-            self.clear_fields()
+            self.clear_login_fields()
         else:
             logger.debug('Validate: Some text fields are empty')
             self.show_warning_dialog(1)
-            self.clear_fields()
+            self.clear_login_fields()
         return res
 
     # Request to a DB and validate credentials
@@ -93,26 +167,26 @@ class MainApp(MDApp):
             # User
             if response.status_code == 200:
                 logger.debug('Validate user: user found')
-                # PROVISORIO
                 resp = response.text.strip().split(':')
                 # Final "}" char, after that blank spaces, lastly quotes
                 token.set_token(resp[1][:-1].strip()[1:-1])
-                # PROVISORIO
                 res = "OK"
             else:
                 res = response.text.strip()[1:-1]
         except requests.exceptions.HTTPError as http_err:
-            logger.error('Validate User: Trow HTTPError in request login')
+            logger.error(
+                f'Validate User: Trow HTTPError in request login {http_err}')
             res = str(http_err)
         except requests.exceptions.ConnectionError as conn_err:
             logger.error(
-                'Validate User: Trow Connection Error in request login')
+                f'Validate User: Trow Connection Error in request login {conn_err}')
             res = str(conn_err)
         except requests.exceptions.Timeout as timeout_err:
-            logger.error('Validate User: Trow Timeout in request login')
+            logger.error(
+                f'Validate User: Trow Timeout in request login {timeout_err}')
             res = str(timeout_err)
         except requests.exceptions.RequestException as req_err:
-            logger.error('Validate User: Trow UNKNOWN Error')
+            logger.error(f'Validate User: Trow UNKNOWN Error {req_err}')
             res = str(req_err)
 
         return res
@@ -134,12 +208,6 @@ class MainApp(MDApp):
                 res = 0
         return res
 
-    # Clear the text fields
-    def clear_fields(self):
-        self.root.ids.user.text = ''
-        self.root.ids.password.text = ''
-        self.root.ids.code.text = ''
-
     # print the user data (First and last name)
     def show_user_data(self):
         logger.debug('Show user data starting...')
@@ -151,22 +219,26 @@ class MainApp(MDApp):
             response = requests.get(
                 'http://127.0.0.1:9000/home', headers=head)
             user_data = json.loads(response.text)
-            self.root.ids.user_data_lbl.text = f"WELCOME! \n {user_data['user'][0]['first_name']} {user_data['user'][0]['last_name']}"
+            self.root.ids.user_data_lbl.text = f"WELCOME! \n {user_data['user'][0]['first_name'].title()} {user_data['user'][0]['last_name'].title()}"
         except requests.exceptions.HTTPError as http_err:
             logger.error(
                 f'Show User: Trow HTTPError in request home {http_err}')
+            # DIALOG MESSAGE HERE!! Cuidado, xq el que debería redireccionarme debería ser le dialogo
             self.root.current = 'login'
         except requests.exceptions.ConnectionError as conn_err:
             logger.error(
                 f'Show User: Trow Connection Error in request home {conn_err}')
+            # DIALOG MESSAGE HERE!!
             self.root.current = 'login'
         except requests.exceptions.Timeout as timeout_err:
             logger.error(
                 f'Show User: Trow Timeout in request home {timeout_err}')
+            # DIALOG MESSAGE HERE!!
             self.root.current = 'login'
         except requests.exceptions.RequestException as req_err:
             logger.error(
                 f'Show User: Trow UNKNOWN Error in request home {req_err}')
+            # DIALOG MESSAGE HERE!!
             self.root.current = 'login'
         return user_data
 
@@ -190,23 +262,78 @@ class MainApp(MDApp):
                     accounts = accounts + \
                         f"Account N°: {acc_data['accounts'][i]['cbu']} - Balance: {acc_data['accounts'][i]['balance']} \n"
             self.root.ids.more_acc_lbl.text = accounts
+            # Setting in transaction screen origin cbu as default
+            self.root.ids.origin_cbu.text = f"{acc_data['accounts'][0]['cbu']}"
         except requests.exceptions.HTTPError as http_err:
             logger.error(
                 f'Show User: Trow HTTPError in request home {http_err}')
+            # DIALOG MESSAGE HERE!!
             self.root.current = 'login'
         except requests.exceptions.ConnectionError as conn_err:
             logger.error(
                 f'Show User: Trow Connection Error in request home {conn_err}')
+            # DIALOG MESSAGE HERE!!
             self.root.current = 'login'
         except requests.exceptions.Timeout as timeout_err:
             logger.error(
                 f'Show User: Trow Timeout in request home {timeout_err}')
+            # DIALOG MESSAGE HERE!!
             self.root.current = 'login'
         except requests.exceptions.RequestException as req_err:
             logger.error(
                 f'Show User: Trow UNKNOWN Error in request home {req_err}')
+            # DIALOG MESSAGE HERE!!
             self.root.current = 'login'
         return acc_data
+
+    # Display a dialog with 'cont' text (generally cbu's data, amount, and destination person )
+    # with twe options to confirm the transaction or cancel
+    def show_transaction_dialog(self, cont):
+
+        dialog = MDDialog(text=cont,
+                          size_hint=(0.5, 1),
+                          type="simple",
+                          buttons=[
+                              MDFlatButton(text="Cancel",
+                                           on_release=lambda x: dialog.dismiss(),
+                                           ),
+                              MDFlatButton(text="Confirm",
+                                           on_press=self.transaction,
+                                           on_release=lambda x: dialog.dismiss()
+                                           )
+                          ])
+        dialog.open()
+
+    # Warning dialog, originally to aware the user for troubles in login, later modified to use in a wide way
+    def show_warning_dialog(self, mode, cont=""):
+        if mode == 1:
+            content = "Please, fill all the text fields."
+        elif mode == 0:
+            content = "Access code invalid format."
+        else:
+            content = cont
+
+        dialog = MDDialog(text=content,
+                          size_hint=(0.5, 1),
+                          type="simple",
+                          buttons=[
+                              MDFlatButton(text="OK",
+                                           on_release=lambda x: dialog.dismiss()
+                                           )
+                          ])
+        dialog.open()
+
+    # Clear the text fields on login screen
+    def clear_login_fields(self):
+        self.root.ids.user.text = ''
+        self.root.ids.password.text = ''
+        self.root.ids.code.text = ''
+
+    # Clear the text fields on transaction screen
+    def clear_transaction_fields(self):
+        # self.root.ids.origin_cbu.text = ''
+        self.root.ids.destiny_cbu.text = ''
+        self.root.ids.amount.text = ''
 
 
 if __name__ == "__main__":

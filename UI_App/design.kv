@@ -166,7 +166,7 @@
                     font_size: 15
                     foreground_color: 1, 0, 1, 1
                     pos_hint: {"center_y": .5}
-                    on_press : app.clear_fields()
+                    on_press : app.clear_login_fields()
                     on_release:
                         #app.root.transition = SlideTransition(direction='right') 
                         #app.root.transition = RiseInTransition()
@@ -183,10 +183,11 @@
                 size_hint: 1, 0.8    
                 orientation: 'vertical'
                 spacing: '10dp'
-                pos_hint: {"center_x": 0.7, "center_y":0.5} #
+                pos_hint: {"center_x": 0.7, "center_y":0.5} 
+               
                 MDTextField:
                     mode: "round"
-                    id: cbu
+                    id: origin_cbu
                     #icon_left: "account-check"
                     hint_text: "Origin CBU"
                     width: 220
@@ -194,7 +195,7 @@
                     size_hint_x: None
                 MDTextField:
                     mode: "round"
-                    id: cbu
+                    id: destiny_cbu
                     #icon_left: "account-check"
                     hint_text: "Destination CBU"
                     width: 220
@@ -215,7 +216,7 @@
                     text: "SEND TRANSACTION"
                     font_size: 15
                     halign: 'center'
-                    #on_press: app.login() 
+                    on_press: app.validate_transaction() 
             MDBoxLayout:
                 orientation: 'vertical' ##
                 pos_hint: {"center_x": 0.5, "center_y":0.5}
