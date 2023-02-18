@@ -7,6 +7,11 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
+# over test
+# for refresh
+from kivymd.uix.refreshlayout import MDScrollViewRefreshLayout
+from kivy.clock import Clock
+# over test
 from token_singleton import token
 
 logger = log_config.logger
@@ -208,6 +213,67 @@ class MainApp(MDApp):
                 res = 0
         return res
 
+    def show_report(self):
+        try:
+            year = int(self.root.ids.report_year.text)
+            month = int(self.root.ids.report_month.text)
+            cbu = int(self.root.ids.report_cbu.text)
+            body = {
+                "year": year,
+                "month": month,
+                "cbu": cbu
+            }
+            response = requests.get(
+                'http://127.0.0.1:9000/report_transactions', json=body)
+
+            reports = json.loads(response.text)
+            if response.status_code == 200:
+                final_account = 'Final Account: \n'
+                origin_account = 'Original Account: \n'
+                amount = 'Amount: \n'
+                desc = 'Description: \n'
+                date_acc = 'Date : \n'
+                for report in reports['transactions']:
+                    final_account = final_account + \
+                        str(report['final_account']).strip() + "\n"
+                    origin_account = origin_account + \
+                        str(report['origin_account']).strip() + "\n"
+                    amount = amount + str(report['amount']).strip() + "\n"
+                    desc = desc + report['description'].strip() + "\n"
+                    date_acc = date_acc + report['date'].strip() + "\n"
+
+                self.root.ids.rep_final_account_lbl.text = final_account
+                self.root.ids.rep_origin_account_lbl.text = origin_account
+                self.root.ids.rep_report_amount_lbl.text = amount
+                self.root.ids.rep_description_lbl.text = desc
+                self.root.ids.rep_date_lbl.text = date_acc
+            else:
+                self.show_warning_dialog(-1, response.text.strip()
+                                         [1:-1].strip('\n').strip())
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(
+                f'Report: Trow HTTPError in request /transaction {http_err}')
+            self.show_warning_dialog(-1, str(http_err))
+            self.clear_report_fields()
+        except requests.exceptions.ConnectionError as conn_err:
+            logger.error(
+                f'Report: Trow Connection Error in request /transaction {conn_err}')
+            self.show_warning_dialog(-1, str(conn_err))
+            self.clear_report_fields()
+        except requests.exceptions.Timeout as timeout_err:
+            logger.error(
+                f'Report: Trow Timeout in request /transaction {timeout_err}')
+            self.show_warning_dialog(-1, str(timeout_err))
+            self.clear_report_fields()
+        except requests.exceptions.RequestException as req_err:
+            logger.error(
+                f'Report: Trow UNKNOWN Error in request /transaction {req_err}')
+            self.show_warning_dialog(-1, str(req_err))
+            self.clear_report_fields()
+        except:
+            self.show_warning_dialog(-1, "Something went wrong")
+            self.clear_report_fields()
+
     # print the user data (First and last name)
     def show_user_data(self):
         logger.debug('Show user data starting...')
@@ -264,6 +330,8 @@ class MainApp(MDApp):
             self.root.ids.more_acc_lbl.text = accounts
             # Setting in transaction screen origin cbu as default
             self.root.ids.origin_cbu.text = f"{acc_data['accounts'][0]['cbu']}"
+            # Setting in reports screen default cbu
+            self.root.ids.report_cbu.text = f"{acc_data['accounts'][0]['cbu']}"
         except requests.exceptions.HTTPError as http_err:
             logger.error(
                 f'Show User: Trow HTTPError in request home {http_err}')
@@ -334,6 +402,13 @@ class MainApp(MDApp):
         # self.root.ids.origin_cbu.text = ''
         self.root.ids.destiny_cbu.text = ''
         self.root.ids.amount.text = ''
+
+    def clear_report_fields(self):
+        self.root.ids.rep_final_account_lbl.text = ''
+        self.root.ids.rep_origin_account_lbl.text = ''
+        self.root.ids.rep_report_amount_lbl.text = ''
+        self.root.ids.rep_description_lbl.text = ''
+        self.root.ids.rep_date_lbl.text = ''
 
 
 if __name__ == "__main__":
