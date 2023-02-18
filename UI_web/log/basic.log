@@ -584,3 +584,178 @@
 17-02-2023 17:55:36 DEBUG Enter in the router
 17-02-2023 17:55:36 DEBUG The user type is Empty
 17-02-2023 17:55:36 DEBUG Enter to /register
+17-02-2023 18:45:15 INFO Dash is running on http://127.0.0.1:8050/
+
+17-02-2023 18:45:17 DEBUG Enter in the router
+17-02-2023 18:45:17 DEBUG The user type is Empty
+17-02-2023 18:45:17 DEBUG Enter to /
+17-02-2023 18:45:36 DEBUG Enter in the router
+17-02-2023 18:45:36 DEBUG The user type is Empty
+17-02-2023 18:45:36 DEBUG Enter to /register
+17-02-2023 18:45:48 DEBUG Start the POST to the API
+17-02-2023 18:45:48 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 18:45:48 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 305
+17-02-2023 18:45:48 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3NzU0OCwianRpIjoiNDAxMWUzODYtZjc2Yi00NGFiLWE0MGEtZjcwMmFmZmM0YTU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IktMaWRnbGV5IiwibmJmIjoxNjc2Njc3NTQ4LCJleHAiOjE2NzY2ODExNDh9.S_a3XsM5uQJw8GbJK-eZ0toN6kye4AWx5ixBtJhGF6M
+17-02-2023 18:45:48 DEBUG The status code for the connection is 200
+17-02-2023 18:45:48 DEBUG Authentication value True
+17-02-2023 18:45:48 DEBUG ############### Token from main.py ##############
+17-02-2023 18:45:48 DEBUG Searching the info of the User by the token
+17-02-2023 18:45:48 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3NzU0OCwianRpIjoiNDAxMWUzODYtZjc2Yi00NGFiLWE0MGEtZjcwMmFmZmM0YTU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IktMaWRnbGV5IiwibmJmIjoxNjc2Njc3NTQ4LCJleHAiOjE2NzY2ODExNDh9.S_a3XsM5uQJw8GbJK-eZ0toN6kye4AWx5ixBtJhGF6M
+17-02-2023 18:45:48 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 18:45:48 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 430
+17-02-2023 18:45:48 DEBUG The request for the user info is: 200
+17-02-2023 18:45:48 DEBUG Saving the info to de info carrier
+17-02-2023 18:45:48 DEBUG The info was save and is: {'address': 'Room 78', 'birthday': '1997-10-05', 'city': 'Jiaoyang', 'code': 82090359, 'country': 'China', 'document_id': 1388959295, 'email': 'klidgley9@twitpic.com', 'first_name': 'Kissie', 'id': 10, 'last_name': 'Lidgley', 'password': 'Ki0918', 'phone_number': 4794538438, 'type': 'User', 'username': 'KLidgley'}
+17-02-2023 18:45:48 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 18:45:48 DEBUG http://127.0.0.1:9000 "GET /accounts HTTP/1.1" 200 198
+17-02-2023 18:45:48 DEBUG The request for the account info is: 200
+17-02-2023 18:45:48 DEBUG Saving the info to de info carrier
+17-02-2023 18:45:48 DEBUG The info was save and is: [{'balance': 9864.434872859985, 'cbu': 10200100001, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 10, 'user_id': 10}]
+17-02-2023 18:45:48 DEBUG Enter in the router
+17-02-2023 18:45:48 DEBUG The user type is User
+17-02-2023 18:45:48 DEBUG Enter to /home
+17-02-2023 18:45:53 DEBUG Enter in the router
+17-02-2023 18:45:53 DEBUG The user type is User
+17-02-2023 18:45:53 DEBUG Enter to /transactions
+17-02-2023 18:45:53 DEBUG Click in the buttom Make transaction
+17-02-2023 18:45:54 DEBUG Enter in the router
+17-02-2023 18:45:54 DEBUG The user type is User
+17-02-2023 18:45:54 DEBUG Enter to /reports
+17-02-2023 18:45:56 DEBUG Enter in the router
+17-02-2023 18:45:56 DEBUG The user type is User
+17-02-2023 18:45:56 DEBUG Enter to /transactions
+17-02-2023 18:45:56 DEBUG Click in the buttom Make transaction
+17-02-2023 18:45:58 DEBUG Enter in the router
+17-02-2023 18:45:58 DEBUG The user type is User
+17-02-2023 18:45:58 DEBUG Enter to /home
+17-02-2023 19:00:43 INFO Dash is running on http://127.0.0.1:8050/
+
+17-02-2023 19:00:44 DEBUG Enter in the router
+17-02-2023 19:00:44 DEBUG The user type is Empty
+17-02-2023 19:00:44 DEBUG Enter to /home
+17-02-2023 19:00:46 DEBUG Enter in the router
+17-02-2023 19:00:46 DEBUG The user type is Empty
+17-02-2023 19:00:46 DEBUG Enter to /login
+17-02-2023 19:01:00 DEBUG Start the POST to the API
+17-02-2023 19:01:00 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:01:00 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+17-02-2023 19:01:00 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3ODQ2MCwianRpIjoiNWYyZjRjMTktY2I0Yy00MjUzLWJjYTgtZGJiNDdhMjBhNzIzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxDYXVnaHRyeSIsIm5iZiI6MTY3NjY3ODQ2MCwiZXhwIjoxNjc2NjgyMDYwfQ.UHCmPHpf0KhxJWt0SlrULJQRcXf5JXgk__j4RgJ4lNU
+17-02-2023 19:01:00 DEBUG The status code for the connection is 200
+17-02-2023 19:01:00 DEBUG Authentication value True
+17-02-2023 19:01:00 DEBUG ############### Token from main.py ##############
+17-02-2023 19:01:00 DEBUG Searching the info of the User by the token
+17-02-2023 19:01:00 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3ODQ2MCwianRpIjoiNWYyZjRjMTktY2I0Yy00MjUzLWJjYTgtZGJiNDdhMjBhNzIzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxDYXVnaHRyeSIsIm5iZiI6MTY3NjY3ODQ2MCwiZXhwIjoxNjc2NjgyMDYwfQ.UHCmPHpf0KhxJWt0SlrULJQRcXf5JXgk__j4RgJ4lNU
+17-02-2023 19:01:00 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:01:00 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 444
+17-02-2023 19:01:00 DEBUG The request for the user info is: 200
+17-02-2023 19:01:00 DEBUG Saving the info to de info carrier
+17-02-2023 19:01:00 DEBUG The info was save and is: {'address': 'Suite 65', 'birthday': '1999-08-07', 'city': 'Delray Beach', 'code': 64796124, 'country': 'United States', 'document_id': 1639263618, 'email': 'lcaughtry5@disqus.com', 'first_name': 'Lesley', 'id': 6, 'last_name': 'Caughtry', 'password': 'Le1081', 'phone_number': 5611306165, 'type': 'User', 'username': 'LCaughtry'}
+17-02-2023 19:01:00 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:01:00 DEBUG http://127.0.0.1:9000 "GET /accounts HTTP/1.1" 200 196
+17-02-2023 19:01:00 DEBUG The request for the account info is: 200
+17-02-2023 19:01:00 DEBUG Saving the info to de info carrier
+17-02-2023 19:01:00 DEBUG The info was save and is: [{'balance': 14196.56507492511, 'cbu': 10200060001, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 6, 'user_id': 6}]
+17-02-2023 19:01:00 DEBUG Enter in the router
+17-02-2023 19:01:00 DEBUG The user type is User
+17-02-2023 19:01:00 DEBUG Enter to /home
+17-02-2023 19:01:08 DEBUG Enter in the router
+17-02-2023 19:01:08 DEBUG The user type is User
+17-02-2023 19:01:08 DEBUG Enter to /transactions
+17-02-2023 19:01:08 DEBUG Click in the buttom Make transaction
+17-02-2023 19:01:36 DEBUG Enter in the router
+17-02-2023 19:01:36 DEBUG The user type is User
+17-02-2023 19:01:36 DEBUG Enter to /login
+17-02-2023 19:01:36 DEBUG Enter in the router
+17-02-2023 19:01:36 DEBUG The user type is User
+17-02-2023 19:01:36 DEBUG Enter to /register
+17-02-2023 19:01:43 DEBUG Start the POST to the API
+17-02-2023 19:01:43 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:01:43 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+17-02-2023 19:01:43 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3ODUwMywianRpIjoiZTFkYTc3N2QtNGVmZS00OGJlLWE5ODItODUwNTRjMjRmNDlhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxDYXVnaHRyeSIsIm5iZiI6MTY3NjY3ODUwMywiZXhwIjoxNjc2NjgyMTAzfQ.UJqrEYK4PQwJqCGsqu51uvUi5rEeQ_RPZAp_IIKOLT0
+17-02-2023 19:01:43 DEBUG The status code for the connection is 200
+17-02-2023 19:01:43 DEBUG Authentication value True
+17-02-2023 19:01:43 DEBUG ############### Token from main.py ##############
+17-02-2023 19:01:43 DEBUG Searching the info of the User by the token
+17-02-2023 19:01:43 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3ODUwMywianRpIjoiZTFkYTc3N2QtNGVmZS00OGJlLWE5ODItODUwNTRjMjRmNDlhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxDYXVnaHRyeSIsIm5iZiI6MTY3NjY3ODUwMywiZXhwIjoxNjc2NjgyMTAzfQ.UJqrEYK4PQwJqCGsqu51uvUi5rEeQ_RPZAp_IIKOLT0
+17-02-2023 19:01:43 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:01:43 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 444
+17-02-2023 19:01:43 DEBUG The request for the user info is: 200
+17-02-2023 19:01:43 DEBUG Saving the info to de info carrier
+17-02-2023 19:01:43 DEBUG The info was save and is: {'address': 'Suite 65', 'birthday': '1999-08-07', 'city': 'Delray Beach', 'code': 64796124, 'country': 'United States', 'document_id': 1639263618, 'email': 'lcaughtry5@disqus.com', 'first_name': 'Lesley', 'id': 6, 'last_name': 'Caughtry', 'password': 'Le1081', 'phone_number': 5611306165, 'type': 'User', 'username': 'LCaughtry'}
+17-02-2023 19:01:43 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:01:43 DEBUG http://127.0.0.1:9000 "GET /accounts HTTP/1.1" 200 196
+17-02-2023 19:01:43 DEBUG The request for the account info is: 200
+17-02-2023 19:01:43 DEBUG Saving the info to de info carrier
+17-02-2023 19:01:43 DEBUG The info was save and is: [{'balance': 14196.56507492511, 'cbu': 10200060001, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 6, 'user_id': 6}]
+17-02-2023 19:01:44 DEBUG Enter in the router
+17-02-2023 19:01:44 DEBUG The user type is User
+17-02-2023 19:01:44 DEBUG Enter to /home
+17-02-2023 19:04:09 DEBUG Enter in the router
+17-02-2023 19:04:09 DEBUG The user type is Empty
+17-02-2023 19:04:09 DEBUG Enter to /home
+17-02-2023 19:04:16 DEBUG Enter in the router
+17-02-2023 19:04:16 DEBUG The user type is Empty
+17-02-2023 19:04:16 DEBUG Enter to /login
+17-02-2023 19:04:24 DEBUG Start the POST to the API
+17-02-2023 19:04:24 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:04:24 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+17-02-2023 19:04:24 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3ODY2NCwianRpIjoiNTNlNWVhYTAtNTJlZS00ZmQ1LTk4ODEtMDFmOTU1ZTkxM2I2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxDYXVnaHRyeSIsIm5iZiI6MTY3NjY3ODY2NCwiZXhwIjoxNjc2NjgyMjY0fQ.Lp9eD7d6Bg6e9hreztEYEXXIMB9Rim16Kxu6aSOku4w
+17-02-2023 19:04:24 DEBUG The status code for the connection is 200
+17-02-2023 19:04:24 DEBUG Authentication value True
+17-02-2023 19:04:24 DEBUG ############### Token from main.py ##############
+17-02-2023 19:04:24 DEBUG Searching the info of the User by the token
+17-02-2023 19:04:24 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3ODY2NCwianRpIjoiNTNlNWVhYTAtNTJlZS00ZmQ1LTk4ODEtMDFmOTU1ZTkxM2I2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkxDYXVnaHRyeSIsIm5iZiI6MTY3NjY3ODY2NCwiZXhwIjoxNjc2NjgyMjY0fQ.Lp9eD7d6Bg6e9hreztEYEXXIMB9Rim16Kxu6aSOku4w
+17-02-2023 19:04:24 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:04:24 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 444
+17-02-2023 19:04:24 DEBUG The request for the user info is: 200
+17-02-2023 19:04:24 DEBUG Saving the info to de info carrier
+17-02-2023 19:04:24 DEBUG The info was save and is: {'address': 'Suite 65', 'birthday': '1999-08-07', 'city': 'Delray Beach', 'code': 64796124, 'country': 'United States', 'document_id': 1639263618, 'email': 'lcaughtry5@disqus.com', 'first_name': 'Lesley', 'id': 6, 'last_name': 'Caughtry', 'password': 'Le1081', 'phone_number': 5611306165, 'type': 'User', 'username': 'LCaughtry'}
+17-02-2023 19:04:24 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:04:24 DEBUG http://127.0.0.1:9000 "GET /accounts HTTP/1.1" 200 196
+17-02-2023 19:04:24 DEBUG The request for the account info is: 200
+17-02-2023 19:04:24 DEBUG Saving the info to de info carrier
+17-02-2023 19:04:24 DEBUG The accounts are {'accounts': [{'balance': 14196.56507492511, 'cbu': 10200060001, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 6, 'user_id': 6}]}
+17-02-2023 19:04:24 DEBUG The info was save and is: [{'balance': 14196.56507492511, 'cbu': 10200060001, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 6, 'user_id': 6}]
+17-02-2023 19:04:24 DEBUG Enter in the router
+17-02-2023 19:04:24 DEBUG The user type is User
+17-02-2023 19:04:24 DEBUG Enter to /home
+17-02-2023 19:04:36 DEBUG Enter in the router
+17-02-2023 19:04:36 DEBUG The user type is User
+17-02-2023 19:04:36 DEBUG Enter to /register
+17-02-2023 19:06:25 DEBUG Enter in the router
+17-02-2023 19:06:25 DEBUG The user type is Empty
+17-02-2023 19:06:25 DEBUG Enter to /home
+17-02-2023 19:10:37 INFO Dash is running on http://127.0.0.1:8050/
+
+17-02-2023 19:10:38 DEBUG Enter in the router
+17-02-2023 19:10:38 DEBUG The user type is Empty
+17-02-2023 19:10:38 DEBUG Enter to /login
+17-02-2023 19:10:46 DEBUG Start the POST to the API
+17-02-2023 19:10:46 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:10:46 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 305
+17-02-2023 19:10:46 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3OTA0NiwianRpIjoiNzRlODMyYTktNTM4Zi00ZGY0LWIyOGUtMDNmMmE3ZGViMTgwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkdMb25nbWFuIiwibmJmIjoxNjc2Njc5MDQ2LCJleHAiOjE2NzY2ODI2NDZ9.bzdWc8UIF2b3xOeZBh7-sa7z_GezzAXUgx7RwNzGZoI
+17-02-2023 19:10:46 DEBUG The status code for the connection is 200
+17-02-2023 19:10:46 DEBUG Authentication value True
+17-02-2023 19:10:46 DEBUG ############### Token from main.py ##############
+17-02-2023 19:10:46 DEBUG Searching the info of the User by the token
+17-02-2023 19:10:46 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3NjY3OTA0NiwianRpIjoiNzRlODMyYTktNTM4Zi00ZGY0LWIyOGUtMDNmMmE3ZGViMTgwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkdMb25nbWFuIiwibmJmIjoxNjc2Njc5MDQ2LCJleHAiOjE2NzY2ODI2NDZ9.bzdWc8UIF2b3xOeZBh7-sa7z_GezzAXUgx7RwNzGZoI
+17-02-2023 19:10:46 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:10:46 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 431
+17-02-2023 19:10:46 DEBUG The request for the user info is: 200
+17-02-2023 19:10:46 DEBUG Saving the info to de info carrier
+17-02-2023 19:10:46 DEBUG The info was save and is: {'address': '5th Floor', 'birthday': '1996-08-14', 'city': 'Fentange', 'code': 14718257, 'country': 'Luxembourg', 'document_id': 1331891342, 'email': 'glongman6@cmu.edu', 'first_name': 'Gerry', 'id': 7, 'last_name': 'Longman', 'password': 'Ge2120', 'phone_number': 4389882163, 'type': 'User', 'username': 'GLongman'}
+17-02-2023 19:10:46 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+17-02-2023 19:10:46 DEBUG http://127.0.0.1:9000 "GET /accounts HTTP/1.1" 200 546
+17-02-2023 19:10:46 DEBUG The request for the account info is: 200
+17-02-2023 19:10:46 DEBUG Saving the info to de info carrier
+17-02-2023 19:10:46 DEBUG The accounts are {'accounts': [{'balance': 4764.470000000003, 'cbu': 10200070001, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 12, 'user_id': 7}, {'balance': 4890.480000000001, 'cbu': 10200070002, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 13, 'user_id': 7}, {'balance': 4814.9400000000005, 'cbu': 10200070003, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 14, 'user_id': 7}]}
+17-02-2023 19:10:46 DEBUG The info was save and is: [{'balance': 4764.470000000003, 'cbu': 10200070001, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 12, 'user_id': 7}, {'balance': 4890.480000000001, 'cbu': 10200070002, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 13, 'user_id': 7}, {'balance': 4814.9400000000005, 'cbu': 10200070003, 'creation_date': '2023-02-17', 'currency': 'local', 'id': 14, 'user_id': 7}]
+17-02-2023 19:10:46 DEBUG Enter in the router
+17-02-2023 19:10:46 DEBUG The user type is User
+17-02-2023 19:10:46 DEBUG Enter to /home
+17-02-2023 19:11:24 DEBUG Enter in the router
+17-02-2023 19:11:24 DEBUG The user type is Empty
+17-02-2023 19:11:24 DEBUG Enter to /home
+17-02-2023 19:11:36 DEBUG Enter in the router
+17-02-2023 19:11:36 DEBUG The user type is Empty
+17-02-2023 19:11:36 DEBUG Enter to /register

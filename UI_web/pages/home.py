@@ -77,7 +77,7 @@ def home_layout():
 
     user_info_carrier = info_carrier.get_general()
     accounts = info_carrier.get_specific()
-    accordion_items =[dbc.AccordionItem(html.P(f"Bank Account {accounts[i]['cbu']}:  {accounts[i]['balance']}$"),title=f"Account {i+1}") for i in range(len(accounts))]
+    accordion_items =[dbc.AccordionItem(html.P(f"Bank Account {accounts[i]['cbu']}:  {round(accounts[i]['balance'], 2)}$"),title=f"Account {i+1}") for i in range(len(accounts))]
     return \
         html.Div([
             dcc.Location(id='home-url',pathname='/home'),

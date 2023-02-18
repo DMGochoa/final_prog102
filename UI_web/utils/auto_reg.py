@@ -28,13 +28,13 @@ for user in new_users:
         the_token = json.loads(token.text)['access_token']
         # new account
         if random.randint(0, 1) == 1:
-            new_account = requests.get('http://127.0.0.1:9000/accounts', headers={'Authorization':the_token})
+            new_account = requests.post('http://127.0.0.1:9000/accounts', headers={'Authorization':the_token})
             account = json.loads(new_account.text)
-            login_data['account_cbu'].append(account['accounts'][0]['cbu'])
+            login_data['account_cbu'].append(account['account']['cbu'])
         if random.randint(0, 1) == 1:
-            new_account = requests.get('http://127.0.0.1:9000/accounts', headers={'Authorization':the_token})
+            new_account = requests.post('http://127.0.0.1:9000/accounts', headers={'Authorization':the_token})
             account = json.loads(new_account.text)
-            login_data['account_cbu'].append(account['accounts'][0]['cbu'])
+            login_data['account_cbu'].append(account['account']['cbu'])
         list_login.append(login_data)
         
     # Save the info for login

@@ -91,6 +91,7 @@ def login_auth(n_clicks, user, pw, code):
         logger.debug('Saving the info to de info carrier')
         info = json.loads(accounts_info.text)
         info_carrier.set_specific(info['accounts'])
+        logger.debug(f'The accounts are {info}')
         logger.debug(f'The info was save and is: {info_carrier.get_specific()}')
         if user_type['type'] == 'Employee':
             return '/register', ''
