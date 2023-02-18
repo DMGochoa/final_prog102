@@ -86,13 +86,6 @@ def login_auth(n_clicks, user, pw, code):
         info_carrier.set_general(info['user'][0])
         user_type = info_carrier.get_general()
         logger.debug(f'The info was save and is: {info_carrier.get_general()}')
-        accounts_info = requests.get('http://127.0.0.1:9000/accounts', headers={'Authorization':token.get_token()})
-        logger.debug(f'The request for the account info is: {accounts_info.status_code}')
-        logger.debug('Saving the info to de info carrier')
-        info = json.loads(accounts_info.text)
-        info_carrier.set_specific(info['accounts'])
-        logger.debug(f'The accounts are {info}')
-        logger.debug(f'The info was save and is: {info_carrier.get_specific()}')
         if user_type['type'] == 'Employee':
             return '/register', ''
         else:
