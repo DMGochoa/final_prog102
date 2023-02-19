@@ -155,7 +155,8 @@ def logout_(n_clicks):
     Output('year-choice', 'options')],
     [Input('cont-choice', 'value'),
     Input('year-choice', 'value'),
-    Input('month-choice', 'value')]
+    Input('month-choice', 'value')],
+    prevent_initial_call=True,
 )
 def update_graph(value, year, month):
     response = requests.get(f'http://127.0.0.1:9000/account/{value}')
