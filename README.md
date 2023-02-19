@@ -1,7 +1,3 @@
-# To Run backend 
-```
-(venv) python .\backend\apy.py
-```
 # Endpoints
 ## Create user
 POST '/users'
@@ -20,13 +16,11 @@ input
 	"email": "jm@texample.com",
 	"phone_number": "999555999"
 }
-
 output
 {
 	"username": "pramirez",
 	"password": "pe4819",
-	"code": 54802436,
-	"account_cbu": 10200010001
+	"code": 54802436
 }
 ```
 ## Login
@@ -38,19 +32,17 @@ input
 	"password" : "ju9254",
 	"code" : 28184139
 }
-
 output
 {
 	"access_token": "Bearer eyJhbGciOi..."
 }
 ```
-## Home for current user
+## Home
 GET /home
 ```json
 input
 # Header        Value
 Authorization   "Bearer eyJhbGciOi...."
-
 output
 {
 	"user": [
@@ -69,7 +61,6 @@ POST /accounts
 input
 # Header        Value
 Authorization   "Bearer eyJhbGciOi...."
-
 output
 {
 	"account": {
@@ -79,13 +70,12 @@ output
 	}
 }
 ```
-## See all accounts of current user
+## See all acounts
 GET /accounts
 ```json
 input
 # Header        Value
 Authorization   "Bearer eyJhbGciOi...."
-
 output
 {
 	"accounts": [
