@@ -6,7 +6,8 @@ import requests
 data_dir= os.path.join(os.path.dirname(__file__), '..', 'data')
 user_json = os.path.join(data_dir, 'new_us.json')
 list_login = list()
-
+print(os.path.dirname(__file__))
+print(data_dir)
 with open(user_json) as f_json:
     new_users = json.load(f_json)
 
