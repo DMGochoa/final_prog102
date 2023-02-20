@@ -5838,3 +5838,83 @@
 19-02-2023 18:47:25 DEBUG http://127.0.0.1:9000 "GET /account/10200020001 HTTP/1.1" 200 141
 19-02-2023 18:47:25 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
 19-02-2023 18:47:25 DEBUG http://127.0.0.1:9000 "GET /report_transactions HTTP/1.1" 200 20813
+19-02-2023 21:36:56 DEBUG Enter in the router
+19-02-2023 21:36:56 DEBUG The user type is Empty
+19-02-2023 21:36:56 DEBUG Enter to /login
+19-02-2023 21:37:05 DEBUG Start the POST to the API
+19-02-2023 21:37:05 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:37:05 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:37:05 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg2MDYyNSwianRpIjoiN2U2OWYyYzMtZDUxNS00ZWEyLTg2Y2YtNDdmOTFlYTc0MjZmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg2MDYyNSwiZXhwIjoxNjc2ODY0MjI1fQ.yGuOhFqQvx0Vv7yj1H1eSozPUdHbKSUHYBxinxBY6uw
+19-02-2023 21:37:05 DEBUG The status code for the connection is 200
+19-02-2023 21:37:05 DEBUG Authentication value True
+19-02-2023 21:37:05 DEBUG ############### Token from main.py ##############
+19-02-2023 21:37:05 DEBUG Searching the info of the User by the token
+19-02-2023 21:37:05 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg2MDYyNSwianRpIjoiN2U2OWYyYzMtZDUxNS00ZWEyLTg2Y2YtNDdmOTFlYTc0MjZmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg2MDYyNSwiZXhwIjoxNjc2ODY0MjI1fQ.yGuOhFqQvx0Vv7yj1H1eSozPUdHbKSUHYBxinxBY6uw
+19-02-2023 21:37:05 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:37:05 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:37:05 DEBUG The request for the user info is: 200
+19-02-2023 21:37:05 DEBUG Saving the info to de info carrier
+19-02-2023 21:37:05 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:37:05 DEBUG Enter in the router
+19-02-2023 21:37:05 DEBUG The user type is Employee
+19-02-2023 21:37:05 DEBUG Enter to /register
+19-02-2023 21:37:05 DEBUG Creating the register form
+19-02-2023 21:37:05 DEBUG The field Firstname is created
+19-02-2023 21:37:05 DEBUG The field Lastname is created
+19-02-2023 21:37:05 DEBUG The field National ID is created
+19-02-2023 21:37:05 DEBUG The field Country is created
+19-02-2023 21:37:05 DEBUG The field City is created
+19-02-2023 21:37:05 DEBUG The field Address is created
+19-02-2023 21:37:05 DEBUG The field Email is created
+19-02-2023 21:37:05 DEBUG The field Cellphone Number is created
+19-02-2023 21:37:05 DEBUG Creating the date selector
+19-02-2023 21:37:05 DEBUG Creating the dropdown selector
+19-02-2023 21:37:05 DEBUG The register form is complete
+19-02-2023 21:37:05 DEBUG Click in the buttom
+19-02-2023 21:37:07 DEBUG Enter in the router
+19-02-2023 21:37:07 DEBUG The user type is Employee
+19-02-2023 21:37:07 DEBUG Enter to /file_register
+19-02-2023 21:37:07 DEBUG Charging the file register layout
+19-02-2023 21:37:14 DEBUG Enter in the router
+19-02-2023 21:37:14 DEBUG The user type is Employee
+19-02-2023 21:37:14 DEBUG Enter to /register
+19-02-2023 21:37:14 DEBUG Creating the register form
+19-02-2023 21:37:14 DEBUG The field Firstname is created
+19-02-2023 21:37:14 DEBUG The field Lastname is created
+19-02-2023 21:37:14 DEBUG The field National ID is created
+19-02-2023 21:37:14 DEBUG The field Country is created
+19-02-2023 21:37:14 DEBUG The field City is created
+19-02-2023 21:37:14 DEBUG The field Address is created
+19-02-2023 21:37:14 DEBUG The field Email is created
+19-02-2023 21:37:14 DEBUG The field Cellphone Number is created
+19-02-2023 21:37:14 DEBUG Creating the date selector
+19-02-2023 21:37:14 DEBUG Creating the dropdown selector
+19-02-2023 21:37:14 DEBUG The register form is complete
+19-02-2023 21:37:15 DEBUG Enter in the router
+19-02-2023 21:37:15 DEBUG The user type is Employee
+19-02-2023 21:37:15 DEBUG Enter to /file_register
+19-02-2023 21:37:15 DEBUG Charging the file register layout
+19-02-2023 21:37:16 DEBUG Enter in the router
+19-02-2023 21:37:16 DEBUG The user type is Employee
+19-02-2023 21:37:16 DEBUG Enter to /register
+19-02-2023 21:37:16 DEBUG Creating the register form
+19-02-2023 21:37:16 DEBUG The field Firstname is created
+19-02-2023 21:37:16 DEBUG The field Lastname is created
+19-02-2023 21:37:16 DEBUG The field National ID is created
+19-02-2023 21:37:16 DEBUG The field Country is created
+19-02-2023 21:37:16 DEBUG The field City is created
+19-02-2023 21:37:16 DEBUG The field Address is created
+19-02-2023 21:37:16 DEBUG The field Email is created
+19-02-2023 21:37:16 DEBUG The field Cellphone Number is created
+19-02-2023 21:37:16 DEBUG Creating the date selector
+19-02-2023 21:37:16 DEBUG Creating the dropdown selector
+19-02-2023 21:37:16 DEBUG The register form is complete
+19-02-2023 21:37:16 DEBUG Click in the buttom
+19-02-2023 21:37:18 DEBUG Enter in the router
+19-02-2023 21:37:18 DEBUG The user type is Employee
+19-02-2023 21:37:18 DEBUG Enter to /user_service
+19-02-2023 21:37:18 DEBUG Click in the buttom Make deposit
+19-02-2023 21:37:18 DEBUG Click in the buttom Make withdraw
+19-02-2023 21:37:18 DEBUG Click in the buttom Make transaction
+20-02-2023 16:08:16 INFO Dash is running on http://127.0.0.1:8050/
+
