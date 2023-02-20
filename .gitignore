@@ -14,10 +14,10 @@ backend/main.py
 backend/backend.log
 backend/utils/__pycache__
 prueba/
-
+user_credentials.txt
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,windows,linux,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python,windows,linux,macos
-
+.gitignore
 ### Linux ###
 *~
 
@@ -281,3 +281,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,windows,linux,macos
+.gitignore
+user_credentials.txt
+UI_web/log/basic.log
+.gitignore

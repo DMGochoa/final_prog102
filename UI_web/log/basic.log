@@ -3237,3 +3237,818 @@
 19-02-2023 17:56:24 DEBUG Info for the transaction: {'transaction_type': 'transaction', 'cbu_origin': '10200030001', 'cbu_destiny': 10200090001, 'description': 'Some random description', 'amount': None}
 19-02-2023 17:56:24 DEBUG Initiate the transaction validation
 19-02-2023 17:56:24 DEBUG Mistake occur False, the issue is Amount is empty
+19-02-2023 18:03:45 DEBUG Enter in the router
+19-02-2023 18:03:45 DEBUG The user type is User
+19-02-2023 18:03:45 DEBUG Enter to /home
+19-02-2023 18:03:45 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 18:03:45 DEBUG http://127.0.0.1:9000 "GET /accounts HTTP/1.1" 200 369
+19-02-2023 18:03:45 DEBUG The request for the account info is: 200
+19-02-2023 18:03:45 DEBUG Saving the info to de info carrier
+19-02-2023 18:03:45 DEBUG The accounts are {'accounts': [{'balance': 4879.569999999995, 'cbu': 10200030001, 'creation_date': '2023-02-19', 'currency': 'local', 'id': 3, 'user_id': 3}, {'balance': 5072.399999999996, 'cbu': 10200030002, 'creation_date': '2023-02-19', 'currency': 'local', 'id': 4, 'user_id': 3}]}
+19-02-2023 18:03:45 DEBUG The info was save and is: [{'balance': 4879.569999999995, 'cbu': 10200030001, 'creation_date': '2023-02-19', 'currency': 'local', 'id': 3, 'user_id': 3}, {'balance': 5072.399999999996, 'cbu': 10200030002, 'creation_date': '2023-02-19', 'currency': 'local', 'id': 4, 'user_id': 3}]
+19-02-2023 18:03:48 DEBUG Enter in the router
+19-02-2023 18:03:48 DEBUG The user type is User
+19-02-2023 18:03:48 DEBUG Enter to /transactions
+19-02-2023 18:03:48 DEBUG Click in the buttom Make transaction
+19-02-2023 18:03:55 DEBUG Enter in the router
+19-02-2023 18:03:55 DEBUG The user type is User
+19-02-2023 18:03:55 DEBUG Enter to /reports
+19-02-2023 18:03:55 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 18:03:55 DEBUG http://127.0.0.1:9000 "GET /account/None HTTP/1.1" 404 207
+19-02-2023 18:03:56 DEBUG Enter in the router
+19-02-2023 18:03:56 DEBUG The user type is User
+19-02-2023 18:03:56 DEBUG Enter to /transactions
+19-02-2023 18:03:56 DEBUG Click in the buttom Make transaction
+19-02-2023 18:06:18 DEBUG Enter in the router
+19-02-2023 18:06:18 DEBUG The user type is Empty
+19-02-2023 18:06:18 DEBUG Enter to /transactions
+19-02-2023 18:09:39 DEBUG Enter in the router
+19-02-2023 18:09:39 DEBUG The user type is Empty
+19-02-2023 18:09:39 DEBUG Enter to /transactions
+19-02-2023 18:28:11 DEBUG Enter in the router
+19-02-2023 18:28:11 DEBUG The user type is Empty
+19-02-2023 18:28:11 DEBUG Enter to /transactions
+19-02-2023 20:11:36 DEBUG Enter in the router
+19-02-2023 20:11:36 DEBUG The user type is Empty
+19-02-2023 20:11:36 DEBUG Enter to /login
+19-02-2023 20:43:55 DEBUG Enter in the router
+19-02-2023 20:43:55 DEBUG The user type is Empty
+19-02-2023 20:43:55 DEBUG Enter to /login
+19-02-2023 20:44:13 DEBUG Start the POST to the API
+19-02-2023 20:44:13 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:44:14 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 20:44:14 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1NzQ1MywianRpIjoiNDY4MjdjZjMtMTA1Ny00NTJlLWFlYWEtNTk5NWQxYWI3MDk1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1NzQ1MywiZXhwIjoxNjc2ODYxMDUzfQ.vk1870iAuzPk7HsW_KPZFzC-m36yjZLHSaswNiJyWY4
+19-02-2023 20:44:14 DEBUG The status code for the connection is 200
+19-02-2023 20:44:14 DEBUG Authentication value True
+19-02-2023 20:44:14 DEBUG ############### Token from main.py ##############
+19-02-2023 20:44:14 DEBUG Searching the info of the User by the token
+19-02-2023 20:44:14 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1NzQ1MywianRpIjoiNDY4MjdjZjMtMTA1Ny00NTJlLWFlYWEtNTk5NWQxYWI3MDk1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1NzQ1MywiZXhwIjoxNjc2ODYxMDUzfQ.vk1870iAuzPk7HsW_KPZFzC-m36yjZLHSaswNiJyWY4
+19-02-2023 20:44:14 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:44:14 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 20:44:14 DEBUG The request for the user info is: 200
+19-02-2023 20:44:14 DEBUG Saving the info to de info carrier
+19-02-2023 20:44:14 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 20:44:14 DEBUG Enter in the router
+19-02-2023 20:44:14 DEBUG The user type is Employee
+19-02-2023 20:44:14 DEBUG Enter to /register
+19-02-2023 20:44:14 DEBUG Creating the register form
+19-02-2023 20:44:14 DEBUG The field Firstname is created
+19-02-2023 20:44:14 DEBUG The field Lastname is created
+19-02-2023 20:44:14 DEBUG The field National ID is created
+19-02-2023 20:44:14 DEBUG The field Country is created
+19-02-2023 20:44:14 DEBUG The field City is created
+19-02-2023 20:44:14 DEBUG The field Address is created
+19-02-2023 20:44:14 DEBUG The field Email is created
+19-02-2023 20:44:14 DEBUG The field Cellphone Number is created
+19-02-2023 20:44:14 DEBUG Creating the date selector
+19-02-2023 20:44:14 DEBUG Creating the dropdown selector
+19-02-2023 20:44:17 DEBUG Start the POST to the API
+19-02-2023 20:44:17 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:44:17 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 20:44:17 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1NzQ1NywianRpIjoiYTUzYjEyMDAtNjFiMy00ZTI4LWI4ZmQtNGJmOWJmMzA4ZTk1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1NzQ1NywiZXhwIjoxNjc2ODYxMDU3fQ.Y2q1-tSXdGCzdiCcyuVpapynyL3r1zY6RP7Nd4UgCNs
+19-02-2023 20:44:17 DEBUG The status code for the connection is 200
+19-02-2023 20:44:17 DEBUG Authentication value True
+19-02-2023 20:44:17 DEBUG ############### Token from main.py ##############
+19-02-2023 20:44:17 DEBUG Searching the info of the User by the token
+19-02-2023 20:44:17 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1NzQ1NywianRpIjoiYTUzYjEyMDAtNjFiMy00ZTI4LWI4ZmQtNGJmOWJmMzA4ZTk1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1NzQ1NywiZXhwIjoxNjc2ODYxMDU3fQ.Y2q1-tSXdGCzdiCcyuVpapynyL3r1zY6RP7Nd4UgCNs
+19-02-2023 20:44:17 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:44:17 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 20:44:17 DEBUG The request for the user info is: 200
+19-02-2023 20:44:17 DEBUG Saving the info to de info carrier
+19-02-2023 20:44:17 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 20:44:17 DEBUG Enter in the router
+19-02-2023 20:44:17 DEBUG The user type is Employee
+19-02-2023 20:44:17 DEBUG Enter to /register
+19-02-2023 20:44:17 DEBUG Creating the register form
+19-02-2023 20:44:17 DEBUG The field Firstname is created
+19-02-2023 20:44:17 DEBUG The field Lastname is created
+19-02-2023 20:44:17 DEBUG The field National ID is created
+19-02-2023 20:44:17 DEBUG The field Country is created
+19-02-2023 20:44:17 DEBUG The field City is created
+19-02-2023 20:44:17 DEBUG The field Address is created
+19-02-2023 20:44:17 DEBUG The field Email is created
+19-02-2023 20:44:17 DEBUG The field Cellphone Number is created
+19-02-2023 20:44:17 DEBUG Creating the date selector
+19-02-2023 20:44:17 DEBUG Creating the dropdown selector
+19-02-2023 20:44:57 DEBUG Enter in the router
+19-02-2023 20:44:57 DEBUG The user type is Empty
+19-02-2023 20:44:57 DEBUG Enter to /register
+19-02-2023 20:44:58 DEBUG Enter in the router
+19-02-2023 20:44:58 DEBUG The user type is Empty
+19-02-2023 20:44:58 DEBUG Enter to /login
+19-02-2023 20:45:06 DEBUG Start the POST to the API
+19-02-2023 20:45:06 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:45:06 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 20:45:06 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1NzUwNiwianRpIjoiMGIyZTMwYTgtNmU2OS00NDVlLWJmYjEtMTQzZDFiY2VlZDJiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1NzUwNiwiZXhwIjoxNjc2ODYxMTA2fQ.QPH6_TVDT_fu-I6LYRsCorBYb9lEqNnVFIgXs1u4kqI
+19-02-2023 20:45:06 DEBUG The status code for the connection is 200
+19-02-2023 20:45:06 DEBUG Authentication value True
+19-02-2023 20:45:06 DEBUG ############### Token from main.py ##############
+19-02-2023 20:45:06 DEBUG Searching the info of the User by the token
+19-02-2023 20:45:06 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1NzUwNiwianRpIjoiMGIyZTMwYTgtNmU2OS00NDVlLWJmYjEtMTQzZDFiY2VlZDJiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1NzUwNiwiZXhwIjoxNjc2ODYxMTA2fQ.QPH6_TVDT_fu-I6LYRsCorBYb9lEqNnVFIgXs1u4kqI
+19-02-2023 20:45:06 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:45:06 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 20:45:06 DEBUG The request for the user info is: 200
+19-02-2023 20:45:06 DEBUG Saving the info to de info carrier
+19-02-2023 20:45:06 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 20:45:06 DEBUG Enter in the router
+19-02-2023 20:45:06 DEBUG The user type is Employee
+19-02-2023 20:45:06 DEBUG Enter to /register
+19-02-2023 20:45:06 DEBUG Creating the register form
+19-02-2023 20:45:06 DEBUG The field Firstname is created
+19-02-2023 20:45:06 DEBUG The field Lastname is created
+19-02-2023 20:45:06 DEBUG The field National ID is created
+19-02-2023 20:45:06 DEBUG The field Country is created
+19-02-2023 20:45:06 DEBUG The field City is created
+19-02-2023 20:45:06 DEBUG The field Address is created
+19-02-2023 20:45:06 DEBUG The field Email is created
+19-02-2023 20:45:06 DEBUG The field Cellphone Number is created
+19-02-2023 20:45:06 DEBUG Creating the date selector
+19-02-2023 20:45:06 DEBUG Creating the dropdown selector
+19-02-2023 20:45:06 DEBUG The register form is complete
+19-02-2023 20:45:06 DEBUG Click in the buttom
+19-02-2023 20:45:34 DEBUG Click in the buttom
+19-02-2023 20:45:34 DEBUG The info from the form is save
+19-02-2023 20:45:34 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 20:45:34 DEBUG Initiate the form validation
+19-02-2023 20:45:34 DEBUG Successfull validation
+19-02-2023 20:45:34 DEBUG Send request to save the
+19-02-2023 20:45:34 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:45:34 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 108
+19-02-2023 20:45:34 DEBUG The response is 201
+19-02-2023 20:48:36 DEBUG Enter in the router
+19-02-2023 20:48:36 DEBUG The user type is Empty
+19-02-2023 20:48:36 DEBUG Enter to /register
+19-02-2023 20:48:51 DEBUG Enter in the router
+19-02-2023 20:48:51 DEBUG The user type is Empty
+19-02-2023 20:48:51 DEBUG Enter to /register
+19-02-2023 20:56:35 DEBUG Enter in the router
+19-02-2023 20:56:35 DEBUG The user type is Empty
+19-02-2023 20:56:35 DEBUG Enter to /register
+19-02-2023 20:56:37 DEBUG Enter in the router
+19-02-2023 20:56:37 DEBUG The user type is Empty
+19-02-2023 20:56:37 DEBUG Enter to /login
+19-02-2023 20:56:45 DEBUG Start the POST to the API
+19-02-2023 20:56:45 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:56:45 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 20:56:45 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODIwNSwianRpIjoiMzBkMWFhM2QtMDY4Ny00NDk0LThlZDctNTQ3YTllMzNmYzZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODIwNSwiZXhwIjoxNjc2ODYxODA1fQ.R7wiax63-j831TnZPIeQpSUiFsj7n36mAF8lPFyU218
+19-02-2023 20:56:45 DEBUG The status code for the connection is 200
+19-02-2023 20:56:45 DEBUG Authentication value True
+19-02-2023 20:56:45 DEBUG ############### Token from main.py ##############
+19-02-2023 20:56:45 DEBUG Searching the info of the User by the token
+19-02-2023 20:56:45 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODIwNSwianRpIjoiMzBkMWFhM2QtMDY4Ny00NDk0LThlZDctNTQ3YTllMzNmYzZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODIwNSwiZXhwIjoxNjc2ODYxODA1fQ.R7wiax63-j831TnZPIeQpSUiFsj7n36mAF8lPFyU218
+19-02-2023 20:56:45 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 20:56:45 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 20:56:45 DEBUG The request for the user info is: 200
+19-02-2023 20:56:45 DEBUG Saving the info to de info carrier
+19-02-2023 20:56:45 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 20:56:46 DEBUG Enter in the router
+19-02-2023 20:56:46 DEBUG The user type is Employee
+19-02-2023 20:56:46 DEBUG Enter to /register
+19-02-2023 20:56:46 DEBUG Creating the register form
+19-02-2023 20:56:46 DEBUG The field Firstname is created
+19-02-2023 20:56:46 DEBUG The field Lastname is created
+19-02-2023 20:56:46 DEBUG The field National ID is created
+19-02-2023 20:56:46 DEBUG The field Country is created
+19-02-2023 20:56:46 DEBUG The field City is created
+19-02-2023 20:56:46 DEBUG The field Address is created
+19-02-2023 20:56:46 DEBUG The field Email is created
+19-02-2023 20:56:46 DEBUG The field Cellphone Number is created
+19-02-2023 20:56:46 DEBUG Creating the date selector
+19-02-2023 20:56:46 DEBUG Creating the dropdown selector
+19-02-2023 20:56:46 DEBUG The register form is complete
+19-02-2023 20:56:46 DEBUG Click in the buttom
+19-02-2023 20:56:57 DEBUG Click in the buttom
+19-02-2023 20:56:57 DEBUG The info from the form is save
+19-02-2023 20:56:57 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '2023-02-19', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 20:56:57 DEBUG Initiate the form validation
+19-02-2023 20:56:57 DEBUG Mistake occur False, the issue is User or Employee must be at least 18 years old to be registered
+19-02-2023 21:02:28 DEBUG Click in the buttom
+19-02-2023 21:02:28 DEBUG The info from the form is save
+19-02-2023 21:02:28 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:02:28 DEBUG Initiate the form validation
+19-02-2023 21:02:28 DEBUG Successfull validation
+19-02-2023 21:02:28 DEBUG Send request to save the
+19-02-2023 21:02:28 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:02:28 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 109
+19-02-2023 21:02:28 DEBUG The response is 201
+19-02-2023 21:04:03 DEBUG Click in the buttom
+19-02-2023 21:04:03 DEBUG The info from the form is save
+19-02-2023 21:04:03 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:04:03 DEBUG Initiate the form validation
+19-02-2023 21:04:03 DEBUG Successfull validation
+19-02-2023 21:04:03 DEBUG Send request to save the
+19-02-2023 21:04:03 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:04:03 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 109
+19-02-2023 21:04:03 DEBUG The response is 201
+19-02-2023 21:04:06 DEBUG Click in the buttom
+19-02-2023 21:04:06 DEBUG The info from the form is save
+19-02-2023 21:04:06 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:04:06 DEBUG Initiate the form validation
+19-02-2023 21:04:06 DEBUG Successfull validation
+19-02-2023 21:04:06 DEBUG Send request to save the
+19-02-2023 21:04:06 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:04:06 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 109
+19-02-2023 21:04:06 DEBUG The response is 201
+19-02-2023 21:05:12 DEBUG Enter in the router
+19-02-2023 21:05:12 DEBUG The user type is Empty
+19-02-2023 21:05:12 DEBUG Enter to /register
+19-02-2023 21:05:13 DEBUG Enter in the router
+19-02-2023 21:05:13 DEBUG The user type is Empty
+19-02-2023 21:05:13 DEBUG Enter to /login
+19-02-2023 21:05:24 DEBUG Start the POST to the API
+19-02-2023 21:05:24 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:05:24 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:05:24 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODcyNCwianRpIjoiZWJlYjEwODItYTNhOS00NTE3LThiYTktMTQzMzczZDNhYjg2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODcyNCwiZXhwIjoxNjc2ODYyMzI0fQ.vXADdI78LW-6hE9DnPabnUofWTvXHY2EZykILpv3u50
+19-02-2023 21:05:24 DEBUG The status code for the connection is 200
+19-02-2023 21:05:24 DEBUG Authentication value True
+19-02-2023 21:05:24 DEBUG ############### Token from main.py ##############
+19-02-2023 21:05:24 DEBUG Searching the info of the User by the token
+19-02-2023 21:05:24 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODcyNCwianRpIjoiZWJlYjEwODItYTNhOS00NTE3LThiYTktMTQzMzczZDNhYjg2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODcyNCwiZXhwIjoxNjc2ODYyMzI0fQ.vXADdI78LW-6hE9DnPabnUofWTvXHY2EZykILpv3u50
+19-02-2023 21:05:24 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:05:24 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:05:24 DEBUG The request for the user info is: 200
+19-02-2023 21:05:24 DEBUG Saving the info to de info carrier
+19-02-2023 21:05:24 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:05:24 DEBUG Enter in the router
+19-02-2023 21:05:24 DEBUG The user type is Employee
+19-02-2023 21:05:24 DEBUG Enter to /register
+19-02-2023 21:05:24 DEBUG Creating the register form
+19-02-2023 21:05:24 DEBUG The field Firstname is created
+19-02-2023 21:05:24 DEBUG The field Lastname is created
+19-02-2023 21:05:24 DEBUG The field National ID is created
+19-02-2023 21:05:24 DEBUG The field Country is created
+19-02-2023 21:05:24 DEBUG The field City is created
+19-02-2023 21:05:24 DEBUG The field Address is created
+19-02-2023 21:05:24 DEBUG The field Email is created
+19-02-2023 21:05:24 DEBUG The field Cellphone Number is created
+19-02-2023 21:05:24 DEBUG Creating the date selector
+19-02-2023 21:05:24 DEBUG Creating the dropdown selector
+19-02-2023 21:05:24 DEBUG The register form is complete
+19-02-2023 21:05:24 DEBUG Click in the buttom
+19-02-2023 21:05:37 DEBUG Click in the buttom
+19-02-2023 21:05:37 DEBUG The info from the form is save
+19-02-2023 21:05:37 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': None, 'birthday': '2023-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:05:37 DEBUG Initiate the form validation
+19-02-2023 21:05:37 DEBUG Mistake occur False, the issue is Type empty
+19-02-2023 21:05:45 DEBUG Click in the buttom
+19-02-2023 21:05:45 DEBUG The info from the form is save
+19-02-2023 21:05:45 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'Employee', 'birthday': '2023-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:05:45 DEBUG Initiate the form validation
+19-02-2023 21:05:45 DEBUG Mistake occur False, the issue is User or Employee must be at least 18 years old to be registered
+19-02-2023 21:05:54 DEBUG Click in the buttom
+19-02-2023 21:05:54 DEBUG The info from the form is save
+19-02-2023 21:05:54 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'Employee', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:05:54 DEBUG Initiate the form validation
+19-02-2023 21:05:54 DEBUG Successfull validation
+19-02-2023 21:05:54 DEBUG Send request to save the
+19-02-2023 21:05:54 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:05:54 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 109
+19-02-2023 21:06:48 DEBUG Enter in the router
+19-02-2023 21:06:48 DEBUG The user type is Empty
+19-02-2023 21:06:48 DEBUG Enter to /register
+19-02-2023 21:06:49 DEBUG Enter in the router
+19-02-2023 21:06:49 DEBUG The user type is Empty
+19-02-2023 21:06:49 DEBUG Enter to /login
+19-02-2023 21:07:00 DEBUG Start the POST to the API
+19-02-2023 21:07:00 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:07:00 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:07:00 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODgyMCwianRpIjoiZjhlMTQ1ODMtODlkNy00YjQwLWJkMDItYjNiYWRkZmEyYjg4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODgyMCwiZXhwIjoxNjc2ODYyNDIwfQ.KjufyMVeoGvikHkkykcGMc_leN5Zq2tFOFk2JtG4oPk
+19-02-2023 21:07:00 DEBUG The status code for the connection is 200
+19-02-2023 21:07:00 DEBUG Authentication value True
+19-02-2023 21:07:00 DEBUG ############### Token from main.py ##############
+19-02-2023 21:07:00 DEBUG Searching the info of the User by the token
+19-02-2023 21:07:00 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODgyMCwianRpIjoiZjhlMTQ1ODMtODlkNy00YjQwLWJkMDItYjNiYWRkZmEyYjg4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODgyMCwiZXhwIjoxNjc2ODYyNDIwfQ.KjufyMVeoGvikHkkykcGMc_leN5Zq2tFOFk2JtG4oPk
+19-02-2023 21:07:00 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:07:00 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:07:00 DEBUG The request for the user info is: 200
+19-02-2023 21:07:00 DEBUG Saving the info to de info carrier
+19-02-2023 21:07:00 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:07:00 DEBUG Enter in the router
+19-02-2023 21:07:00 DEBUG The user type is Employee
+19-02-2023 21:07:00 DEBUG Enter to /register
+19-02-2023 21:07:00 DEBUG Creating the register form
+19-02-2023 21:07:00 DEBUG The field Firstname is created
+19-02-2023 21:07:00 DEBUG The field Lastname is created
+19-02-2023 21:07:00 DEBUG The field National ID is created
+19-02-2023 21:07:00 DEBUG The field Country is created
+19-02-2023 21:07:00 DEBUG The field City is created
+19-02-2023 21:07:00 DEBUG The field Address is created
+19-02-2023 21:07:00 DEBUG The field Email is created
+19-02-2023 21:07:00 DEBUG The field Cellphone Number is created
+19-02-2023 21:07:00 DEBUG Creating the date selector
+19-02-2023 21:07:00 DEBUG Creating the dropdown selector
+19-02-2023 21:07:00 DEBUG The register form is complete
+19-02-2023 21:07:00 DEBUG Click in the buttom
+19-02-2023 21:07:13 DEBUG Click in the buttom
+19-02-2023 21:07:13 DEBUG The info from the form is save
+19-02-2023 21:07:13 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': None, 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:07:13 DEBUG Initiate the form validation
+19-02-2023 21:07:13 DEBUG Mistake occur False, the issue is Type empty
+19-02-2023 21:07:21 DEBUG Click in the buttom
+19-02-2023 21:07:21 DEBUG The info from the form is save
+19-02-2023 21:07:21 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:07:21 DEBUG Initiate the form validation
+19-02-2023 21:07:21 DEBUG Successfull validation
+19-02-2023 21:07:21 DEBUG Send request to save the
+19-02-2023 21:07:21 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:07:21 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 109
+19-02-2023 21:07:51 DEBUG Enter in the router
+19-02-2023 21:07:51 DEBUG The user type is Empty
+19-02-2023 21:07:51 DEBUG Enter to /register
+19-02-2023 21:07:52 DEBUG Enter in the router
+19-02-2023 21:07:52 DEBUG The user type is Empty
+19-02-2023 21:07:52 DEBUG Enter to /login
+19-02-2023 21:08:00 DEBUG Start the POST to the API
+19-02-2023 21:08:00 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:08:00 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:08:00 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODg4MCwianRpIjoiMjViZjQ5YTEtMTZhYS00MTlkLWJmMzAtNzE2NzkxNWVlNTg1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODg4MCwiZXhwIjoxNjc2ODYyNDgwfQ.CWJF1BM_YnW85eN8qakvh1b9MIOxdMVo5e2WyEF9Ywk
+19-02-2023 21:08:00 DEBUG The status code for the connection is 200
+19-02-2023 21:08:00 DEBUG Authentication value True
+19-02-2023 21:08:00 DEBUG ############### Token from main.py ##############
+19-02-2023 21:08:00 DEBUG Searching the info of the User by the token
+19-02-2023 21:08:00 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODg4MCwianRpIjoiMjViZjQ5YTEtMTZhYS00MTlkLWJmMzAtNzE2NzkxNWVlNTg1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODg4MCwiZXhwIjoxNjc2ODYyNDgwfQ.CWJF1BM_YnW85eN8qakvh1b9MIOxdMVo5e2WyEF9Ywk
+19-02-2023 21:08:00 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:08:00 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:08:00 DEBUG The request for the user info is: 200
+19-02-2023 21:08:00 DEBUG Saving the info to de info carrier
+19-02-2023 21:08:00 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:08:00 DEBUG Enter in the router
+19-02-2023 21:08:00 DEBUG The user type is Employee
+19-02-2023 21:08:00 DEBUG Enter to /register
+19-02-2023 21:08:00 DEBUG Creating the register form
+19-02-2023 21:08:00 DEBUG The field Firstname is created
+19-02-2023 21:08:00 DEBUG The field Lastname is created
+19-02-2023 21:08:00 DEBUG The field National ID is created
+19-02-2023 21:08:00 DEBUG The field Country is created
+19-02-2023 21:08:00 DEBUG The field City is created
+19-02-2023 21:08:00 DEBUG The field Address is created
+19-02-2023 21:08:00 DEBUG The field Email is created
+19-02-2023 21:08:00 DEBUG The field Cellphone Number is created
+19-02-2023 21:08:00 DEBUG Creating the date selector
+19-02-2023 21:08:00 DEBUG Creating the dropdown selector
+19-02-2023 21:08:00 DEBUG The register form is complete
+19-02-2023 21:08:00 DEBUG Click in the buttom
+19-02-2023 21:08:14 DEBUG Click in the buttom
+19-02-2023 21:08:14 DEBUG The info from the form is save
+19-02-2023 21:08:14 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:08:14 DEBUG Initiate the form validation
+19-02-2023 21:08:14 DEBUG Successfull validation
+19-02-2023 21:08:14 DEBUG Send request to save the
+19-02-2023 21:08:14 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:08:14 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 109
+19-02-2023 21:08:14 DEBUG The response is 201
+19-02-2023 21:09:00 DEBUG Enter in the router
+19-02-2023 21:09:00 DEBUG The user type is Empty
+19-02-2023 21:09:00 DEBUG Enter to /register
+19-02-2023 21:09:02 DEBUG Enter in the router
+19-02-2023 21:09:02 DEBUG The user type is Empty
+19-02-2023 21:09:02 DEBUG Enter to /login
+19-02-2023 21:09:10 DEBUG Start the POST to the API
+19-02-2023 21:09:10 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:09:10 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:09:10 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODk1MCwianRpIjoiZmZiYTc2NGEtMDUyZS00OTM2LTg2MjktYWQ2NzVkM2ExMGU1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODk1MCwiZXhwIjoxNjc2ODYyNTUwfQ.D_i3mv6QEipxYer0ncL_iAJQQUAc1m0Z0Ae-Svy2nrQ
+19-02-2023 21:09:10 DEBUG The status code for the connection is 200
+19-02-2023 21:09:10 DEBUG Authentication value True
+19-02-2023 21:09:10 DEBUG ############### Token from main.py ##############
+19-02-2023 21:09:10 DEBUG Searching the info of the User by the token
+19-02-2023 21:09:10 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1ODk1MCwianRpIjoiZmZiYTc2NGEtMDUyZS00OTM2LTg2MjktYWQ2NzVkM2ExMGU1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1ODk1MCwiZXhwIjoxNjc2ODYyNTUwfQ.D_i3mv6QEipxYer0ncL_iAJQQUAc1m0Z0Ae-Svy2nrQ
+19-02-2023 21:09:10 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:09:10 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:09:10 DEBUG The request for the user info is: 200
+19-02-2023 21:09:10 DEBUG Saving the info to de info carrier
+19-02-2023 21:09:10 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:09:10 DEBUG Enter in the router
+19-02-2023 21:09:10 DEBUG The user type is Employee
+19-02-2023 21:09:10 DEBUG Enter to /register
+19-02-2023 21:09:10 DEBUG Creating the register form
+19-02-2023 21:09:10 DEBUG The field Firstname is created
+19-02-2023 21:09:10 DEBUG The field Lastname is created
+19-02-2023 21:09:10 DEBUG The field National ID is created
+19-02-2023 21:09:10 DEBUG The field Country is created
+19-02-2023 21:09:10 DEBUG The field City is created
+19-02-2023 21:09:10 DEBUG The field Address is created
+19-02-2023 21:09:10 DEBUG The field Email is created
+19-02-2023 21:09:10 DEBUG The field Cellphone Number is created
+19-02-2023 21:09:10 DEBUG Creating the date selector
+19-02-2023 21:09:10 DEBUG Creating the dropdown selector
+19-02-2023 21:09:10 DEBUG The register form is complete
+19-02-2023 21:09:10 DEBUG Click in the buttom
+19-02-2023 21:09:25 DEBUG Click in the buttom
+19-02-2023 21:09:25 DEBUG The info from the form is save
+19-02-2023 21:09:25 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:09:25 DEBUG Initiate the form validation
+19-02-2023 21:09:25 DEBUG Successfull validation
+19-02-2023 21:09:25 DEBUG Send request to save the
+19-02-2023 21:09:25 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:09:25 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 109
+19-02-2023 21:09:25 DEBUG The response is 201
+19-02-2023 21:10:33 DEBUG Enter in the router
+19-02-2023 21:10:33 DEBUG The user type is Empty
+19-02-2023 21:10:33 DEBUG Enter to /register
+19-02-2023 21:10:34 DEBUG Enter in the router
+19-02-2023 21:10:34 DEBUG The user type is Empty
+19-02-2023 21:10:34 DEBUG Enter to /login
+19-02-2023 21:10:43 DEBUG Start the POST to the API
+19-02-2023 21:10:43 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:10:43 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:10:43 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTA0MywianRpIjoiZGZiMWU5ZTYtOGZjMS00MmI3LWJkZjctZjA0MDQ1NmQyOGIyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTA0MywiZXhwIjoxNjc2ODYyNjQzfQ.tSqKazhqMliHbl8u0dkAek8Z6DuNUS7X4UArDI_ojH4
+19-02-2023 21:10:43 DEBUG The status code for the connection is 200
+19-02-2023 21:10:43 DEBUG Authentication value True
+19-02-2023 21:10:43 DEBUG ############### Token from main.py ##############
+19-02-2023 21:10:43 DEBUG Searching the info of the User by the token
+19-02-2023 21:10:43 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTA0MywianRpIjoiZGZiMWU5ZTYtOGZjMS00MmI3LWJkZjctZjA0MDQ1NmQyOGIyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTA0MywiZXhwIjoxNjc2ODYyNjQzfQ.tSqKazhqMliHbl8u0dkAek8Z6DuNUS7X4UArDI_ojH4
+19-02-2023 21:10:43 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:10:43 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:10:43 DEBUG The request for the user info is: 200
+19-02-2023 21:10:43 DEBUG Saving the info to de info carrier
+19-02-2023 21:10:43 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:10:43 DEBUG Enter in the router
+19-02-2023 21:10:43 DEBUG The user type is Employee
+19-02-2023 21:10:43 DEBUG Enter to /register
+19-02-2023 21:10:43 DEBUG Creating the register form
+19-02-2023 21:10:43 DEBUG The field Firstname is created
+19-02-2023 21:10:43 DEBUG The field Lastname is created
+19-02-2023 21:10:43 DEBUG The field National ID is created
+19-02-2023 21:10:43 DEBUG The field Country is created
+19-02-2023 21:10:43 DEBUG The field City is created
+19-02-2023 21:10:43 DEBUG The field Address is created
+19-02-2023 21:10:43 DEBUG The field Email is created
+19-02-2023 21:10:43 DEBUG The field Cellphone Number is created
+19-02-2023 21:10:43 DEBUG Creating the date selector
+19-02-2023 21:10:43 DEBUG Creating the dropdown selector
+19-02-2023 21:10:43 DEBUG The register form is complete
+19-02-2023 21:10:43 DEBUG Click in the buttom
+19-02-2023 21:10:56 DEBUG Click in the buttom
+19-02-2023 21:10:56 DEBUG The info from the form is save
+19-02-2023 21:10:56 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:10:56 DEBUG Initiate the form validation
+19-02-2023 21:10:56 DEBUG Successfull validation
+19-02-2023 21:10:56 DEBUG Send request to save the
+19-02-2023 21:10:56 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:10:56 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 109
+19-02-2023 21:10:56 DEBUG The response is 201
+19-02-2023 21:11:18 DEBUG Enter in the router
+19-02-2023 21:11:18 DEBUG The user type is Empty
+19-02-2023 21:11:18 DEBUG Enter to /register
+19-02-2023 21:11:20 DEBUG Enter in the router
+19-02-2023 21:11:20 DEBUG The user type is Empty
+19-02-2023 21:11:20 DEBUG Enter to /login
+19-02-2023 21:11:28 DEBUG Start the POST to the API
+19-02-2023 21:11:28 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:11:28 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:11:28 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTA4OCwianRpIjoiNWUzNzA2NjEtNjYzYy00MmJiLWIyZGUtMDU2ODNlOTk2YThmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTA4OCwiZXhwIjoxNjc2ODYyNjg4fQ.Kob0eNwBw40RhKWE-ivwFWDV7LGJf0be28U9CqOv3kw
+19-02-2023 21:11:28 DEBUG The status code for the connection is 200
+19-02-2023 21:11:28 DEBUG Authentication value True
+19-02-2023 21:11:28 DEBUG ############### Token from main.py ##############
+19-02-2023 21:11:28 DEBUG Searching the info of the User by the token
+19-02-2023 21:11:28 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTA4OCwianRpIjoiNWUzNzA2NjEtNjYzYy00MmJiLWIyZGUtMDU2ODNlOTk2YThmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTA4OCwiZXhwIjoxNjc2ODYyNjg4fQ.Kob0eNwBw40RhKWE-ivwFWDV7LGJf0be28U9CqOv3kw
+19-02-2023 21:11:28 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:11:28 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:11:28 DEBUG The request for the user info is: 200
+19-02-2023 21:11:28 DEBUG Saving the info to de info carrier
+19-02-2023 21:11:28 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:11:28 DEBUG Enter in the router
+19-02-2023 21:11:28 DEBUG The user type is Employee
+19-02-2023 21:11:28 DEBUG Enter to /register
+19-02-2023 21:11:28 DEBUG Creating the register form
+19-02-2023 21:11:28 DEBUG The field Firstname is created
+19-02-2023 21:11:28 DEBUG The field Lastname is created
+19-02-2023 21:11:28 DEBUG The field National ID is created
+19-02-2023 21:11:28 DEBUG The field Country is created
+19-02-2023 21:11:28 DEBUG The field City is created
+19-02-2023 21:11:28 DEBUG The field Address is created
+19-02-2023 21:11:28 DEBUG The field Email is created
+19-02-2023 21:11:28 DEBUG The field Cellphone Number is created
+19-02-2023 21:11:28 DEBUG Creating the date selector
+19-02-2023 21:11:28 DEBUG Creating the dropdown selector
+19-02-2023 21:11:28 DEBUG The register form is complete
+19-02-2023 21:11:28 DEBUG Click in the buttom
+19-02-2023 21:11:40 DEBUG Click in the buttom
+19-02-2023 21:11:40 DEBUG The info from the form is save
+19-02-2023 21:11:40 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:11:40 DEBUG Initiate the form validation
+19-02-2023 21:11:40 DEBUG Successfull validation
+19-02-2023 21:11:40 DEBUG Send request to save the
+19-02-2023 21:11:40 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:11:40 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 110
+19-02-2023 21:11:40 DEBUG The response is 201
+19-02-2023 21:11:40 DEBUG The credentials created were:  {'username': 'CArce10', 'password': 'Ca9096', 'code': 12922028, 'account_cbu': 10200230001}
+19-02-2023 21:12:15 DEBUG Enter in the router
+19-02-2023 21:12:15 DEBUG The user type is Empty
+19-02-2023 21:12:15 DEBUG Enter to /register
+19-02-2023 21:12:26 DEBUG Enter in the router
+19-02-2023 21:12:26 DEBUG The user type is Empty
+19-02-2023 21:12:26 DEBUG Enter to /register
+19-02-2023 21:13:00 DEBUG Enter in the router
+19-02-2023 21:13:00 DEBUG The user type is Empty
+19-02-2023 21:13:00 DEBUG Enter to /login
+19-02-2023 21:13:12 DEBUG Start the POST to the API
+19-02-2023 21:13:12 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:13:12 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:13:12 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTE5MiwianRpIjoiZDUyYmQzOWUtZmE1MC00ZGFlLTk3YzItNjNhNWMxODQ2NTMwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTE5MiwiZXhwIjoxNjc2ODYyNzkyfQ.1fPBogelVEIFi6eBWIgdV95iaCdzTTSdsymvxouyV5s
+19-02-2023 21:13:12 DEBUG The status code for the connection is 200
+19-02-2023 21:13:12 DEBUG Authentication value True
+19-02-2023 21:13:12 DEBUG ############### Token from main.py ##############
+19-02-2023 21:13:12 DEBUG Searching the info of the User by the token
+19-02-2023 21:13:12 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTE5MiwianRpIjoiZDUyYmQzOWUtZmE1MC00ZGFlLTk3YzItNjNhNWMxODQ2NTMwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTE5MiwiZXhwIjoxNjc2ODYyNzkyfQ.1fPBogelVEIFi6eBWIgdV95iaCdzTTSdsymvxouyV5s
+19-02-2023 21:13:12 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:13:12 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:13:12 DEBUG The request for the user info is: 200
+19-02-2023 21:13:12 DEBUG Saving the info to de info carrier
+19-02-2023 21:13:12 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:13:12 DEBUG Enter in the router
+19-02-2023 21:13:12 DEBUG The user type is Employee
+19-02-2023 21:13:12 DEBUG Enter to /register
+19-02-2023 21:13:12 DEBUG Creating the register form
+19-02-2023 21:13:12 DEBUG The field Firstname is created
+19-02-2023 21:13:12 DEBUG The field Lastname is created
+19-02-2023 21:13:12 DEBUG The field National ID is created
+19-02-2023 21:13:12 DEBUG The field Country is created
+19-02-2023 21:13:12 DEBUG The field City is created
+19-02-2023 21:13:12 DEBUG The field Address is created
+19-02-2023 21:13:12 DEBUG The field Email is created
+19-02-2023 21:13:12 DEBUG The field Cellphone Number is created
+19-02-2023 21:13:12 DEBUG Creating the date selector
+19-02-2023 21:13:12 DEBUG Creating the dropdown selector
+19-02-2023 21:13:12 DEBUG The register form is complete
+19-02-2023 21:13:12 DEBUG Click in the buttom
+19-02-2023 21:13:23 DEBUG Click in the buttom
+19-02-2023 21:13:23 DEBUG The info from the form is save
+19-02-2023 21:13:23 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': None, 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:13:23 DEBUG Initiate the form validation
+19-02-2023 21:13:23 DEBUG Mistake occur False, the issue is Type empty
+19-02-2023 21:13:28 DEBUG Click in the buttom
+19-02-2023 21:13:28 DEBUG The info from the form is save
+19-02-2023 21:13:28 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:13:28 DEBUG Initiate the form validation
+19-02-2023 21:13:28 DEBUG Successfull validation
+19-02-2023 21:13:28 DEBUG Send request to save the
+19-02-2023 21:13:28 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:13:28 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 110
+19-02-2023 21:13:28 DEBUG The response is 201
+19-02-2023 21:13:28 DEBUG The credentials created were:  {'username': 'CArce11', 'password': 'Ca9116', 'code': 13525496, 'account_cbu': 10200240001}
+19-02-2023 21:13:28 DEBUG Click in the buttom
+19-02-2023 21:13:28 DEBUG The info from the form is save
+19-02-2023 21:13:28 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:13:28 DEBUG Initiate the form validation
+19-02-2023 21:13:28 DEBUG Successfull validation
+19-02-2023 21:13:28 DEBUG Send request to save the
+19-02-2023 21:13:28 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:13:28 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 110
+19-02-2023 21:13:28 DEBUG The response is 201
+19-02-2023 21:13:28 DEBUG The credentials created were:  {'username': 'CArce12', 'password': 'Ca0435', 'code': 14077841, 'account_cbu': 10200250001}
+19-02-2023 21:14:15 DEBUG Enter in the router
+19-02-2023 21:14:15 DEBUG The user type is Empty
+19-02-2023 21:14:15 DEBUG Enter to /register
+19-02-2023 21:14:19 DEBUG Enter in the router
+19-02-2023 21:14:19 DEBUG The user type is Empty
+19-02-2023 21:14:19 DEBUG Enter to /login
+19-02-2023 21:14:37 DEBUG Start the POST to the API
+19-02-2023 21:14:37 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:14:37 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:14:37 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTI3NywianRpIjoiYmU4ZmQwMzYtODRjYy00MDQzLTllZTktOGEzZWM3ZWE5MWFkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTI3NywiZXhwIjoxNjc2ODYyODc3fQ.V_z2dmwQByVc8KLWRfrUS7n0_X0knwCkd-dByCLUzAM
+19-02-2023 21:14:37 DEBUG The status code for the connection is 200
+19-02-2023 21:14:37 DEBUG Authentication value True
+19-02-2023 21:14:37 DEBUG ############### Token from main.py ##############
+19-02-2023 21:14:37 DEBUG Searching the info of the User by the token
+19-02-2023 21:14:37 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTI3NywianRpIjoiYmU4ZmQwMzYtODRjYy00MDQzLTllZTktOGEzZWM3ZWE5MWFkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTI3NywiZXhwIjoxNjc2ODYyODc3fQ.V_z2dmwQByVc8KLWRfrUS7n0_X0knwCkd-dByCLUzAM
+19-02-2023 21:14:37 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:14:37 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:14:37 DEBUG The request for the user info is: 200
+19-02-2023 21:14:37 DEBUG Saving the info to de info carrier
+19-02-2023 21:14:37 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:14:37 DEBUG Enter in the router
+19-02-2023 21:14:37 DEBUG The user type is Employee
+19-02-2023 21:14:37 DEBUG Enter to /register
+19-02-2023 21:14:37 DEBUG Creating the register form
+19-02-2023 21:14:37 DEBUG The field Firstname is created
+19-02-2023 21:14:37 DEBUG The field Lastname is created
+19-02-2023 21:14:37 DEBUG The field National ID is created
+19-02-2023 21:14:37 DEBUG The field Country is created
+19-02-2023 21:14:37 DEBUG The field City is created
+19-02-2023 21:14:37 DEBUG The field Address is created
+19-02-2023 21:14:37 DEBUG The field Email is created
+19-02-2023 21:14:37 DEBUG The field Cellphone Number is created
+19-02-2023 21:14:37 DEBUG Creating the date selector
+19-02-2023 21:14:37 DEBUG Creating the dropdown selector
+19-02-2023 21:14:37 DEBUG The register form is complete
+19-02-2023 21:14:38 DEBUG Click in the buttom
+19-02-2023 21:14:51 DEBUG Click in the buttom
+19-02-2023 21:14:51 DEBUG The info from the form is save
+19-02-2023 21:14:51 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:14:51 DEBUG Initiate the form validation
+19-02-2023 21:14:51 DEBUG Successfull validation
+19-02-2023 21:14:51 DEBUG Send request to save the
+19-02-2023 21:14:51 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:14:51 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 110
+19-02-2023 21:14:51 DEBUG The response is 201
+19-02-2023 21:14:51 DEBUG The credentials created were:  {'username': 'CArce13', 'password': 'Ca2023', 'code': 92268158, 'account_cbu': 10200260001}
+19-02-2023 21:18:42 DEBUG Enter in the router
+19-02-2023 21:18:42 DEBUG The user type is Empty
+19-02-2023 21:18:42 DEBUG Enter to /register
+19-02-2023 21:19:41 DEBUG Enter in the router
+19-02-2023 21:19:41 DEBUG The user type is Empty
+19-02-2023 21:19:41 DEBUG Enter to /register
+19-02-2023 21:19:42 DEBUG Enter in the router
+19-02-2023 21:19:42 DEBUG The user type is Empty
+19-02-2023 21:19:42 DEBUG Enter to /login
+19-02-2023 21:19:51 DEBUG Start the POST to the API
+19-02-2023 21:19:51 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:19:51 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:19:51 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTU5MSwianRpIjoiYWE3MzJiMjUtZGUwYS00YzE4LWJmODQtNTk1MGNiZDNkMmYyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTU5MSwiZXhwIjoxNjc2ODYzMTkxfQ.1d7nyWkm6i9h43_pfzlS4d1qzIVlKr9j2FWGSCXcBPg
+19-02-2023 21:19:51 DEBUG The status code for the connection is 200
+19-02-2023 21:19:51 DEBUG Authentication value True
+19-02-2023 21:19:51 DEBUG ############### Token from main.py ##############
+19-02-2023 21:19:51 DEBUG Searching the info of the User by the token
+19-02-2023 21:19:51 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTU5MSwianRpIjoiYWE3MzJiMjUtZGUwYS00YzE4LWJmODQtNTk1MGNiZDNkMmYyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTU5MSwiZXhwIjoxNjc2ODYzMTkxfQ.1d7nyWkm6i9h43_pfzlS4d1qzIVlKr9j2FWGSCXcBPg
+19-02-2023 21:19:51 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:19:52 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:19:52 DEBUG The request for the user info is: 200
+19-02-2023 21:19:52 DEBUG Saving the info to de info carrier
+19-02-2023 21:19:52 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:19:52 DEBUG Enter in the router
+19-02-2023 21:19:52 DEBUG The user type is Employee
+19-02-2023 21:19:52 DEBUG Enter to /register
+19-02-2023 21:19:52 DEBUG Creating the register form
+19-02-2023 21:19:52 DEBUG The field Firstname is created
+19-02-2023 21:19:52 DEBUG The field Lastname is created
+19-02-2023 21:19:52 DEBUG The field National ID is created
+19-02-2023 21:19:52 DEBUG The field Country is created
+19-02-2023 21:19:52 DEBUG The field City is created
+19-02-2023 21:19:52 DEBUG The field Address is created
+19-02-2023 21:19:52 DEBUG The field Email is created
+19-02-2023 21:19:52 DEBUG The field Cellphone Number is created
+19-02-2023 21:19:52 DEBUG Creating the date selector
+19-02-2023 21:19:52 DEBUG Creating the dropdown selector
+19-02-2023 21:19:52 DEBUG The register form is complete
+19-02-2023 21:19:52 DEBUG Click in the buttom
+19-02-2023 21:21:09 DEBUG Enter in the router
+19-02-2023 21:21:09 DEBUG The user type is Empty
+19-02-2023 21:21:09 DEBUG Enter to /register
+19-02-2023 21:21:10 DEBUG Enter in the router
+19-02-2023 21:21:10 DEBUG The user type is Empty
+19-02-2023 21:21:10 DEBUG Enter to /login
+19-02-2023 21:21:18 DEBUG Start the POST to the API
+19-02-2023 21:21:18 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:21:18 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:21:18 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTY3OCwianRpIjoiNjZmMTE0MzYtMzFmMi00ZmUxLTg0MjctNDBjZjRhMGI4YWJhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTY3OCwiZXhwIjoxNjc2ODYzMjc4fQ.N1pna95Ka18wU6qj9H5UW8y2SW8kGka6wJ2clnee8tM
+19-02-2023 21:21:18 DEBUG The status code for the connection is 200
+19-02-2023 21:21:18 DEBUG Authentication value True
+19-02-2023 21:21:18 DEBUG ############### Token from main.py ##############
+19-02-2023 21:21:18 DEBUG Searching the info of the User by the token
+19-02-2023 21:21:18 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTY3OCwianRpIjoiNjZmMTE0MzYtMzFmMi00ZmUxLTg0MjctNDBjZjRhMGI4YWJhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTY3OCwiZXhwIjoxNjc2ODYzMjc4fQ.N1pna95Ka18wU6qj9H5UW8y2SW8kGka6wJ2clnee8tM
+19-02-2023 21:21:18 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:21:18 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:21:18 DEBUG The request for the user info is: 200
+19-02-2023 21:21:18 DEBUG Saving the info to de info carrier
+19-02-2023 21:21:18 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:21:18 DEBUG Enter in the router
+19-02-2023 21:21:18 DEBUG The user type is Employee
+19-02-2023 21:21:18 DEBUG Enter to /register
+19-02-2023 21:21:18 DEBUG Creating the register form
+19-02-2023 21:21:18 DEBUG The field Firstname is created
+19-02-2023 21:21:18 DEBUG The field Lastname is created
+19-02-2023 21:21:18 DEBUG The field National ID is created
+19-02-2023 21:21:18 DEBUG The field Country is created
+19-02-2023 21:21:18 DEBUG The field City is created
+19-02-2023 21:21:18 DEBUG The field Address is created
+19-02-2023 21:21:18 DEBUG The field Email is created
+19-02-2023 21:21:18 DEBUG The field Cellphone Number is created
+19-02-2023 21:21:18 DEBUG Creating the date selector
+19-02-2023 21:21:18 DEBUG Creating the dropdown selector
+19-02-2023 21:21:18 DEBUG The register form is complete
+19-02-2023 21:21:18 DEBUG Click in the buttom
+19-02-2023 21:21:56 DEBUG Enter in the router
+19-02-2023 21:21:56 DEBUG The user type is Empty
+19-02-2023 21:21:56 DEBUG Enter to /register
+19-02-2023 21:21:57 DEBUG Enter in the router
+19-02-2023 21:21:57 DEBUG The user type is Empty
+19-02-2023 21:21:57 DEBUG Enter to /login
+19-02-2023 21:22:06 DEBUG Start the POST to the API
+19-02-2023 21:22:06 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:22:06 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:22:06 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTcyNiwianRpIjoiMzBkMjlhYjgtNjRhMC00Y2M3LWI4ODgtNDAwMjVjNWMxNTllIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTcyNiwiZXhwIjoxNjc2ODYzMzI2fQ.nzfnN5N9k5xnFeG5KiOAM9cMAHkoAqa8sdujkzWnUMY
+19-02-2023 21:22:06 DEBUG The status code for the connection is 200
+19-02-2023 21:22:06 DEBUG Authentication value True
+19-02-2023 21:22:06 DEBUG ############### Token from main.py ##############
+19-02-2023 21:22:06 DEBUG Searching the info of the User by the token
+19-02-2023 21:22:06 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTcyNiwianRpIjoiMzBkMjlhYjgtNjRhMC00Y2M3LWI4ODgtNDAwMjVjNWMxNTllIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTcyNiwiZXhwIjoxNjc2ODYzMzI2fQ.nzfnN5N9k5xnFeG5KiOAM9cMAHkoAqa8sdujkzWnUMY
+19-02-2023 21:22:06 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:22:06 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:22:06 DEBUG The request for the user info is: 200
+19-02-2023 21:22:06 DEBUG Saving the info to de info carrier
+19-02-2023 21:22:06 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:22:06 DEBUG Enter in the router
+19-02-2023 21:22:06 DEBUG The user type is Employee
+19-02-2023 21:22:06 DEBUG Enter to /register
+19-02-2023 21:22:06 DEBUG Creating the register form
+19-02-2023 21:22:06 DEBUG The field Firstname is created
+19-02-2023 21:22:06 DEBUG The field Lastname is created
+19-02-2023 21:22:06 DEBUG The field National ID is created
+19-02-2023 21:22:06 DEBUG The field Country is created
+19-02-2023 21:22:06 DEBUG The field City is created
+19-02-2023 21:22:06 DEBUG The field Address is created
+19-02-2023 21:22:06 DEBUG The field Email is created
+19-02-2023 21:22:06 DEBUG The field Cellphone Number is created
+19-02-2023 21:22:06 DEBUG Creating the date selector
+19-02-2023 21:22:06 DEBUG Creating the dropdown selector
+19-02-2023 21:22:06 DEBUG The register form is complete
+19-02-2023 21:22:06 DEBUG Click in the buttom
+19-02-2023 21:22:24 DEBUG Enter in the router
+19-02-2023 21:22:24 DEBUG The user type is Empty
+19-02-2023 21:22:24 DEBUG Enter to /register
+19-02-2023 21:23:39 DEBUG Enter in the router
+19-02-2023 21:23:39 DEBUG The user type is Empty
+19-02-2023 21:23:39 DEBUG Enter to /register
+19-02-2023 21:23:40 DEBUG Enter in the router
+19-02-2023 21:23:40 DEBUG The user type is Empty
+19-02-2023 21:23:40 DEBUG Enter to /login
+19-02-2023 21:23:53 DEBUG Start the POST to the API
+19-02-2023 21:23:53 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:23:53 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:23:53 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTgzMywianRpIjoiMDE1MWNlM2EtYTRjZC00MzU1LTk5MWMtOGNkMWQ0YmMxZTg0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTgzMywiZXhwIjoxNjc2ODYzNDMzfQ.SaCSKZalXVw-JNi4FpHB9y4DEiwFVxFCjaWV_DuZxLY
+19-02-2023 21:23:53 DEBUG The status code for the connection is 200
+19-02-2023 21:23:53 DEBUG Authentication value True
+19-02-2023 21:23:53 DEBUG ############### Token from main.py ##############
+19-02-2023 21:23:53 DEBUG Searching the info of the User by the token
+19-02-2023 21:23:53 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTgzMywianRpIjoiMDE1MWNlM2EtYTRjZC00MzU1LTk5MWMtOGNkMWQ0YmMxZTg0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTgzMywiZXhwIjoxNjc2ODYzNDMzfQ.SaCSKZalXVw-JNi4FpHB9y4DEiwFVxFCjaWV_DuZxLY
+19-02-2023 21:23:53 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:23:53 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:23:53 DEBUG The request for the user info is: 200
+19-02-2023 21:23:53 DEBUG Saving the info to de info carrier
+19-02-2023 21:23:53 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:23:53 DEBUG Enter in the router
+19-02-2023 21:23:53 DEBUG The user type is Employee
+19-02-2023 21:23:53 DEBUG Enter to /register
+19-02-2023 21:23:53 DEBUG Creating the register form
+19-02-2023 21:23:53 DEBUG The field Firstname is created
+19-02-2023 21:23:53 DEBUG The field Lastname is created
+19-02-2023 21:23:53 DEBUG The field National ID is created
+19-02-2023 21:23:53 DEBUG The field Country is created
+19-02-2023 21:23:53 DEBUG The field City is created
+19-02-2023 21:23:53 DEBUG The field Address is created
+19-02-2023 21:23:53 DEBUG The field Email is created
+19-02-2023 21:23:53 DEBUG The field Cellphone Number is created
+19-02-2023 21:23:53 DEBUG Creating the date selector
+19-02-2023 21:23:53 DEBUG Creating the dropdown selector
+19-02-2023 21:23:53 DEBUG The register form is complete
+19-02-2023 21:23:53 DEBUG Click in the buttom
+19-02-2023 21:24:07 DEBUG Click in the buttom
+19-02-2023 21:24:07 DEBUG The info from the form is save
+19-02-2023 21:24:07 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:24:07 DEBUG Initiate the form validation
+19-02-2023 21:24:07 DEBUG Successfull validation
+19-02-2023 21:24:07 DEBUG Send request to save the
+19-02-2023 21:24:07 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:24:07 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 110
+19-02-2023 21:24:07 DEBUG The response is 201
+19-02-2023 21:24:07 DEBUG The credentials created were:  {'username': 'CArce14', 'password': 'Ca2328', 'code': 20588213, 'account_cbu': 10200270001}
+19-02-2023 21:24:35 DEBUG Enter in the router
+19-02-2023 21:24:35 DEBUG The user type is Empty
+19-02-2023 21:24:35 DEBUG Enter to /register
+19-02-2023 21:24:37 DEBUG Enter in the router
+19-02-2023 21:24:37 DEBUG The user type is Empty
+19-02-2023 21:24:37 DEBUG Enter to /login
+19-02-2023 21:25:02 DEBUG Enter in the router
+19-02-2023 21:25:02 DEBUG The user type is Empty
+19-02-2023 21:25:02 DEBUG Enter to /login
+19-02-2023 21:25:23 DEBUG Start the POST to the API
+19-02-2023 21:25:23 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:25:23 DEBUG http://127.0.0.1:9000 "POST /login HTTP/1.1" 200 307
+19-02-2023 21:25:23 DEBUG Response token and save on the singleton: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTkyMywianRpIjoiNjkyMWY0NGEtNGFkMi00ZGJkLWI3ZjUtZDk2NDdiZmNlMTM3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTkyMywiZXhwIjoxNjc2ODYzNTIzfQ.7HcXw1OsNH2CJSgM27ip2EUi9Aa2YkGoRLvum2PeIsw
+19-02-2023 21:25:23 DEBUG The status code for the connection is 200
+19-02-2023 21:25:23 DEBUG Authentication value True
+19-02-2023 21:25:23 DEBUG ############### Token from main.py ##############
+19-02-2023 21:25:23 DEBUG Searching the info of the User by the token
+19-02-2023 21:25:23 DEBUG The token to search is Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3Njg1OTkyMywianRpIjoiNjkyMWY0NGEtNGFkMi00ZGJkLWI3ZjUtZDk2NDdiZmNlMTM3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InBrZXRjaHVuMiIsIm5iZiI6MTY3Njg1OTkyMywiZXhwIjoxNjc2ODYzNTIzfQ.7HcXw1OsNH2CJSgM27ip2EUi9Aa2YkGoRLvum2PeIsw
+19-02-2023 21:25:23 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:25:23 DEBUG http://127.0.0.1:9000 "GET /home HTTP/1.1" 200 438
+19-02-2023 21:25:23 DEBUG The request for the user info is: 200
+19-02-2023 21:25:23 DEBUG Saving the info to de info carrier
+19-02-2023 21:25:23 DEBUG The info was save and is: {'address': 'av siempreviva', 'birthday': '1997-01-01', 'city': 'kanto', 'code': 49262626, 'country': 'pueblo paleta', 'document_id': 1234545676, 'email': 'texample.com', 'first_name': 'picachu', 'id': 13, 'last_name': 'ketchun', 'password': 'pi3298', 'phone_number': 999555998, 'type': 'Employee', 'username': 'pketchun2'}
+19-02-2023 21:25:23 DEBUG Enter in the router
+19-02-2023 21:25:23 DEBUG The user type is Employee
+19-02-2023 21:25:23 DEBUG Enter to /register
+19-02-2023 21:25:23 DEBUG Creating the register form
+19-02-2023 21:25:23 DEBUG The field Firstname is created
+19-02-2023 21:25:23 DEBUG The field Lastname is created
+19-02-2023 21:25:23 DEBUG The field National ID is created
+19-02-2023 21:25:23 DEBUG The field Country is created
+19-02-2023 21:25:23 DEBUG The field City is created
+19-02-2023 21:25:23 DEBUG The field Address is created
+19-02-2023 21:25:23 DEBUG The field Email is created
+19-02-2023 21:25:23 DEBUG The field Cellphone Number is created
+19-02-2023 21:25:23 DEBUG Creating the date selector
+19-02-2023 21:25:23 DEBUG Creating the dropdown selector
+19-02-2023 21:25:23 DEBUG The register form is complete
+19-02-2023 21:25:23 DEBUG Click in the buttom
+19-02-2023 21:25:37 DEBUG Click in the buttom
+19-02-2023 21:25:37 DEBUG The info from the form is save
+19-02-2023 21:25:37 DEBUG Info for register: {'first_name': 'Camilo', 'last_name': 'Arce', 'document_id': 123456789, 'type': 'User', 'birthday': '1997-11-21', 'country': 'Colombia', 'city': 'Cali', 'address': 'CRA 125 No 19 58', 'email': 'camiloarceg@gmail.com', 'phone_number': 3137370394}
+19-02-2023 21:25:37 DEBUG Initiate the form validation
+19-02-2023 21:25:37 DEBUG Successfull validation
+19-02-2023 21:25:37 DEBUG Send request to save the
+19-02-2023 21:25:37 DEBUG Starting new HTTP connection (1): 127.0.0.1:9000
+19-02-2023 21:25:37 DEBUG http://127.0.0.1:9000 "POST /users HTTP/1.1" 201 110
+19-02-2023 21:25:37 DEBUG The response is 201
+19-02-2023 21:25:37 DEBUG The credentials created were:  {'username': 'CArce15', 'password': 'Ca5115', 'code': 54255376, 'account_cbu': 10200280001}
