@@ -60,3 +60,4 @@ six==1.16.0
 tenacity==8.2.0
 urllib3==1.26.14
 Werkzeug==2.2.2
+openpyxl

@@ -76,16 +76,18 @@ def table(df, continent=None):
     return dff
 
 def years_data(years=[]):
-    return [{'label': str(year), 'value': year} for year in years]
+    if len(years) == 0:
+        return [{"label": "Select an Account", "value": "3", "disabled": True},]
+    else:
+        return [{'label': str(year), 'value': year} for year in years]
 
 # reports layout content
 @validate_login_session
 def reports_layout():
-    df = px.data.gapminder()
     accounts = [account['cbu'] for account in info_carrier.get_specific()]
     months = [{'label': str(i), 'value': i} for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]
     col_name = [{"name": i, "id": i} for i in ['amount', 'date', 'description', 'final_account', 'origin_account', 'type']]
-    
+    default_data = [{}]
     return \
         html.Div([
             dcc.Location(id='reports-url',pathname='/reports'),
@@ -109,7 +111,12 @@ def reports_layout():
                                 dcc.Dropdown(options=months, id='month-choice'),
                             ],
                         ),
-                        dash_table.DataTable(id = 'table', columns=col_name),    
+                           
+                        ],
+                    justify='center',
+                    style=CONTENT_STYLE),
+                    dbc.Row([
+                        dash_table.DataTable(id = 'table', columns=col_name, data=default_data), 
                         ],
                     justify='center',
                     style=CONTENT_STYLE),
@@ -144,11 +151,12 @@ def logout_(n_clicks):
     return '/login'
 
 @callback(
-    Output('table', 'data'),
-    Output('year-choice', 'options'),
-    Input('cont-choice', 'value'),
+    [Output('table', 'data'),
+    Output('year-choice', 'options')],
+    [Input('cont-choice', 'value'),
     Input('year-choice', 'value'),
-    Input('month-choice', 'value')
+    Input('month-choice', 'value')],
+    prevent_initial_call=True,
 )
 def update_graph(value, year, month):
     response = requests.get(f'http://127.0.0.1:9000/account/{value}')
@@ -160,9 +168,10 @@ def update_graph(value, year, month):
         date_list.append(date.year + y)
 
     print(value, year, month)
+    print(date_list)
     
-    if value is None and year is None and month is None:
-        dff = df
+    if year is None and month is None:
+        return no_update, years_data(date_list)
     else:
         reports = {
             "year": year,
@@ -171,8 +180,30 @@ def update_graph(value, year, month):
         }
 
         transactions_report = requests.get('http://127.0.0.1:9000/report_transactions', json=reports)
-        dict_transaction = json.loads(transactions_report.text)
+        if transactions_report.status_code == 200:
+            dict_transaction = json.loads(transactions_report.text)
+            print(dict_transaction['transactions'])
+            
+            df_dict = {
+                'amount': [],
+                'date':[],
+                'description':[],
+                'final_account':[],
+                'origin_account':[],
+                'type':[]
+            }
 
-        dff = df[df.continent==value]
+            for data in dict_transaction['transactions']:
+                df_dict['amount'].append(data['amount'])
+                df_dict['date'].append(datetime.date.fromisoformat(data['date']))
+                df_dict['description'].append(data['description'])
+                df_dict['final_account'].append(data['final_account'])
+                df_dict['origin_account'].append(data['origin_account'])
+                df_dict['type'].append(data['type'])
+                
+            
+            return pd.DataFrame.from_dict(df_dict).to_dict('records'), years_data(date_list)
+        else:
+            return no_update, years_data(date_list)
         
-    return dict_transaction['transactions'], years_data(date_list)
+        
