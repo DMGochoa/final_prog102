@@ -7,13 +7,12 @@ class log_web:
         self.__config()
 
     def __config(self):
-        current_path = os.getcwd()
-        
+        current_path = os.path.join(os.path.dirname(__file__), '..')
         logging.basicConfig(
             level=logging.DEBUG,
             format="%(asctime)s %(levelname)s %(message)s",
             datefmt="%d-%m-%Y %H:%M:%S",
-            filename=os.path.join(current_path, 'UI_web', 'log', 'basic.log')
+            filename=os.path.join(current_path, 'log', 'basic.log')
         )
         
     def debug(self, msg):

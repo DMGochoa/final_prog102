@@ -7,87 +7,15 @@ from datetime import date
 from auth import authenticate_user, validate_login_session
 from flask import session
 
-""" dash.register_page(__name__, path='/login')
-# component styling
-LOGIN_STYLE = {
-    #"display": "flex",
-    "justify-content": "space-between",
-    "width": "80rem",
-    #"padding": "2px 1px",
-    "background-color": "#f8f9fa",
-}
-INPUT_STYLE = {
-    "border": "2px solid black",
-    "border-radius": "4px",
-    "width":"20rem"
-}
-
-# Page config
-
-def form_field(title:str, extra_info:str, space:int, type:str):
-    field = html.Div(
-        [
-            dbc.Label(title, html_for=title.lower() + '_field'),
-            dbc.Input(type=type,
-                      id=title.lower() + '_field', 
-                      placeholder="Enter " + title,
-                      style=INPUT_STYLE),
-            dbc.FormText(
-                    extra_info,
-                   color="secondary",
-                ),
-        ],
-        className=f"mb-{space}",
-    )
-    return field
-
-def login_elements():
-    username = form_field(title='Username', extra_info='', space=12, type='text')
-    password = form_field(title='Password', extra_info='', space=12, type='password')
-    
-    template = html.Div([
-        dbc.Col([
-            dbc.Row(username),
-            dbc.Row(password),
-            dbc.Row(html.Center(html.P(
-                dbc.Button("Login", id="submit-button-login", color="primary", n_clicks=0),
-            )), style={"justify-content": "space-between",
-                       "margin": "1rem",})
-        ])
-    ])
-    return template
-
-def login_page():
-    output_page = html.Div([
-        dbc.Col([
-            dbc.Row([
-                dbc.Col(html.P('General bank info'), className="col-lg-8"),
-                dbc.Col([login_elements()], className="col-lg-4"),
-            ])])
-    ])
-    return output_page
-
-layout = html.Div(
-        dbc.Row(
-            [
-                dbc.Col(
-                    className="col-lg-2",
-                ),
-                dbc.Col(
-                    login_page(),
-                    className="col-lg-8",
-                    style=LOGIN_STYLE
-                ),
-                dbc.Col(
-                    className="col-lg-2",
-                ),
-                html.Br(),
-                html.Div(id="my-output-login"),
-            ]
-        ),
-) """
-
-
+# Info carrier
+from utils.data import Data_carrier
+info_carrier = Data_carrier()
+# Logger
+from utils.logging_web import log_web
+logger = log_web()
+# Token carrier
+from utils.token_singleton import Token
+token = Token()
 
 # login layout content
 def login_layout():
@@ -146,40 +74,28 @@ def login_auth(n_clicks, user, pw, code):
     credentials = {'username':user,
                    "password":pw,
                    "code" : code}
-    print(credentials)
     if authenticate_user(credentials):
         session['authed'] = True
-        return '/home',''
+        logger.debug('############### Token from main.py ##############')
+        logger.debug('Searching the info of the User by the token')
+        logger.debug(f'The token to search is {token.get_token()}')
+        user_info = requests.get('http://127.0.0.1:9000/home', headers={'Authorization':token.get_token()})
+        logger.debug(f'The request for the user info is: {user_info.status_code}')
+        logger.debug('Saving the info to de info carrier')
+        info = json.loads(user_info.text)
+        info_carrier.set_general(info['user'][0])
+        user_type = info_carrier.get_general()
+        logger.debug(f'The info was save and is: {info_carrier.get_general()}')
+        accounts_info = requests.get('http://127.0.0.1:9000/accounts', headers={'Authorization':token.get_token()})
+        logger.debug(f'The request for the account info is: {accounts_info.status_code}')
+        logger.debug('Saving the info to de info carrier')
+        info = json.loads(accounts_info.text)
+        info_carrier.set_specific(info['accounts'])
+        logger.debug(f'The info was save and is: {info_carrier.get_specific()}')
+        if user_type['type'] == 'Employee':
+            return '/register', ''
+        else:
+            return '/home',''
     session['authed'] = False
     return no_update, dbc.Alert('Incorrect credentials.',color='danger',dismissable=True)
 
-@callback(
-    Output('home-url','pathname'),
-    [Input('logout-button','n_clicks')]
-)
-def logout_(n_clicks):
-    '''clear the session and send user to login'''
-    if n_clicks is None or n_clicks==0:
-        return no_update
-    session['authed'] = False
-    return '/login'
-
-# Callback for the register users page
-@callback(
-    Output("my-output-login", "children"),
-    Input("login-button", "n_clicks"),
-    State("login-user", "value"),
-    State("login-password", "value"),
-)
-def on_button_click(
-    n_clicks,
-    value_username,
-    value_password,
-):
-    if n_clicks is None or n_clicks==0:
-        return no_update
-    user_data = {
-        "username": value_username,
-        "password": value_password,
-            }
-    #print(user_data)

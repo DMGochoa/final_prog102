@@ -1,15 +1,17 @@
 import dash_bootstrap_components as dbc
 import dash
 import json
-from dash import html, dcc, Input, Output, callback, State, no_update
+import plotly.express as px
+from dash import html, dcc, Input, Output, callback, State, no_update, dash_table
 from datetime import date
 from auth import authenticate_user, validate_login_session
-
 from flask import session
 
-# Info carrier
-from utils.data import Data_carrier
-info_carrier = Data_carrier()
+CONTENT_STYLE = {
+    "margin-left": "18rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
 
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -19,12 +21,6 @@ SIDEBAR_STYLE = {
     "width": "18rem",
     "padding": "2rem 1rem",
     "background-color": "#f8f9fa",
-}
-
-CONTENT_STYLE = {
-    "margin-left": "18rem",
-    "margin-right": "2rem",
-    "padding": "2rem 1rem",
 }
 
 user_pages = [
@@ -66,60 +62,55 @@ sidebar = html.Div(
     ],
     style=SIDEBAR_STYLE,
 )
+df = px.data.gapminder()
 
+def table(df, continent=None):
+    dff = df[df.continent==continent]
+    return dff
 
-
-
-
-# home layout content
+# reports layout content
 @validate_login_session
-def home_layout():
-
-    user_info_carrier = info_carrier.get_general()
-    accounts = info_carrier.get_specific()
-    accordion_items =[dbc.AccordionItem(html.P(f"Bank Account {accounts[i]['cbu']}:  {accounts[i]['balance']}$"),title=f"Account {i+1}") for i in range(len(accounts))]
+def reports_layout():
+    df = px.data.gapminder()
     return \
         html.Div([
-            dcc.Location(id='home-url',pathname='/home'),
-            sidebar,
-
+            dcc.Location(id='reports-url',pathname='/reports'),
             dbc.Container(
                 [
+                    sidebar,
                     dbc.Row(
                         dbc.Col(
                             [
-
-                                html.H2(f'Welcome {user_info_carrier["first_name"]} {user_info_carrier["last_name"]}, here are your accounts: ')
+                                dcc.Dropdown(options=df.continent.unique(),
+                                     id='cont-choice'),
+                                dash_table.DataTable(id = 'table', columns=[{"name": i, "id": i} for i in table(df)], data=table(df).to_dict('records')),
                             ],
                         ),
+                        
                         justify='center',
-                        style = CONTENT_STYLE
-                    ),
+                        style=CONTENT_STYLE
+                        ),
+
                     html.Br(),
-                    dbc.Accordion(
-                            accordion_items,
-        style= CONTENT_STYLE
-    ),
 
                     dbc.Row(
                         dbc.Col(
                             dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
                             width=4
                         ),
-                        justify='center'
+                        justify='center',
+                        style=CONTENT_STYLE
                     ),
 
                     
-                    html.Br(),
-
+                    html.Br()
                 ],
             )
         ]
     )
 
-
 @callback(
-    Output('home-url','pathname'),
+    Output('reports-url','pathname'),
     [Input('logout-button','n_clicks')]
 )
 def logout_(n_clicks):
@@ -129,3 +120,15 @@ def logout_(n_clicks):
     session['authed'] = False
     return '/login'
 
+@callback(
+    Output('table', 'data'),
+    Input('cont-choice', 'value')
+)
+def update_graph(value):
+    print(value)
+    if value is None:
+        dff = df
+    else:
+        dff = df[df.continent==value]
+    print(dff)
+    return table(dff, value).to_dict('records')

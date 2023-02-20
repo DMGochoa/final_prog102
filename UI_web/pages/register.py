@@ -1,21 +1,75 @@
-#import sys 
-#import os
-#sys.path.append(os.path.join(os.getcwd(), 'UI_web'))
-# __init__.py
+
 import dash_bootstrap_components as dbc
 import dash
 import json
-from dash import html, dcc, Input, Output, callback, State
+import requests
+from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
-import requests
+from flask import session
 
 # Utils
 from utils.logging_web import log_web
+from utils.validation import form_val
 
 # Setup logger
 logger = log_web()
 
+CONTENT_STYLE = {
+    "margin-left": "10rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
+
+SIDEBAR_STYLE = {
+    "position": "fixed",
+    "top": 0,
+    "left": 0,
+    "bottom": 0,
+    "width": "18rem",
+    "padding": "2rem 1rem",
+    "background-color": "#f8f9fa",
+}
+
+employee_pages = [
+    {
+        "name": "Register page.",
+        "path": "/register"
+    },
+    {
+        "name": "File registration page.",
+        "path": "/file_register"
+    },
+    {
+        "name": "User services page.",
+        "path": "/user_service"
+    }
+]
+
+sidebar = html.Div(
+    [
+       html.H2("Pages", className="display-4"),
+        html.Hr(),
+        html.P(
+            "Navigate through the page with this menu.", className="lead"
+        ),
+        dbc.Nav(
+            [
+                dbc.NavLink(
+                    [
+                        html.Div(page["name"], className="ms-2"),
+                    ],
+                    href=page["path"],
+                    active="exact",
+                )
+                for page in employee_pages
+            ],
+            vertical=True,
+            pills=True,
+        ),
+    ],
+    style=SIDEBAR_STYLE,
+)
 
 def form_field(title:str, extra_info:str, space:int, type:str):
     logger.debug(f"The field {title} is created")
@@ -92,6 +146,7 @@ def register_layout():
     form = dbc.Form([html.Div(
         [
             dcc.Location(id='register-url',pathname='/register'),
+            sidebar,
             dbc.Row([html.H3('Please enter the following information to create a new user.')]),
             dbc.Row([
                 dbc.Col(f_name), 
@@ -121,6 +176,10 @@ def register_layout():
             ]),
             dbc.Row(html.Center(html.P(
                 dbc.Button("SUBMIT", id="submit-button", color="primary", n_clicks=0), className="create_user"
+            ))),
+            dbc.Row((html.P(
+                dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
+
             )))
         ], className="col-lg-12 col-lg-6 ",
     )])  
@@ -131,7 +190,9 @@ def register_layout():
                     className="col-lg-2",
                 ),
                 dbc.Col(
-                    form,
+                    [dbc.Row(form),
+                     dbc.Row(html.Div(id='login-alert'),)],
+
                     className="col-lg-8",
                 ),
                 dbc.Col(
@@ -141,6 +202,9 @@ def register_layout():
                 html.Div(id="my-output"),
             ]
         ),
+
+        style=CONTENT_STYLE
+
     )
     logger.debug("The register form is complete")
     return layout
@@ -174,7 +238,10 @@ def on_button_click(
     value_email,
     value_type,
 ):
+    logger.debug('Click in the buttom')
     if n_clicks != 0:
+        logger.debug('The info from the form is save')
+
         user_data = {
             "first_name": value_firstname,
             "last_name": value_lastname,
@@ -187,15 +254,29 @@ def on_button_click(
             "email": value_email,
             "phone_number": value_cellphone_number,
         }
-        
-        # Toca hacer respuesta a entrada invalida
-        response = requests.post('http://127.0.0.1:9000/users', json=user_data)
-        print('-'*30)
-        print(response.headers)
-        print('-'*30)
-        print(response.json)
-        print(response.text)
-        
-        json_response = json.loads(response.text)
-        with open("user_credentials.txt", "w") as f:
-            f.write(json.dumps(json_response))
+        logger.debug(f'Info for register: {user_data}')
+        val, issue = form_val(user_data)
+        if val:
+            logger.debug('Send request to save the')
+            response = requests.post('http://127.0.0.1:9000/users', json=user_data)
+            logger.debug(f'The response is {response.status_code}')
+            
+            json_response = json.loads(response.text)
+            with open("user_credentials.txt", "w") as f:
+                f.write(json.dumps(json_response))
+        else:
+            logger.debug(f'Mistake occur {val}, the issue is {issue}')
+            return dbc.Alert(issue,
+                             color='danger',
+                             dismissable=True)
+
+@callback(
+    Output('register-url','pathname'),
+    [Input('logout-button','n_clicks')]
+)
+def logout_(n_clicks):
+    '''clear the session and send user to login'''
+    if n_clicks is None or n_clicks==0:
+        return no_update
+    session['authed'] = False
+    return '/login'

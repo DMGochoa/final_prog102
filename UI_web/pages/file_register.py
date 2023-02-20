@@ -4,12 +4,19 @@ import json
 from dash import html, dcc, Input, Output, callback, State, no_update
 from datetime import date
 from auth import authenticate_user, validate_login_session
-
 from flask import session
 
-# Info carrier
-from utils.data import Data_carrier
-info_carrier = Data_carrier()
+# Utils
+from utils.logging_web import log_web
+
+# Setup logger
+logger = log_web()
+
+CONTENT_STYLE = {
+    "margin-left": "18rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
 
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -21,30 +28,24 @@ SIDEBAR_STYLE = {
     "background-color": "#f8f9fa",
 }
 
-CONTENT_STYLE = {
-    "margin-left": "18rem",
-    "margin-right": "2rem",
-    "padding": "2rem 1rem",
-}
-
-user_pages = [
+employee_pages = [
     {
-        "name": "Home Page.",
-        "path": "/home"
+        "name": "Register page.",
+        "path": "/register"
     },
     {
-        "name": "Transactions Page.",
-        "path": "/transactions"
+        "name": "File registration page.",
+        "path": "/file_register"
     },
     {
-        "name": "Reports page.",
-        "path": "/reports"
+        "name": "User services page.",
+        "path": "/user_service"
     }
 ]
 
 sidebar = html.Div(
     [
-        html.H2("Pages", className="display-4"),
+       html.H2("Pages", className="display-4"),
         html.Hr(),
         html.P(
             "Navigate through the page with this menu.", className="lead"
@@ -58,7 +59,7 @@ sidebar = html.Div(
                     href=page["path"],
                     active="exact",
                 )
-                for page in user_pages
+                for page in employee_pages
             ],
             vertical=True,
             pills=True,
@@ -67,59 +68,46 @@ sidebar = html.Div(
     style=SIDEBAR_STYLE,
 )
 
-
-
-
-
 # home layout content
 @validate_login_session
-def home_layout():
-
-    user_info_carrier = info_carrier.get_general()
-    accounts = info_carrier.get_specific()
-    accordion_items =[dbc.AccordionItem(html.P(f"Bank Account {accounts[i]['cbu']}:  {accounts[i]['balance']}$"),title=f"Account {i+1}") for i in range(len(accounts))]
+def file_register_layout():
+    logger.debug('Charging the file register layout')
     return \
         html.Div([
-            dcc.Location(id='home-url',pathname='/home'),
-            sidebar,
-
+            dcc.Location(id='file_register-url',pathname='/file_register'),
             dbc.Container(
                 [
                     dbc.Row(
                         dbc.Col(
                             [
-
-                                html.H2(f'Welcome {user_info_carrier["first_name"]} {user_info_carrier["last_name"]}, here are your accounts: ')
+                                html.H2('File register page.'),
+                                sidebar
                             ],
                         ),
                         justify='center',
-                        style = CONTENT_STYLE
+                        style=CONTENT_STYLE
                     ),
+
                     html.Br(),
-                    dbc.Accordion(
-                            accordion_items,
-        style= CONTENT_STYLE
-    ),
 
                     dbc.Row(
                         dbc.Col(
                             dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
                             width=4
                         ),
-                        justify='center'
+                        justify='center',
+                        style=CONTENT_STYLE
                     ),
 
                     
                     html.Br(),
-
                 ],
             )
         ]
     )
 
-
 @callback(
-    Output('home-url','pathname'),
+    Output('file_register-url','pathname'),
     [Input('logout-button','n_clicks')]
 )
 def logout_(n_clicks):
@@ -128,4 +116,3 @@ def logout_(n_clicks):
         return no_update
     session['authed'] = False
     return '/login'
-

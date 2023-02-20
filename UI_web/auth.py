@@ -4,6 +4,14 @@ from dash import html, dcc
 from flask import session
 import requests
 
+
+# Logger
+from utils.logging_web import log_web
+logger = log_web()
+# Token carrier
+from utils.token_singleton import Token
+token = Token()
+
 # fake users dict
 users = {
     'test':'pw'
@@ -21,18 +29,19 @@ def authenticate_user(credentials):
     #    "password" : "Di4724",
     #    "code" : 52327171
     #}
-    
+
+    logger.debug('Start the POST to the API')
     response = requests.post('http://127.0.0.1:9000/login', 
                              json=credentials)
-    print(response.status_code)
-    
     if int(response.status_code) == 200:
         authed = True
+        token.set_token(response.text)
+        logger.debug(f'Response token and save on the singleton: {token.get_token()}')
+        logger.debug(f'The status code for the connection is {response.status_code}')
     else:
         authed = False
-    #authed = (credentials['user'] in users) and (credentials['password'] == users[credentials['user']])
-    # 
-    #
+    logger.debug(f'Authentication value {authed}')
+
     return authed
 
 def validate_login_session(f):
