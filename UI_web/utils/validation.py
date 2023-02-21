@@ -21,7 +21,7 @@ def form_val(user_data):
         elif user_data['type'] == None:
             issue = 'Type empty'
         elif 360*8 > diff_date.days:
-            issue = "Your aren't an adult"
+            issue = "User or Employee must be at least 18 years old to be registered"
         elif len(user_data['country']) == 1:
             issue = 'Country is empty'
         elif len(user_data['city']) == 1:
@@ -46,7 +46,7 @@ def form_val(user_data):
         elif user_data['type'] == None:
             issue = 'Type empty'
         elif 360*8 > diff_date.days:
-            issue = "Your aren't an adult"
+            issue = "User or Employee must be at least 18 years old to be registered"
         elif user_data['country'] == None:
             issue = 'Country is empty'
         elif user_data['city'] == None:

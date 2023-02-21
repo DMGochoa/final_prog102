@@ -1,4 +1,5 @@
 import dash_bootstrap_components as dbc
+
 import dash
 import json
 import requests
@@ -197,13 +198,17 @@ def make_deposit_click(
     if val:
         logger.debug('Send request to save the deposit data')
         response = requests.post('http://127.0.0.1:9000/transaction', json=deposit_data)
+        if response.status_code == 400:
+             return dbc.Alert("Error with account destiny or amount",
+                            color='danger',
+                            dismissable=True)
         print('-'*30)
         print(response.headers)
         print('-'*30)
         print(response.json)
         print(response.text)
         return dbc.Alert('Withdraw sucessfull!!!',
-                            color='sucess',
+                            color='success',
                             dismissable=True)
 
     else:
@@ -243,6 +248,10 @@ def make_withdraw_click(
     if val:
         logger.debug('Send request to save the withdraw data')
         response = requests.post('http://127.0.0.1:9000/transaction', json=withdraw_data)
+        if response.status_code == 400:
+             return dbc.Alert("Error with account destiny or amount",
+                            color='danger',
+                            dismissable=True)
         print('-'*30)
         print(response.headers)
         print('-'*30)
@@ -290,6 +299,10 @@ def make_transaction_click(
     if val:
         logger.debug('Send request to save the transaction data')
         response = requests.post('http://127.0.0.1:9000/transaction', json=transaction_data)
+        if response.status_code == 400:
+             return dbc.Alert("Error with account destiny or amount",
+                            color='danger',
+                            dismissable=True)
         print('-'*30)
         print(response.headers)
         print('-'*30)

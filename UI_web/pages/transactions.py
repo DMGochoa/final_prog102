@@ -19,7 +19,7 @@ from utils.data import Data_carrier
 info_carrier = Data_carrier()
 
 CONTENT_STYLE = {
-    "margin-left": "18rem",
+    "margin-left": "10rem",
     "margin-right": "2rem",
     "padding": "2rem 1rem",
 }
@@ -79,7 +79,7 @@ sidebar = html.Div(
 def transactions_layout():
     user_info = info_carrier.get_general()
     accounts = info_carrier.get_specific()
-    option_accounts = [{"label": f"account {i+1}", "value": f"{accounts[i]['cbu']}"} for i in range(len(accounts))] 
+    option_accounts = [{"label": f"account #{accounts[i]['cbu']}", "value": f"{accounts[i]['cbu']}"} for i in range(len(accounts))] 
 
     return \
         html.Div([
@@ -112,13 +112,42 @@ def transactions_layout():
                     html.Br(),
                     dbc.Input(id="destiny-account", type="number", placeholder="Type destiny account cbu"),
                     html.Br(),
-                    dbc.Button("Make transfer", id="make-transfer", n_clicks=0)
-                ],
-                title="Transfer money to other account in the bank",
+                    dbc.Button("Make transfer", id="make-transfer", n_clicks=0),
+                    dbc.Modal(
+                            [
+                                dbc.ModalHeader(dbc.ModalTitle("Please confirm the information: "), close_button=True),
+                                dbc.ModalBody(id="modal-body"),
+                                dbc.ModalFooter([
+                                    dbc.Button(
+                                        "Confirm",
+                                        id="confirm-transaction",
+                                        className="ms-auto",
+                                        color='success',
+                                        n_clicks=0,
+                                    ),
+                                    dbc.Button(
+                                        "Cancel",
+                                        id="cancel-transaction",
+                                        className="ms-auto",
+                                        color='danger',
+                                        n_clicks=0,
+                                    ),
+                                ],
+                                ),
+                            ],
+                            id="confirm-modal",
+                            centered=True,
+                            is_open=False,
+                        ),
+                    ],
+                    title="Transfer money to other account in the bank",
+                ),
+        ],style= CONTENT_STYLE
             ),
         ],
         style= CONTENT_STYLE
     ),
+    
                     dbc.Row(
                         dbc.Col(
                             dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
@@ -128,15 +157,44 @@ def transactions_layout():
                     ),
                     html.Div(id="transactions-output"),
                     html.Br(),
-                ],
+                ]
             )
-        ]
-    )
-        
+
+
+@callback(
+    Output("modal-body", "children"),
+    Input("make-transfer", "n_clicks"),
+    State("select-transfer", "value"),
+    State("transfer-amount", "value"),
+    State("destiny-account", "value"),
+)
+def create_modal_body(n, origin_account, transfer_amount, destiny_account):
+    modale_body = [
+        html.P(f"Origin account: {origin_account}"),
+        html.Br(),
+        html.P(f"Tranfer amount: {transfer_amount} $"),
+        html.Br(),
+        html.P(f"Destiny account: {destiny_account}"),
+        html.Br(),
+    ]
+    return modale_body
+
+@callback(
+    Output("confirm-modal", "is_open"),
+    Input("make-transfer", "n_clicks"), 
+    Input("cancel-transaction", "n_clicks"),
+    Input("confirm-transaction", "n_clicks"),
+    State("confirm-modal", "is_open"),
+)
+def toggle_modal(n1, n2, n3, is_open):
+    if n1 or n2 or n3:
+        return not is_open
+    return is_open
+
 # Callback for the transaction between accounts
 @callback(
     Output("transactions-output", "children"),
-    Input("make-transfer", "n_clicks"),
+    Input("confirm-transaction", "n_clicks"),
     State("select-transfer", "value"),
     State("transfer-amount", "value"),
     State("destiny-account", "value"),
@@ -165,11 +223,11 @@ def make_transaction_click(
     if val:
         logger.debug('Send request to save the transaction data')
         response = requests.post('http://127.0.0.1:9000/transaction', json=transaction_data)
-        print('-'*30)
-        print(response.headers)
-        print('-'*30)
-        print(response.json)
-        print(response.text)
+        if response.status_code == 400:
+             return dbc.Alert("Error with account destiny or amount",
+                            color='danger',
+                            dismissable=True)
+        logger.debug(f'The response is {response.status_code}')
         return dbc.Alert('Transaction sucessfull!!!',
                          color='success',
                          dismissable=True)

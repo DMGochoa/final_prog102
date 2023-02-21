@@ -1,4 +1,4 @@
-
+import os
 import dash_bootstrap_components as dbc
 import dash
 import json
@@ -14,6 +14,8 @@ from utils.validation import form_val
 
 # Setup logger
 logger = log_web()
+
+current_path = os.path.join(os.path.dirname(__file__), '..', '..', 'user_credentials.txt')
 
 CONTENT_STYLE = {
     "margin-left": "10rem",
@@ -109,6 +111,22 @@ extra_data = ['Please enter the ' +  titles[0],
               'Please enter your ' + titles[8]
             ]
 
+def create_modal_body(username, password, code, account):
+    modale_body = [
+        html.P(f"Username: {username}"),
+        html.Br(),
+        html.P(f"Pasword: {password}"),
+        html.Br(),
+        html.P(f"Code: {code}"),
+        html.Br(),
+        html.P(f"New account: {account}"),
+        html.Br(),
+        dbc.Alert('Successfully created',
+                             color='success',
+                             dismissable=True)
+    ]
+    return modale_body
+
 # register layout content
 @validate_login_session
 def register_layout():
@@ -177,10 +195,27 @@ def register_layout():
             dbc.Row(html.Center(html.P(
                 dbc.Button("SUBMIT", id="submit-button", color="primary", n_clicks=0), className="create_user"
             ))),
-            dbc.Row((html.P(
+            dbc.Row((html.P([
                 dbc.Button('Logout',id='logout-button',color='danger',size='sm'),
-
-            )))
+                dbc.Modal(
+                            [
+                                dbc.ModalHeader(dbc.ModalTitle("Here is your login information: "), close_button=True),
+                                dbc.ModalBody(id="modal-body-register"),
+                                dbc.ModalFooter([
+                                    dbc.Button(
+                                        "Close",
+                                        id="close-modal",
+                                        className="ms-auto",
+                                        n_clicks=0,
+                                    ),
+                                ],
+                                ),
+                            ],
+                            id="credentials-modal",
+                            centered=True,
+                            is_open=False,
+                        ),
+        ])))
         ], className="col-lg-12 col-lg-6 ",
     )])  
     layout = html.Div(
@@ -212,7 +247,7 @@ def register_layout():
 
 # Callback for the register users page
 @callback(
-    Output(component_id="my-output", component_property="children"),
+    Output("modal-body-register", "children"),
     Input("submit-button", "n_clicks"),
     State("firstname_field", "value"),
     State("lastname_field", "value"),
@@ -259,16 +294,37 @@ def on_button_click(
         if val:
             logger.debug('Send request to save the')
             response = requests.post('http://127.0.0.1:9000/users', json=user_data)
-            logger.debug(f'The response is {response.status_code}')
-            
             json_response = json.loads(response.text)
-            with open("user_credentials.txt", "w") as f:
+            if response.status_code == 400:
+             return dbc.Alert("Error invalid user data",
+                            color='danger',
+                            dismissable=True)
+            logger.debug(f'The response is {response.status_code}')
+            modal_body = create_modal_body(json_response["username"], json_response["password"], json_response["code"], json_response["account_cbu"])
+            logger.debug(f'The credentials created were:  {json_response}')
+            with open(current_path, "w") as f:
                 f.write(json.dumps(json_response))
+            return modal_body
+
         else:
             logger.debug(f'Mistake occur {val}, the issue is {issue}')
             return dbc.Alert(issue,
                              color='danger',
                              dismissable=True)
+
+
+
+
+@callback(
+    Output("credentials-modal", "is_open"),
+    Input("submit-button", "n_clicks"), 
+    Input("close-modal", "n_clicks"),
+    State("credentials-modal", "is_open"),
+)
+def toggle_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
 
 @callback(
     Output('register-url','pathname'),
