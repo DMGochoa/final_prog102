@@ -8,3 +8,4 @@ backend/main.py
 backend/backend.log
 backend/utils/__pycache__
 .idea
+.gitignore
