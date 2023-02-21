@@ -1,5 +1,6 @@
 #: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
 #: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import toast kivymd.toast.toast
 
 <ElementCard@MDCard>:
     radius: '10dp'
@@ -91,27 +92,46 @@
             text: "LOG IN"
             font_size: 15
             pos_hint: {"center_x": 0.1, "center_y": -0.2}
-            on_press: app.login()   
-            # on_release:
-            #     root.current = 'main_menu'       
+            on_press: app.login()       
 
     MDScreen:  
         name: 'main_menu'       
-        md_bg_color: 0, .5, .5, 1
+        md_bg_color: 0, .3, .3, 1
+        
         MDBoxLayout:
             orientation: 'vertical'
-            MDBoxLayout: 
+
+            MDGridLayout:
+                cols: 2 
                 size_hint: 1, 0.2    
-                orientation: 'horizontal'
-                padding: '10dp'
+                # orientation: 'horizontal'
+                padding: ['10dp', '10dp', '10dp', '10dp']    
+                spacing: '10dp'
                 MDCard:
                     radius: '10dp'
                     padding: '20dp'
-                    # line_color: 1,0,1,1
+                    spacing: '10dp'
                     MDLabel:
-                        text: 'Welcome! ' + root.ids.user.text + "\n Account: \n Balance $$$" # + new_client.get_account() + new_client.get_balance_Account()
+                        id: user_data_lbl
+                        text: ''
                         halign: 'center'
                         pos_hint: {"center_y": 0.5}
+                    MDLabel:
+                        id: acc_data_lbl
+                        text: ''
+                        halign: 'center'
+                        pos_hint: {"center_y": 0.5}    
+                MDCard:
+                    radius: '10dp'
+                    padding: '20dp'
+                    spacing: '10dp'
+                    MDLabel:
+                        id: more_acc_lbl
+                        text: ''
+                        font_size: 15
+                        halign: 'center'
+                        pos_hint: {"center_y": 0.5}
+
 
             MDGridLayout:
                 cols: 3
@@ -125,13 +145,14 @@
                     image: 'Images/transfer.jpg'
                     on_release:
                         root.current = 'transfer_screen'
-                                      
+                                    
 
                 ElementCard:
                     text: 'REPORTS'
                     sub_text: 'Reportes'
                     image: 'Images/bank_report.jpg'
                     on_release:
+                        app.clear_report_fields()
                         root.current = 'report_screen'
 
                 ElementCard:
@@ -145,34 +166,51 @@
                 size_hint: 1, 0.2    
                 orientation: 'horizontal'
                 padding: '10dp'
+                spacing: '10dp'
                 MDFillRoundFlatButton:
                     text: "LOG OUT"
                     font_size: 15
                     foreground_color: 1, 0, 1, 1
                     pos_hint: {"center_y": .5}
-                    on_press : app.clear_fields()
+                    on_press : app.clear_login_fields()
                     on_release:
                         #app.root.transition = SlideTransition(direction='right') 
                         #app.root.transition = RiseInTransition()
                         root.current = 'login'      
                         # Investigar transitions
+                MDFillRoundFlatButton:
+                    text: "Refresh"
+                    font_size: 15
+                    foreground_color: 1, 0, 1, 1
+                    pos_hint: {"center_y": .5}
+                    on_press : app.show_account()        
                                                           
     MDScreen:
         name: 'transfer_screen'
+        md_bg_color: 0, .3, .3, 1
         MDBoxLayout:   
             orientation: 'vertical'
-            pos_hint: {"center_x": 0.7, "center_y":0.9} #
+            pos_hint: {"center_x": 0.7, "center_y":0.7} #
             spacing: '10dp'
             MDBoxLayout:
                 size_hint: 1, 0.8    
                 orientation: 'vertical'
                 spacing: '10dp'
-                pos_hint: {"center_x": 0.7, "center_y":0.7} #
+                pos_hint: {"center_x": 0.7, "center_y":0.5} 
+               
                 MDTextField:
                     mode: "round"
-                    id: cbu
+                    id: origin_cbu
                     #icon_left: "account-check"
-                    hint_text: "CBU"
+                    hint_text: "Origin CBU"
+                    width: 220
+                    font_size: 20
+                    size_hint_x: None
+                MDTextField:
+                    mode: "round"
+                    id: destiny_cbu
+                    #icon_left: "account-check"
+                    hint_text: "Destination CBU"
                     width: 220
                     font_size: 20
                     size_hint_x: None
@@ -191,7 +229,7 @@
                     text: "SEND TRANSACTION"
                     font_size: 15
                     halign: 'center'
-                    #on_press: app.login() 
+                    on_press: app.validate_transaction() 
             MDBoxLayout:
                 orientation: 'vertical' ##
                 pos_hint: {"center_x": 0.5, "center_y":0.5}
@@ -209,10 +247,109 @@
 
     MDScreen:
         name: 'report_screen'
-        CustomizeScreen:
-            text: 'REPORT'
+        md_bg_color: 0, .3, .3, 1
+        
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDGridLayout:
+                cols: 4 
+                size_hint: 1, 0.2    
+                pos_hint: {"center_y":0.5} 
+                # orientation: 'horizontal'
+                padding: ['10dp', '10dp', '10dp', '10dp']    
+                spacing: '10dp'
+                MDTextField:
+                    mode: "round"
+                    id: report_year
+                    #icon_left: "key-variant"
+                    hint_text: "Year"
+                    width: 150
+                    font_size: 20
+                    #size_hint_x: None
+                MDTextField:
+                    mode: "round"
+                    id: report_month
+                    #icon_left: "key-variant"
+                    hint_text: "Month"
+                    width: 150
+                    font_size: 20
+                    #size_hint_x: None
+                MDTextField:
+                    mode: "round"
+                    id: report_cbu
+                    #icon_left: "key-variant"
+                    hint_text: "CBU"
+                    width: 150
+                    font_size: 20
+                    #size_hint_x: None
+                MDFillRoundFlatButton:
+                    text: 'Generate Report'    
+                    on_press: app.show_report()    
+                
+
+            MDGridLayout:
+                cols: 5 
+                size_hint: 1, 0.7    
+                # orientation: 'horizontal'
+                padding: ['10dp', '10dp', '10dp', '10dp']    
+                spacing: '10dp'
+                MDLabel:
+                    id: rep_final_account_lbl
+                    text: ''
+                    font_size: 15
+                    halign: 'center'
+                    #pos_hint: {"center_y": 0.5}
+                MDLabel:
+                    id: rep_origin_account_lbl
+                    text: ''
+                    font_size: 15
+                    halign: 'center'
+                MDLabel:
+                    id: rep_report_amount_lbl
+                    text: ''
+                    font_size: 15
+                    halign: 'center'
+                MDLabel:
+                    id: rep_description_lbl
+                    text: ''
+                    font_size: 15
+                    halign: 'center'
+                MDLabel:
+                    id: rep_date_lbl
+                    text: ''
+                    font_size: 15
+                    halign: 'center'                
+              
+
+            MDBoxLayout: 
+                size_hint: 1, 0.1    
+                orientation: 'horizontal'
+                padding: '10dp'
+                spacing: '10dp'
+                MDFillRoundFlatButton:
+                    text: "To Main Menu"
+                    font_size: 15
+                    foreground_color: 1, 0, 1, 1
+                    spacing: '10dp'
+                    # pos_hint: {"center_y": .5}
+                    #on_press : app.clear_login_fields()
+                    on_release:
+                        app.root.current = 'main_menu'
+                        app.root.transition = SlideTransition(direction='left')
+                MDFillRoundFlatButton:
+                    text: "Clear"
+                    spacing: '10dp'
+                    font_size: 15
+                    foreground_color: 1, 0, 1, 1
+                    # pos_hint: {"center_y": .5}
+                    on_press : app.clear_report_fields()
+     
+        
+        # CustomizeScreen:
+        #     text: 'REPORT'
 
     MDScreen:
         name: 'service_screen'
+        md_bg_color: 0, .3, .3, 1
         CustomizeScreen:
             text: 'SERVICES'        
