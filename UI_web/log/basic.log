@@ -6072,3 +6072,17 @@
 20-02-2023 16:29:12 DEBUG Click in the buttom Make withdraw
 20-02-2023 16:29:13 DEBUG Click in the buttom Make transaction
 20-02-2023 16:29:13 DEBUG Click in the buttom Make deposit
+21-02-2023 11:12:28 INFO Dash is running on http://127.0.0.1:8050/
+
+21-02-2023 11:12:32 DEBUG Enter in the router
+21-02-2023 11:12:32 DEBUG The user type is Empty
+21-02-2023 11:12:32 DEBUG Enter to /
+21-02-2023 11:21:53 DEBUG Enter in the router
+21-02-2023 11:21:53 DEBUG The user type is Empty
+21-02-2023 11:21:53 DEBUG Enter to /
+21-02-2023 11:22:44 DEBUG Enter in the router
+21-02-2023 11:22:44 DEBUG The user type is Empty
+21-02-2023 11:22:44 DEBUG Enter to /
+21-02-2023 11:27:56 DEBUG Enter in the router
+21-02-2023 11:27:56 DEBUG The user type is Empty
+21-02-2023 11:27:56 DEBUG Enter to /

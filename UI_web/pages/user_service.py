@@ -207,7 +207,7 @@ def make_deposit_click(
         print('-'*30)
         print(response.json)
         print(response.text)
-        return dbc.Alert('Withdraw sucessfull!!!',
+        return dbc.Alert('Deposit sucessfull!!!',
                             color='success',
                             dismissable=True)
 
@@ -308,7 +308,7 @@ def make_transaction_click(
         print('-'*30)
         print(response.json)
         print(response.text)
-        return dbc.Alert('Withdraw sucessfull!!!',
+        return dbc.Alert('Transaction sucessfull!!!',
                             color='success',
                             dismissable=True)
 
