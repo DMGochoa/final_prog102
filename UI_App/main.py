@@ -7,11 +7,6 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
-# over test
-# for refresh
-from kivymd.uix.refreshlayout import MDScrollViewRefreshLayout
-from kivy.clock import Clock
-# over test
 from token_singleton import token
 
 logger = log_config.logger
@@ -29,7 +24,6 @@ class MainApp(MDApp):
         self.theme_cls.theme_style = 'Dark'
         self.theme_cls.primary_palette = 'Teal'
         Builder.load_file('design.kv')
-
         return Ui()
 
     # Log the user
@@ -43,6 +37,7 @@ class MainApp(MDApp):
             self.show_account()
             self.root.current = 'main_menu'
 
+    # Execute the transaction, ckecking just for the amount (wich in fact does the backend )
     def transaction(self, *args):
         logger.debug(f'Transaction starting...')
         try:
@@ -214,6 +209,8 @@ class MainApp(MDApp):
         return res
 
     def show_report(self):
+        # add loggers
+
         try:
             year = int(self.root.ids.report_year.text)
             month = int(self.root.ids.report_month.text)
@@ -409,6 +406,9 @@ class MainApp(MDApp):
         self.root.ids.rep_report_amount_lbl.text = ''
         self.root.ids.rep_description_lbl.text = ''
         self.root.ids.rep_date_lbl.text = ''
+        self.root.ids.report_year.text = ''
+        self.root.ids.report_month.text = ''
+        # self.root.ids.report_cbu.text = ''
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 #: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
 #: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import toast kivymd.toast.toast
 
 <ElementCard@MDCard>:
     radius: '10dp'
@@ -95,7 +96,7 @@
 
     MDScreen:  
         name: 'main_menu'       
-        md_bg_color: 0, .5, .5, 1
+        md_bg_color: 0, .3, .3, 1
         
         MDBoxLayout:
             orientation: 'vertical'
@@ -186,7 +187,7 @@
                                                           
     MDScreen:
         name: 'transfer_screen'
-        md_bg_color: 0, 0, 0, 1
+        md_bg_color: 0, .3, .3, 1
         MDBoxLayout:   
             orientation: 'vertical'
             pos_hint: {"center_x": 0.7, "center_y":0.7} #
@@ -246,13 +247,14 @@
 
     MDScreen:
         name: 'report_screen'
-        md_bg_color: 0, .5, .5, 1
+        md_bg_color: 0, .3, .3, 1
         
         MDBoxLayout:
             orientation: 'vertical'
             MDGridLayout:
                 cols: 4 
                 size_hint: 1, 0.2    
+                pos_hint: {"center_y":0.5} 
                 # orientation: 'horizontal'
                 padding: ['10dp', '10dp', '10dp', '10dp']    
                 spacing: '10dp'
@@ -282,11 +284,7 @@
                     #size_hint_x: None
                 MDFillRoundFlatButton:
                     text: 'Generate Report'    
-                    #pos_hint: {'center_x': 0.3}
-                    on_press: app.show_report() 
-                    #on_release:   
-                    #     app.root.current = 'main_menu'
-                    #     app.root.transition = SlideTransition(direction='left')        
+                    on_press: app.show_report()    
                 
 
             MDGridLayout:
@@ -336,10 +334,8 @@
                     # pos_hint: {"center_y": .5}
                     #on_press : app.clear_login_fields()
                     on_release:
-                        #app.root.transition = SlideTransition(direction='right') 
-                        #app.root.transition = RiseInTransition()
-                        root.current = 'main_menu'      
-                        # Investigar transitions
+                        app.root.current = 'main_menu'
+                        app.root.transition = SlideTransition(direction='left')
                 MDFillRoundFlatButton:
                     text: "Clear"
                     spacing: '10dp'
@@ -347,16 +343,13 @@
                     foreground_color: 1, 0, 1, 1
                     # pos_hint: {"center_y": .5}
                     on_press : app.clear_report_fields()
-                    #on_release:
-                        #app.root.transition = SlideTransition(direction='right') 
-                        #app.root.transition = RiseInTransition()
-                        #root.current = 'main_menu'      
-                        # Investigar transitions        
+     
         
         # CustomizeScreen:
         #     text: 'REPORT'
 
     MDScreen:
         name: 'service_screen'
+        md_bg_color: 0, .3, .3, 1
         CustomizeScreen:
             text: 'SERVICES'        
