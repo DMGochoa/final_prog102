@@ -6,6 +6,7 @@ class AccountSchema(Schema):
     cbu = fields.Integer(allow_none=False)
     balance = fields.Float(allow_none=False)
     currency = fields.Str(allow_none=False)
+    creation_date = fields.Date(allow_none=False)
     id = fields.Int(allow_none=False)
 
     class Meta:
