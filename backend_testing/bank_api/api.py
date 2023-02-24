@@ -42,4 +42,4 @@ def create_app(db_location):
 
 if __name__ == "__main__":
     app = create_app(f"sqlite:///{PROJECT_ROOT}/{BANK_DATABASE}")
-    app.run(debug=True)
+    app.run(host="127.0.0.1", port=9000, debug=True)
