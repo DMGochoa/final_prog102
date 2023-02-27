@@ -7,9 +7,16 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from flask import Flask
 from flask_restful import Api
 
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
+from datetime import timedelta
+
 from bank_api.constants import PROJECT_ROOT, BANK_DATABASE
 from bank_api.database import db
 from bank_api.resources.users_resource import UserResource, USERS_ENDPOINT
+from bank_api.resources.login_resource import LoginResource, LOGIN_ENDPOINT
 
 def create_app(db_location):
     """
@@ -30,9 +37,13 @@ def create_app(db_location):
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = db_location
     db.init_app(app)
+    app.config["JWT_SECRET_KEY"] = "prog102"
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+    jwt = JWTManager(app)
 
     api = Api(app)
     api.add_resource(UserResource, USERS_ENDPOINT)
+    api.add_resource(LoginResource, LOGIN_ENDPOINT)
 
     with app.app_context():
         db.create_all()
